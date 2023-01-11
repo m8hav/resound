@@ -1,0 +1,52 @@
+HEADER
+	search
+	upload
+	messages
+	profile
+LOGO IN TOP LEFT - directs to home
+NAVBAR
+	home
+	explore
+	library
+		shows all playlist
+
+	FOOTER
+		about
+		newsletter
+		follow us
+MAIN WINDOW
+	HOME
+		recents
+		recommended playlists
+		general popular playlists
+	EXPLORE
+		Mood playlists
+		Genres
+		Singers
+		Top 50
+	LIBRARY
+		history
+		saved playlists
+		custom playlists
+CONTROLS
+	album cover photo
+	seek bar
+	play pause
+	like
+	loop
+	shuffle
+	queue
+	lyrics
+	volume
+	extend button
+
+Main Features:
+	custom playlists
+	Upload your own music
+
+Additional Features:
+	messaging
+	saving playlists with segments of media (from timestamp to timestamp)
+	comment section
+
+DOMAIN HOSTING

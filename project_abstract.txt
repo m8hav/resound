@@ -1,0 +1,20 @@
+Project Details:
+
+Team Members:
+	Madhav Goyal (2011981262)
+	Akhilesh "Shrimp" Thakur (2111981020)
+	Akshita Patial (2111981026)
+	Anjori Kapoor (2111981033)
+
+Project Name:
+	"NAME" | An Interactive Music Sharing and Streaming Platform
+	(SONAR, Musicana, SANGEET)
+
+Module 1:
+	front end 
+
+Module 2:
+	back end
+
+Module 3:
+	web hosting
