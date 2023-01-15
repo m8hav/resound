@@ -44,7 +44,7 @@ Main Features:
 	custom playlists
 	Upload your own music
 
-Additional Features:
+Optional Features:
 	messaging
 	saving playlists with segments of media (from timestamp to timestamp)
 	comment section
