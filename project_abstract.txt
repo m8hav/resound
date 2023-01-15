@@ -1,44 +1,46 @@
-PROJECT DETAILS:
+INTEGRATED PROJECT DETAILS:
 
+Batch: 2021
+Section: A1
 
 Team Members:
 	Madhav Goyal (2011981262)
 	Akhilesh Thakur (2111981020)
-	Akshita Patial (2111981026)
-	Anjori Kapoor (2111981033)
+	Akshita (2111981026)
+	Anjori (2111981033)
 
 
 Title:
-	<NAME> | An Interactive Music Sharing and Streaming Platform
-	(Re$ound, Sonar, Sangeet, Musicana)
+	Re$ound | An Interactive Music Sharing and Streaming Platform
 
 
 Abstract:
-	The website <NAME> is a music streaming platform on which users can stream music, share music and interact with other users of the platform.
+	The website Re$ound is a music streaming platform on which users can stream music, share music and interact with other users of the platform.
 
-	The website has two different pages for it's main window, Home and Explore, both of which can be accessed through the Navbar on the left.
+	The website has two different pages for its main window, Home and Explore, both of which can be accessed through the Navbar on the left.
 
 	The Home page is the very first page the user lands on upon opening the website and it shows the user's recently played music, recommended music and playlists, and some generally popular playlists that the user might like. The Explore page has various playlists based on moods, genres, singers and popularity, and new music for the user to explore.
 
-	The user will be able to search music using the Search Bar at the top, and upload music using the Upload button besides the Search Bar. There will also be a Messages button to allow the user to send and receive messages and a Profile icon in the top right side and update user information and change basic settings.
+	The user will be able to search for music using the Search Bar at the top and upload music using the Upload button beside the Search Bar. There will also be a Messages button to allow the user to send and receive messages and a Profile icon on the top right side to update user information and change basic settings.
 	
-	The main Music Player lies at the bottom with all the buttons a supple music player has, like Play/Pause, Seek bar, Like, Loop, Shuffle, Queue, Volume, Lyrics and Player Extend/Shrink, along with a Music Cover Photo.
+	The main Music Player lies at the bottom with all the buttons a supple music player has, like Play/Pause, Seek bar, Like, Loop, Shuffle, Queue, Volume, Lyrics, and Player Extend/Shrink, along with a Music Cover Photo.
 
 	The left side has a quick access Navbar with links to the Home and Explore page, along with a Library section with links to playlists the user has saved and a History page that shows songs the user has recently played.
 	
-	Users can securely Log In and Log Out using the Profile icon in the top right to access their music anywhere, anytime and on any device with just access to the internet.
+	Users can securely Log In and Log Out using the Profile icon in the top right to access their music anywhere, anytime, and on any device with just access to the internet.
 
 
 Details of Modules:
 	Module 1:
-		Full Front End Development
+		Full Front-End Development
 
-		The front end of our project includes the entire interface that the user would interact with. All the basic features of the website would be working, which includes the ability to navigate the entire website playing music.
+		The front-end interface of our project includes the entire interface that the user would interact with. All the basic features of the website would be working, which includes the ability to navigate the entire website and play music.
+		This will be achieved using HTML, CSS, and JavaScript.
 
 	Module 2:
-		Back End Integration
+		Back-End Integration
 		
-		Several features requiring back-end support like liking, saving music to playlists and messaging will be integrated in this module.
+		Several features requiring back-end support like liking, saving music to playlists, and messaging will be integrated with this module.
 
 	Module 3:
 		Web Hosting
@@ -47,8 +49,11 @@ Details of Modules:
 
 
 Software and Hardware Requirements:
-	Any modern browser - Google Chrome, Microsoft Edge, Apple Safari, Mozilla Firefox, etc
+	Any modern web browser - Google Chrome, Microsoft Edge, Apple Safari, Mozilla Firefox, etc
 	1 MBps internet connection
 
 
 References:
+	https://www.w3schools.com/
+	https://www.geeksforgeeks.org/
+	https://developer.mozilla.org/
