@@ -11,11 +11,11 @@ Team Members:
 
 
 Title:
-	Re$ound | An Interactive Music Sharing and Streaming Platform
+	Re&ound | An Interactive Music Sharing and Streaming Platform
 
 
 Abstract:
-	The website Re$ound is a music streaming platform on which users can stream music, share music and interact with other users of the platform.
+	The website Re&ound is a music streaming platform on which users can stream music, share music and interact with other users of the platform.
 
 	The website has two different pages for its main window, Home and Explore, both of which can be accessed through the Navbar on the left.
 
