@@ -1,0 +1,3 @@
+misc features
+    time based greeting
+    settings icon to change theme etc
