@@ -3,8 +3,8 @@ HEADER
 	upload
 	messages
 	profile
-LOGO IN TOP LEFT - directs to home
 NAVBAR
+	LOGO IN TOP LEFT - directs to home
 	home
 	explore
 	library
