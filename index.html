@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Re&ound | An Interactive Music Streaming Platform</title>
 </head>
 <body>
@@ -14,54 +15,35 @@
         <nav>
             <div id="logo">
                 <a href="#" id="logo-icon">
-                    LOGO ICON
+                    <i class="fa-solid fa-music"></i>
                 </a>
             </div>
             <div id="nav-content">
-                SAMPLE NAVBAR TEXT 1<br>
-                SAMPLE NAVBAR TEXT 2<br>
-                SAMPLE NAVBAR TEXT 3<br>
-                SAMPLE NAVBAR TEXT 4<br>
-                SAMPLE NAVBAR TEXT 5<br>
-                SAMPLE NAVBAR TEXT 6<br>
-                SAMPLE NAVBAR TEXT 7<br>
-                SAMPLE NAVBAR TEXT 8<br><br>
-    
-                SAMPLE NAVBAR TEXT 1<br>
-                SAMPLE NAVBAR TEXT 2<br>
-                SAMPLE NAVBAR TEXT 3<br>
-                SAMPLE NAVBAR TEXT 4<br>
-                SAMPLE NAVBAR TEXT 5<br>
-                SAMPLE NAVBAR TEXT 6<br>
-                SAMPLE NAVBAR TEXT 7<br>
-                SAMPLE NAVBAR TEXT 8<br><br>
-    
-                SAMPLE NAVBAR TEXT 1<br>
-                SAMPLE NAVBAR TEXT 2<br>
-                SAMPLE NAVBAR TEXT 3<br>
-                SAMPLE NAVBAR TEXT 4<br>
-                SAMPLE NAVBAR TEXT 5<br>
-                SAMPLE NAVBAR TEXT 6<br>
-                SAMPLE NAVBAR TEXT 7<br>
-                SAMPLE NAVBAR TEXT 8<br><br>
-    
-                SAMPLE NAVBAR TEXT 1<br>
-                SAMPLE NAVBAR TEXT 2<br>
-                SAMPLE NAVBAR TEXT 3<br>
-                SAMPLE NAVBAR TEXT 4<br>
-                SAMPLE NAVBAR TEXT 5<br>
-                SAMPLE NAVBAR TEXT 6<br>
-                SAMPLE NAVBAR TEXT 7<br>
-                SAMPLE NAVBAR TEXT 8<br><br>
-    
-                SAMPLE NAVBAR TEXT 1<br>
-                SAMPLE NAVBAR TEXT 2<br>
-                SAMPLE NAVBAR TEXT 3<br>
-                SAMPLE NAVBAR TEXT 4<br>
-                SAMPLE NAVBAR TEXT 5<br>
-                SAMPLE NAVBAR TEXT 6<br>
-                SAMPLE NAVBAR TEXT 7<br>
-                SAMPLE NAVBAR TEXT 8<br><br>
+                <div id="home-tab-button" class="nav-content-button">
+                    <p>
+                        HOME
+                    </p>
+                </div>
+                <div id="explore-tab-button" class="nav-content-button">
+                    <p>
+                        EXPLORE
+                    </p>
+                </div>
+                <div id="library-tab-button" class="nav-content-button">
+                    <p>
+                        LIBRARY
+                    </p>
+                    <div id="library-nav-content">
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 1</p>
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 2</p>
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 3</p>
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 4</p>
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 5</p>
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 6</p>
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 7</p>
+                        <p class="library-nav-content-item">SAMPLE PLAYLIST 8</p>
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -72,20 +54,21 @@
                         <input type="text" name="search" id="search-bar">
                     </li>
                     <li id="upload">
-                        UPLOAD ICON
+                        <i class="fa-solid fa-upload"></i>
                     </li>
                     <li id="messages">
-                        MESSAGES ICON
+                        <i class="fa-solid fa-message"></i>
                     </li>
                     <li id="profile">
-                        PROFILE ICON
+                        <i class="fa-solid fa-user"></i>
                     </li>
                 </ul>
-                SAMPLE HEADER TEXT
             </header>
 
             <section id="content-window">
-                SAMPLE MAIN WINDOW TEXT
+                <div id="recents-category" class="content-window-category"></div>
+                <div id="recommended-category" class="content-window-category"></div>
+                <!-- SAMPLE MAIN WINDOW TEXT -->
             </section>
 
         </section>
@@ -93,9 +76,9 @@
 
     <div id="player">
         SAMPLE MUSIC PLAYER TEXT
-        <!-- <progress>
+        <progress>
             PROGRESS BAR?
-        </progress> -->
+        </progress>
     </div>
 
     <script src="script.js"></script>
