@@ -3,8 +3,8 @@ HEADER
 	upload
 	messages
 	profile
-LOGO IN TOP LEFT - directs to home
 NAVBAR
+	LOGO IN TOP LEFT - directs to home
 	home
 	explore
 	library
@@ -28,7 +28,7 @@ MAIN WINDOW
 		history
 		saved playlists
 		custom playlists
-CONTROLS
+PLAYER CONTROLS and FEATURES
 	album cover photo
 	seek bar
 	play pause
@@ -49,4 +49,4 @@ Optional Features:
 	saving playlists with segments of media (from timestamp to timestamp)
 	comment section
 
-DOMAIN HOSTING
+WEB HOSTING WITH DOMAIN

@@ -1,0 +1,21 @@
+MODULE 1
+    Basic Looks
+        Bottom player
+        Navbar
+        Home page (layout mockup view)
+MODULE 2
+    Functional website
+        Music player works
+        Navigate pages and pre-made playlists
+        Lyrics
+        Search Bar works
+MODULE 3
+    Sort of backend support
+        login
+        custom playlist
+        liking
+FUTURE SCOPE
+    comments
+    upload songs - using simple php
+    proper backend with database
+    sharing songs
