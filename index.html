@@ -15,16 +15,19 @@
         <nav>
             <div id="logo">
                 <a href="#" id="logo-icon">
+                    𝄞&nbsp;
                     <i class="fa-solid fa-music"></i>
                 </a>
             </div>
             <div id="nav-content">
                 <div id="home-tab-button" class="nav-content-button">
+                    <i class="fa-solid fa-house"></i>
                     <p>
                         HOME
                     </p>
                 </div>
                 <div id="explore-tab-button" class="nav-content-button">
+                    <i class="fa-solid fa-sparkles"></i>
                     <p>
                         EXPLORE
                     </p>
@@ -68,6 +71,8 @@
             <section id="content-window">
                 <div id="recents-category" class="content-window-category"></div>
                 <div id="recommended-category" class="content-window-category"></div>
+                <div id="genres-category" class="content-window-category"></div>
+                <div id="genres-category" class="content-window-category"></div>
                 <!-- SAMPLE MAIN WINDOW TEXT -->
             </section>
 
@@ -75,10 +80,33 @@
     </main>
 
     <div id="player">
-        SAMPLE MUSIC PLAYER TEXT
-        <progress>
-            PROGRESS BAR?
-        </progress>
+
+        <span id="main-player-controls">
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-solid fa-circle-play"></i>
+            <i class="fa-solid fa-pause"></i>
+            <i class="fa-solid fa-forward-step"></i>
+        </span>
+
+        <span id="player-additional-controls">
+            <i class="fa-solid fa-shuffle"></i>
+    
+            <i class="fa-solid fa-repeat"></i>
+            <i class="fa-solid fa-repeat-1"></i>
+
+            <i class="fa-solid fa-volume-xmark"></i>
+            <i class="fa-solid fa-volume-low"></i>
+            <i class="fa-solid fa-volume"></i>
+            <i class="fa-solid fa-volume-high"></i>
+        </span>
+
+        <div id="volume-seek-bar-container">
+            <input type="range" name="volume-seek-bar" id="volume-seek-bar" min="0" max="100">
+        </div>
+
+        <div id="player-seek-bar-container">
+            <input type="range" name="player-seek-bar" id="player-seek-bar" min="0" max="100">
+        </div>
     </div>
 
     <script src="script.js"></script>
