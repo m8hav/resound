@@ -15,8 +15,8 @@
         <nav>
             <div id="logo">
                 <a href="#" id="logo-icon">
-                    𝄞&nbsp;
-                    <i class="fa-solid fa-music"></i>
+                    <!-- 𝄞&nbsp; -->
+                    <img src="media/logo.png" height="60px" alt="logo">
                 </a>
             </div>
             <div id="nav-content">
@@ -27,12 +27,13 @@
                     </p>
                 </div>
                 <div id="explore-tab-button" class="nav-content-button">
-                    <i class="fa-solid fa-sparkles"></i>
+                    <i class="fa-solid fa-mountain-sun"></i>
                     <p>
                         EXPLORE
                     </p>
                 </div>
                 <div id="library-tab-button" class="nav-content-button">
+                    <i class="fa-solid fa-lines-leaning"></i>
                     <p>
                         LIBRARY
                     </p>
@@ -54,6 +55,7 @@
             <header>
                 <ul>
                     <li id="search-li">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" name="search" id="search-bar">
                     </li>
                     <li id="upload">
@@ -69,10 +71,66 @@
             </header>
 
             <section id="content-window">
-                <div id="recents-category" class="content-window-category"></div>
-                <div id="recommended-category" class="content-window-category"></div>
-                <div id="genres-category" class="content-window-category"></div>
-                <div id="genres-category" class="content-window-category"></div>
+                <div id="recents-category" class="content-window-category">
+                    <p class="content-window-category-label">Recently Played</p>
+                    <div class="content-window-category-items">
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                    </div>
+                </div>
+                <div id="recommended-category" class="content-window-category">
+                    <p class="content-window-category-label">Recommended For You</p>
+                    <div class="content-window-category-items">
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                    </div>
+                </div>
+                <div id="genres-category" class="content-window-category">
+                    <p class="content-window-category-label">Popular Genres</p>
+                    <div class="content-window-category-items">
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                    </div>
+                </div>
+                <div id="moods-category" class="content-window-category">
+                    <p class="content-window-category-label">Moods</p>
+                    <div class="content-window-category-items">
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">Item x</div>
+                    </div>
+                </div>
                 <!-- SAMPLE MAIN WINDOW TEXT -->
             </section>
 
@@ -81,34 +139,56 @@
 
     <div id="player">
 
-        <span id="main-player-controls">
-            <i class="fa-solid fa-backward-step"></i>
-            <i class="fa-solid fa-circle-play"></i>
-            <i class="fa-solid fa-pause"></i>
-            <i class="fa-solid fa-forward-step"></i>
+        <span id="player-left-portion">
+            left portion
+            <span id="song-cover">cover</span>
+            <i class="fa-regular fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
         </span>
 
-        <span id="player-additional-controls">
-            <i class="fa-solid fa-shuffle"></i>
+        <span id="player-middle-portion">
+            middle portion
+            <span id="player-controls">
+                <i class="fa-solid fa-shuffle"></i>
     
-            <i class="fa-solid fa-repeat"></i>
-            <i class="fa-solid fa-repeat-1"></i>
-
-            <i class="fa-solid fa-volume-xmark"></i>
-            <i class="fa-solid fa-volume-low"></i>
-            <i class="fa-solid fa-volume"></i>
-            <i class="fa-solid fa-volume-high"></i>
+                <i class="fa-solid fa-backward-step"></i>
+                <i class="fa-solid fa-circle-play"></i>
+                <i class="fa-solid fa-pause"></i>
+                <i class="fa-solid fa-forward-step"></i>
+    
+                <i class="fa-solid fa-repeat"></i>
+                <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
+            </span>
+    
+            <span id="player-seek-bar-container">
+                <input type="range" name="player-seek-bar" id="player-seek-bar" min="0" max="100">
+            </span>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
         </span>
 
-        <div id="volume-seek-bar-container">
-            <input type="range" name="volume-seek-bar" id="volume-seek-bar" min="0" max="100">
-        </div>
+        <span id="player-right-portion">
+            right portion
+            <i class="fa-solid fa-list"></i>
+            <i class="fa-regular fa-closed-captioning"></i>
+            <i class="fa-solid fa-closed-captioning"></i>
+            <span id="volume-controls">
+                <i class="fa-solid fa-volume-xmark"></i>
+                <i class="fa-solid fa-volume-low"></i>
+                <!-- use volume high as regular volume -->
+                <i class="fa-solid fa-volume-high"></i>
+    
+                <span id="volume-seek-bar-container">
+                    <input type="range" name="volume-seek-bar" id="volume-seek-bar" min="0" max="100">
+                </span>
+            </span>
+    
+            <i class="fa-solid fa-caret-up"></i>
+            <i class="fa-solid fa-caret-down"></i>
+        </span>
 
-        <div id="player-seek-bar-container">
-            <input type="range" name="player-seek-bar" id="player-seek-bar" min="0" max="100">
-        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script data-main="scripts/main" src="scripts/require.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
