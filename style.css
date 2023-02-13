@@ -26,7 +26,9 @@ input[type='range']{
     color: black;
 }
 main{
-    height: calc(100% - 75px);
+    /* height: calc(100% - 75px); */
+    height: 100%;
+    padding-bottom: 75px;
     width: 100%;
     display: flex;
 }
@@ -41,6 +43,7 @@ nav{
     max-width: 400px;
     background-color: rgba(255, 255, 255, 0.08);
     color: white;
+    z-index: 10;
 }
 #navbar-logo-space{
     height: calc(20px + var(--top-bar-height));
@@ -96,6 +99,7 @@ nav{
     width: 80%;
     min-width: calc(100%-400px);
     max-width: calc(100%-225px);
+    position: relative;
 }
 
 
@@ -103,13 +107,28 @@ nav{
 /* INSIDE RIGHT WINDOW */
 header{
     height: var(--top-bar-height);
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.1);
+    width: inherit;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px 10px black;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
     padding: 0 4%;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+}
+header::before{
+    content: "";
+    height: inherit;
+    /* width: calc(inherit - 20px); */
+    width: inherit;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: -10;
 }
 #header-left-empty-part{
     height: 100%;
@@ -145,8 +164,10 @@ header{
 }
 
 #content-window{
-    padding-bottom: 75px;
-    max-height: calc(100% - var(--top-bar-height));
+    /* padding-bottom: 75px; */
+    /* max-height: calc(100% - var(--top-bar-height)); */
+    padding: 75px 0;
+    max-height: 100%;
     max-width: 100%;
     overflow-y: auto;
     display: flex;
@@ -174,6 +195,7 @@ header{
     display: flex;
     overflow: auto;
     height: 100%;
+    padding: 0 10px;
 }
 .content-window-category-item{
     height: 260px;
@@ -215,6 +237,9 @@ header{
     justify-content: space-between;
     color: white;
     box-shadow: 0 0 10px 10px black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 #player-left-part{
     height: 100%;
