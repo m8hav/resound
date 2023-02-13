@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
     <title>Re&ound | An Interactive Music Streaming Platform</title>
-</head>
+</head
+>
 <body>
     
     <main>
         <nav>
-            <div id="logo">
-                <a href="#" id="logo-icon">
-                    <!-- 𝄞&nbsp; -->
-                    <img src="media/logo.png" height="60px" alt="logo">
-                </a>
+            <div id="navbar-logo-space">
+                <div id="logo-wrapper">
+                    <a href="#" id="logo-wrapper-a-tag">
+                        Re<img src="media/logo_3x4.png" alt="logo">und
+                        <!-- Re𝄞ound -->
+                    </a>
+                </div>
             </div>
             <div id="nav-content">
-                <div id="home-tab-button" class="nav-content-button">
-                    <i class="fa-solid fa-house"></i>
+                <div id="nav-content-home-tab-button" class="nav-content-item">
+                    <i class="fa-solid fa-house"></i> &nbsp;
                     <p>
                         HOME
                     </p>
                 </div>
-                <div id="explore-tab-button" class="nav-content-button">
-                    <i class="fa-solid fa-mountain-sun"></i>
+                <div id="nav-content-explore-tab-button" class="nav-content-item">
+                    <i class="fa-solid fa-mountain-sun"></i> &nbsp;
                     <p>
                         EXPLORE
                     </p>
                 </div>
-                <div id="library-tab-button" class="nav-content-button">
-                    <i class="fa-solid fa-lines-leaning"></i>
+                <div id="nav-content-library-tab-button" class="nav-content-item">
+                    <i class="fa-solid fa-lines-leaning"></i> &nbsp;
                     <p>
                         LIBRARY
                     </p>
-                    <div id="library-nav-content">
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 1</p>
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 2</p>
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 3</p>
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 4</p>
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 5</p>
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 6</p>
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 7</p>
-                        <p class="library-nav-content-item">SAMPLE PLAYLIST 8</p>
+                    <div id="nav-content-library-tab-items">
+                        <p class="nav-content-library-tab-item">History</p>
+                        <p class="nav-content-library-tab-item">Liked Songs</p>
+                        <p class="nav-content-library-tab-item">2020 Favourites</p>
+                        <p class="nav-content-library-tab-item">2021 Favourites</p>
+                        <p class="nav-content-library-tab-item">Favourite Pop Music</p>
+                        <p class="nav-content-library-tab-item">2022 Recap</p>
+                        <p class="nav-content-library-tab-item">2021 Summer Recap</p>
+                        <p class="nav-content-library-tab-item">My SuperMix 4</p>
                     </div>
                 </div>
             </div>
@@ -53,85 +59,403 @@
 
         <section id="right-window">
             <header>
-                <ul>
-                    <li id="search-li">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" name="search" id="search-bar">
-                    </li>
-                    <li id="upload">
-                        <i class="fa-solid fa-upload"></i>
-                    </li>
-                    <li id="messages">
-                        <i class="fa-solid fa-message"></i>
-                    </li>
-                    <li id="profile">
-                        <i class="fa-solid fa-user"></i>
-                    </li>
-                </ul>
+                <span id="header-left-empty-part"></span>
+                <span id="search-bar-wrapper">
+                    <input type="text" name="search" id="search-bar">
+                        <i id="search-bar-icon" class="fa-solid fa-magnifying-glass"></i>
+                    </input>
+                </span>
+                <span id="header-right-part">
+                    <i class="fa-solid fa-upload"></i>
+                    <i class="fa-solid fa-envelope"></i>
+                    <i class="fa-solid fa-user"></i>
+                </span>
             </header>
 
             <section id="content-window">
+
                 <div id="recents-category" class="content-window-category">
+
                     <p class="content-window-category-label">Recently Played</p>
+                    
                     <div class="content-window-category-items">
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/the_chainsmokers-closer-cover.jpg" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                The Chainsmokers - Closer
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/benny_blanco-i_cant_get_enough-cover.png" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Benny Blanco - I Can't Get Enough
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/clean_bandit-symphony-cover.jpg" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Clean Bandit - Symphony
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/dnce-cake_by_the_ocean.jpg" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                DNCE - Cake By The Ocean
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/illenium-crawl_outta_love-cover.jpg" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                ILLENIUM - Crawl Outta Love
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/justin_timberlake-mirrors-cover.jpg" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Justin Timberlake - Mirrors
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/martin_garrix-in_the_name_of_love-cover.jpeg" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Martin Garrix - In The Name Of Love
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/sabrina_carpenter-why-cover.png" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Sabrina Carpenter - Why
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/shawn_mendes-theres_nothing_holding_me_back-cover.jpeg" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Shawn Mendes - There's Nothing Holding Me Back
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recents/zara_larsson-wow-cover.png" alt="recents_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Zara Larsson - Wow
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
                     </div>
                 </div>
                 <div id="recommended-category" class="content-window-category">
                     <p class="content-window-category-label">Recommended For You</p>
                     <div class="content-window-category-items">
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/imagine_dragons-birds-cover.jpeg" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Imagine Dragons - Birds
+                                </p>
+                                <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/alan_walker-alone_pt_2-cover.png" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Alan Walker - Alone Pt. II
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/charlie_puth-attention-cover.png" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Charlie Puth - Attention
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/dj_snake-taki_taki-cover.png" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                DJ Snake - Taki Taki
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/halsey-him_and_i-cover.jpg" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Halsey - Him & I
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/marshmello-happier-cover.png" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Marshmello - Happier
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/martin_garrix-scared_to_be_lonely-cover.jpg" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Martin Garrix - Scared To Be Lonely
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/sam_smith-how_do_you_sleep-cover.png" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Sam Smith - How Do You Sleep
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/taylor_swift-i_did_something_bad-cover.jpg" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Taylor Swift - I Did Something Bad
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/songs/recommended/wiz_khalifa-see_you_again-cover.jpeg" alt="recommended_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Wiz Khalifa - See You Again
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
                     </div>
                 </div>
                 <div id="genres-category" class="content-window-category">
                     <p class="content-window-category-label">Popular Genres</p>
                     <div class="content-window-category-items">
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/pop-cover.jpg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Pop
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/hip_hop-cover.jpg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Hip-Hop
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/edm-cover.jpg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                EDM
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/rap-cover.png" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Rap
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/trap-cover.jpg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Trap
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/rnb-cover.jpg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                R&B
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/dance-cover.jpeg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Dance
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/house-cover.jpeg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                House
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/soul_blues-cover.png" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Soul/Blues
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/genres/rock-cover.jpg" alt="genres_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Rock
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
                     </div>
                 </div>
                 <div id="moods-category" class="content-window-category">
                     <p class="content-window-category-label">Moods</p>
                     <div class="content-window-category-items">
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
-                        <div class="content-window-category-item">Item x</div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/chill-cover.png" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Chill
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/commute-cover.jpg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Commute
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/energy_booster-cover.jpg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Energy Booster
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/feel_good-cover.jpg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Feel Good
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/focus-cover.jpg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Focus
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/sad-cover.jpg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Sad
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/party-cover.jpg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Party
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/romance-cover.jpeg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Romance
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/sleep-cover.png" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Sleep
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
+                        <div class="content-window-category-item">
+                            <div class="content-window-category-item-cover">
+                                <img src="media/covers/moods/workout-cover.jpeg" alt="moods_cover">
+                            </div>
+                            <p class="content-window-category-item-label">
+                                Workout
+                            </p>
+                            <!-- <i class="fa-solid fa-play"></i> -->
+                        </div>
                     </div>
                 </div>
-                <!-- SAMPLE MAIN WINDOW TEXT -->
             </section>
 
         </section>
@@ -139,41 +463,67 @@
 
     <div id="player">
 
-        <span id="player-left-portion">
-            left portion
-            <span id="song-cover">cover</span>
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-heart"></i>
-        </span>
-
-        <span id="player-middle-portion">
-            middle portion
-            <span id="player-controls">
-                <i class="fa-solid fa-shuffle"></i>
-    
-                <i class="fa-solid fa-backward-step"></i>
-                <i class="fa-solid fa-circle-play"></i>
-                <i class="fa-solid fa-pause"></i>
-                <i class="fa-solid fa-forward-step"></i>
-    
-                <i class="fa-solid fa-repeat"></i>
-                <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
+        <div id="player-left-part">
+            <span id="player-song-cover">
+                <img src="media/covers/songs/recents/the_chainsmokers-closer-cover.jpg" height="60px" alt="cover_image">
             </span>
-    
-            <span id="player-seek-bar-container">
+
+            <span id="player-song-info">
+                <p id="player-song-name">Closer</p><br>
+                <p id="player-song-artist">The Chainsmokers</p>
+            </span>
+            
+            <span id="player-left-part-like-container">
+                <!-- <i class="fa-regular fa-heart"></i> -->
+                <i class="fa-solid fa-heart"></i>
+            </span>
+
+        </div>
+
+        <div id="player-middle-part">
+            <span id="player-middle-part-main">
+                <span id="player-middle-part-controls">
+                    <div class="player-middle-part-control-container">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </div>
+        
+                    <div class="player-middle-part-control-container">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </div>
+                    <div class="player-middle-part-control-container player-middle-part-play-pause-control-container">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <!-- <i class="fa-solid fa-pause"></i> -->
+                    </div>
+                    <div class="player-middle-part-control-container">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </div>
+        
+                    <div class="player-middle-part-control-container">
+                        <i class="fa-solid fa-repeat"></i>
+                        <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
+                    </div>
+                </span>
+        
                 <input type="range" name="player-seek-bar" id="player-seek-bar" min="0" max="100">
             </span>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-        </span>
+            <span id="player-middle-part-option-container">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </span>
+            
+        </div>
 
-        <span id="player-right-portion">
-            right portion
-            <i class="fa-solid fa-list"></i>
-            <i class="fa-regular fa-closed-captioning"></i>
-            <i class="fa-solid fa-closed-captioning"></i>
+        <div id="player-right-part">
+            <span id="player-right-part-main-controls">
+                <i class="fa-solid fa-list"></i>
+                <span id="player-right-part-caption-button-container">
+                    <!-- <i class="fa-regular fa-closed-captioning"></i> -->
+                    <i class="fa-solid fa-closed-captioning"></i>
+                </span>
+            </span>
+
             <span id="volume-controls">
-                <i class="fa-solid fa-volume-xmark"></i>
-                <i class="fa-solid fa-volume-low"></i>
+                <!-- <i class="fa-solid fa-volume-xmark"></i>
+                <i class="fa-solid fa-volume-low"></i> -->
                 <!-- use volume high as regular volume -->
                 <i class="fa-solid fa-volume-high"></i>
     
@@ -181,14 +531,16 @@
                     <input type="range" name="volume-seek-bar" id="volume-seek-bar" min="0" max="100">
                 </span>
             </span>
-    
-            <i class="fa-solid fa-caret-up"></i>
-            <i class="fa-solid fa-caret-down"></i>
-        </span>
+            
+            <span id="player-right-part-open-arrow-container">
+                <i class="fa-solid fa-caret-up"></i>
+                <!-- <i class="fa-solid fa-caret-down"></i> -->
+            </span>
+        </div>
 
     </div>
 
     <script data-main="scripts/main" src="scripts/require.js"></script>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="scripts/main.js"></script>
 </body>
 </html>

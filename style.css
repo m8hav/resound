@@ -1,16 +1,29 @@
+:root{
+    --top-bar-height: 64px;
+}
+
 html, body{
     height: 100%;
     width: 100%;
     font-size: 20px;
+    font-family: sans-serif;
     box-sizing: border-box;
-    background-color: red;
+    background-color: black;
 }
 *, *:before, *:after{
     margin: 0;
     padding: 0;
-    color: white;
     text-decoration: none;
     box-sizing: inherit;
+}
+p{
+    display: inline-block;
+}
+a{
+    color: white;
+}
+input[type='range']{
+    color: black;
 }
 main{
     height: calc(100% - 75px);
@@ -18,11 +31,7 @@ main{
     display: flex;
 }
 
-#player{
-    height: 75px;
-    width: 100%;
-    background-color: gray;
-}
+
 
 /* INSIDE MAIN */
 nav{
@@ -30,105 +39,227 @@ nav{
     width: 20%;
     min-width: 225px;
     max-width: 400px;
-    background-color: rgb(50, 50, 50);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
 }
-#logo{
-    height: 64px;
+#navbar-logo-space{
+    height: calc(20px + var(--top-bar-height));
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-around;
     font-size: 40px;
     padding-top: 10px;
 }
+#logo-wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logo-wrapper-a-tag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logo-wrapper img{
+    height: 60px;
+    filter: invert();
+}
 #nav-content{
-    height: calc(100% - 64px);
+    height: calc(100% - 20px - var(--top-bar-height));
     overflow-y: auto;
     padding: 15px;
 }
-.nav-content-button{
-    background-color: rgba(25, 25, 25, 0.5);
+.nav-content-item{
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     margin: 15px;
-    padding: 15px;
-    text-align: center;
-}
-#library-nav-content{
-    margin: 15px 10px 5px;
-}
-.library-nav-content-item{
-    margin: 5px;
-    font-size: 18px;
+    padding: 15px 20px;
     text-align: left;
-    
 }
+#nav-content-library-tab-items{
+    margin: 20px 0px 5px;
+}
+.nav-content-library-tab-item{
+    margin: 12px 5px 0;
+    font-size: 17px;
+    text-align: left;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 5px 12px;
+    border-radius: 5px;
+}
+
 #right-window{
     height: 100%;
     width: 80%;
+    min-width: calc(100%-400px);
+    max-width: calc(100%-225px);
 }
+
+
 
 /* INSIDE RIGHT WINDOW */
 header{
-    height: 64px;
+    height: var(--top-bar-height);
     width: 100%;
-    background-color: gray;
+    background-color: rgba(255, 255, 255, 0.1);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 0 4%;
 }
-header ul{
-    list-style-type: none;
+#header-left-empty-part{
+    height: 100%;
+    width: 10%;
+}
+#search-bar-wrapper{
+    width: 55%;
+    min-width: 300px;
     display: flex;
-    justify-content: space-around;
-}
-header ul li{
-    display: inline;
-    padding: 5px;
-    font-size: 30px;
-}
-#search-li{
-    width: 40%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: black;
 }
 #search-bar{
-    width: 100%;
-    max-width: 400px;
-    font-size: 30px;
-    border-radius: 10px;
+    width: 80%;
+    font-size: 17px;
+    padding: 5px;
+    border-radius: 5px;
+}
+#search-bar-icon{
+    position: absolute;
+    right: calc(10% + 10px);
+    color: black;
+}
+#header-right-part{
+    font-size: 24px;
+    width: 25%;
+    margin: 0 0 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 #content-window{
-    padding-bottom: 64px;
-    max-height: calc(100% - 64px);
+    padding-bottom: 75px;
+    max-height: calc(100% - var(--top-bar-height));
     max-width: 100%;
-    background-color: rgb(25, 25, 25);
     overflow-y: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
+    color: white;
 }
 .content-window-category{
     width: 90%;
-    height: 260px;
+    height: 350px;
     flex-shrink: 0;
-    background-color: grey;
-    margin: 64px 0 0 0;
+    background-color: rgba(255, 255, 255, 0.12);
+    margin: calc(var(--top-bar-height)/2) 0 0;
     border-radius: 20px;
     padding: 16px;
 }
 .content-window-category-label{
-    background-color: rgba(25, 25, 25, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 10px;
+    width: 100%;
+    font-size: larger;
 }
 .content-window-category-items{
     display: flex;
     overflow: auto;
+    height: 100%;
 }
 .content-window-category-item{
-    height: 100px;
-    width: 100px;
+    height: 260px;
+    width: 200px;
+    margin: 15px 15px 0 0;
+    border-radius: 10px;
     flex-shrink: 0;
     flex-grow: 0;
-    margin: 16px;
-    background-color: rgba(25, 25, 25, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
     display: inline-block;
+}
+.content-window-category-item-cover{
+    height: 76%;
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.content-window-category-item-cover img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+.content-window-category-item-label{
+    padding: 10px;
+    font-size: 17px;
+}
+
+
+/* MAIN PLAYER */
+#player{
+    height: 75px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-shadow: 0 0 10px 10px black;
+}
+#player-left-part{
+    height: 100%;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#player-song-artist{
+    font-size: 15px;
+}
+#player-middle-part{
+    height: 100%;
+    width: 400px;
+    display: flex;
+    align-items: center;
+}
+#player-middle-part-main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#player-middle-part-controls{
+    margin: 0 auto 10px;
+    width: 100%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.player-middle-part-play-pause-control-container{
+    font-size: 25px;
+}
+#player-middle-part-option-container{
+    margin: 0 0 0 5%;
+}
+#player-seek-bar{
+    width: 90%;
+    flex-grow: 1;
+    margin: auto;
+}
+#player-right-part{
+    height: 100%;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
