@@ -1,7 +1,10 @@
+0. add timestamps
 1. change range slider colors
 2. customize scroll bars
 3. add hover darken effect over content-window categories with <i class="fa-solid fa-play"></i>
 4. check why squeezing browser window laterally brings horizontal scroll bar (navbar and content-window probably have some width calculation issues)
 5. add background gradient (changes shades from orange to blue with time with javascript later)
-6. make header and bottom player transparent like realm game hub
-7. add arror buttons around .content-window-category-items to allow viewing next items without using horizontal mouse scrolling
+6. make bottom player translucent like realm game hub
+7. add arrow buttons around .content-window-category-items-wrapper to allow viewing next items without using horizontal mouse scrolling
+8. change logo font
+9. profile drop down

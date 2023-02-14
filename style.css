@@ -1,12 +1,17 @@
 :root{
     --top-bar-height: 64px;
+    --content-window-category-item-cover-side: 180px;
+    --sub-label-color: rgba(255, 255, 255, 0.5);
 }
 
 html, body{
     height: 100%;
     width: 100%;
     font-size: 20px;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: 'Ubuntu', sans-serif;
     box-sizing: border-box;
     background-color: black;
 }
@@ -59,6 +64,8 @@ nav{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Courgette', cursive;
+    font-size: larger;
 }
 #logo-wrapper-a-tag{
     display: flex;
@@ -67,7 +74,8 @@ nav{
 }
 #logo-wrapper img{
     height: 60px;
-    filter: invert();
+    padding: 0 2px;
+    /* filter: invert(); */
 }
 #nav-content{
     height: calc(100% - 20px - var(--top-bar-height));
@@ -81,17 +89,18 @@ nav{
     padding: 15px 20px;
     text-align: left;
 }
+.nav-content-item-label{
+    font-weight: 500;
+}
 #nav-content-library-tab-items{
     margin: 20px 0px 5px;
 }
 .nav-content-library-tab-item{
     margin: 12px 5px 0;
+    color: rgba(255, 255, 255, 0.75);
     font-size: 17px;
     text-align: left;
     display: block;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 5px 12px;
-    border-radius: 5px;
 }
 
 #right-window{
@@ -103,13 +112,11 @@ nav{
 }
 
 
-
 /* INSIDE RIGHT WINDOW */
 header{
     height: var(--top-bar-height);
     width: inherit;
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px 10px black;
+    background-color: rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -122,9 +129,9 @@ header{
 header::before{
     content: "";
     height: inherit;
-    /* width: calc(inherit - 20px); */
     width: inherit;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px 10px black;
     position: fixed;
     top: 0;
     right: 0;
@@ -163,9 +170,8 @@ header::before{
     justify-content: space-evenly;
 }
 
+/* RIGHT CONTENT WINDOW */
 #content-window{
-    /* padding-bottom: 75px; */
-    /* max-height: calc(100% - var(--top-bar-height)); */
     padding: 75px 0;
     max-height: 100%;
     max-width: 100%;
@@ -177,52 +183,61 @@ header::before{
 }
 .content-window-category{
     width: 90%;
-    height: 350px;
     flex-shrink: 0;
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.1);
     margin: calc(var(--top-bar-height)/2) 0 0;
     border-radius: 20px;
-    padding: 16px;
+    padding: 20px 20px 0;
 }
 .content-window-category-label{
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 10px;
     width: 100%;
-    font-size: larger;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bolder;
 }
-.content-window-category-items{
+.content-window-category-items-wrapper{
     display: flex;
     overflow: auto;
-    height: 100%;
-    padding: 0 10px;
+    padding: 0 0 0 10px;
 }
 .content-window-category-item{
-    height: 260px;
-    width: 200px;
-    margin: 15px 15px 0 0;
+    width: var(--content-window-category-item-cover-side);
+    margin: 20px 20px 0 0;
     border-radius: 10px;
     flex-shrink: 0;
     flex-grow: 0;
-    background-color: rgba(255, 255, 255, 0.1);
     display: inline-block;
 }
-.content-window-category-item-cover{
-    height: 76%;
-    width: 100%;
-    margin: auto;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
-}
 .content-window-category-item-cover img{
-    height: 100%;
-    width: 100%;
+    height: var(--content-window-category-item-cover-side);
+    width: var(--content-window-category-item-cover-side);
     object-fit: cover;
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px;
 }
-.content-window-category-item-label{
-    padding: 10px;
+.content-window-category-item-labels{
+    padding: 10px 5px;
+    position: relative;
+    height: max-content;
+    overflow: hidden;
+    font-weight: 500;
+}
+.content-window-category-item-mainlabel{
     font-size: 17px;
+    width: 100%;
+    margin-bottom: 5px;
+    /* text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; */
+    /* --webkit-line-clamp: 3; */
+}
+.content-window-category-item-sublabel{
+    font-size: 15px;
+    color: var(--sub-label-color);
+    /* text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; */
+    /* --webkit-line-clamp: 3; */
 }
 
 
@@ -241,16 +256,27 @@ header::before{
     bottom: 0;
     left: 0;
 }
+
+/* player left part */
 #player-left-part{
     height: 100%;
     width: 400px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+#player-song-info{
+    margin-left: 24px;
 }
 #player-song-artist{
     font-size: 15px;
+    color: var(--sub-label-color);
 }
+#player-left-part-like-container{
+    margin-left: 50px;
+}
+
+/* player middle part */
 #player-middle-part{
     height: 100%;
     width: 400px;
@@ -281,6 +307,8 @@ header::before{
     flex-grow: 1;
     margin: auto;
 }
+
+/* player right part */
 #player-right-part{
     height: 100%;
     width: 400px;
