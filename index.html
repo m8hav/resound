@@ -71,17 +71,23 @@
 
         <section id="right-window">
             <header>
-                <span id="header-left-empty-part"></span>
-                <span id="search-bar-wrapper">
+                <div id="header-left-empty-part"></div>
+                <div id="search-bar-wrapper">
                     <input type="text" name="search" id="search-bar" placeholder="Search">
                         <i id="search-bar-icon" class="fa-solid fa-magnifying-glass"></i>
                     </input>
-                </span>
-                <span id="header-right-part">
-                    <i class="fa-solid fa-upload"></i>
-                    <i class="fa-solid fa-envelope"></i>
-                    <i class="fa-solid fa-user"></i>
-                </span>
+                </div>
+                <div id="header-right-part">
+                    <div class="header-right-part-button">
+                        <i class="fa-solid fa-upload"></i>
+                    </div>
+                    <div class="header-right-part-button">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="header-right-part-button">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
             </header>
 
             <section id="content-window">
@@ -671,7 +677,7 @@
         </div>
 
         <div id="player-right-part">
-            <span id="player-right-part-main-controls">
+            <div id="player-right-part-main-controls">
                 <span id="player-right-part-queue-button" class="player-control-button">
                     <i class="fa-solid fa-list"></i>
                 </span>
@@ -679,9 +685,9 @@
                     <!-- <i class="fa-regular fa-closed-captioning"></i> -->
                     <i class="fa-solid fa-closed-captioning"></i>
                 </span>
-            </span>
+            </div>
 
-            <span id="player-right-part-volume-controls">
+            <div id="player-right-part-volume-controls">
                 <!-- <i class="fa-solid fa-volume-xmark"></i>
                 <i class="fa-solid fa-volume-low"></i> -->
                 <!-- use volume high as regular volume -->
@@ -692,12 +698,12 @@
                 <span id="player-right-part-volume-seek-bar-container">
                     <input type="range" name="volume-seek-bar" id="volume-seek-bar" min="0" max="100">
                 </span>
-            </span>
+            </div>
             
-            <span id="player-right-part-open-arrow-container" class="player-control-button">
+            <div id="player-right-part-open-arrow-container" class="player-control-button">
                 <i class="fa-solid fa-caret-up"></i>
                 <!-- <i class="fa-solid fa-caret-down"></i> -->
-            </span>
+            </div>
         </div>
 
     </div>

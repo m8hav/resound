@@ -230,6 +230,15 @@ header{
     align-items: center;
     justify-content: space-evenly;
 }
+.header-right-part-button{
+    padding: 12px 10px 10px;
+    border-radius: 25px;
+    font-size: smaller;
+}
+.header-right-part-button:hover{
+    box-shadow: 0 0 10px 10px var(--control-button-bg-color) inset;
+    cursor: pointer;
+}
 
 /* RIGHT CONTENT WINDOW */
 #content-window{
