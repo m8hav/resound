@@ -73,7 +73,7 @@
             <header>
                 <span id="header-left-empty-part"></span>
                 <span id="search-bar-wrapper">
-                    <input type="text" name="search" id="search-bar">
+                    <input type="text" name="search" id="search-bar" placeholder="Search">
                         <i id="search-bar-icon" class="fa-solid fa-magnifying-glass"></i>
                     </input>
                 </span>
@@ -616,77 +616,85 @@
     <div id="player">
 
         <div id="player-left-part">
-            <span id="player-song-cover">
+            <div id="player-song-cover">
                 <img src="media/covers/songs/recents/the_chainsmokers-closer-cover.jpg" height="60px" alt="cover_image">
-            </span>
+            </div>
 
-            <span id="player-song-info">
+            <div id="player-song-info">
                 <p id="player-song-name">Closer</p><br>
                 <p id="player-song-artist">The Chainsmokers</p>
-            </span>
+            </div>
             
-            <span id="player-left-part-like-container">
+            <div id="player-left-part-like-container" class="player-control-button">
                 <!-- <i class="fa-regular fa-heart"></i> -->
                 <i class="fa-solid fa-heart"></i>
-            </span>
+            </div>
 
         </div>
 
         <div id="player-middle-part">
-            <span id="player-middle-part-main">
-                <span id="player-middle-part-controls">
-                    <div class="player-middle-part-control-container">
+            <div id="player-middle-part-main">
+                <div id="player-middle-part-controls">
+                    <div class="player-control-button player-middle-part-control-container">
                         <i class="fa-solid fa-shuffle"></i>
                     </div>
         
-                    <div class="player-middle-part-control-container">
+                    <div class="player-control-button player-middle-part-control-container">
                         <i class="fa-solid fa-backward-step"></i>
                     </div>
-                    <div class="player-middle-part-control-container player-middle-part-play-pause-control-container">
+                    <div class="player-control-button player-middle-part-control-container player-middle-part-play-pause-control-container">
                         <i class="fa-solid fa-circle-play"></i>
                         <!-- <i class="fa-solid fa-pause"></i> -->
                     </div>
-                    <div class="player-middle-part-control-container">
+                    <div class="player-control-button player-middle-part-control-container">
                         <i class="fa-solid fa-forward-step"></i>
                     </div>
         
-                    <div class="player-middle-part-control-container">
+                    <div class="player-control-button player-middle-part-control-container">
                         <i class="fa-solid fa-repeat"></i>
                         <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
                     </div>
-                </span>
+                </div>
         
                 <input type="range" name="player-seek-bar" id="player-seek-bar" min="0" max="100">
-            </span>
-            <span id="player-middle-part-option-container">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </span>
+            </div>
+
+            <div id="player-middle-part-right">
+                <div id="player-middle-part-option-container" class="player-control-button">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+                <div id="player-middle-part-timestamp">
+                    2:02/4:04
+                </div>
+            </div>
             
         </div>
 
         <div id="player-right-part">
-
-            <span id="player-right-part-controls">
-                
-                <i class="fa-solid fa-list"></i>
-                <span id="player-right-part-caption-button-container">
+            <span id="player-right-part-main-controls">
+                <span id="player-right-part-queue-button" class="player-control-button">
+                    <i class="fa-solid fa-list"></i>
+                </span>
+                <span id="player-right-part-caption-button-container" class="player-control-button">
                     <!-- <i class="fa-regular fa-closed-captioning"></i> -->
                     <i class="fa-solid fa-closed-captioning"></i>
                 </span>
             </span>
 
-            <span id="volume-controls">
+            <span id="player-right-part-volume-controls">
                 <!-- <i class="fa-solid fa-volume-xmark"></i>
                 <i class="fa-solid fa-volume-low"></i> -->
                 <!-- use volume high as regular volume -->
-                <i class="fa-solid fa-volume-high"></i>
+                <span id="player-right-part-volume-button" class="player-control-button">
+                    <i class="fa-solid fa-volume-high"></i>
+                </span>
     
-                <span id="volume-seek-bar-container">
+                <span id="player-right-part-volume-seek-bar-container">
                     <input type="range" name="volume-seek-bar" id="volume-seek-bar" min="0" max="100">
                 </span>
             </span>
             
-            <span id="player-right-part-open-arrow-container">
+            <span id="player-right-part-open-arrow-container" class="player-control-button">
                 <i class="fa-solid fa-caret-up"></i>
                 <!-- <i class="fa-solid fa-caret-down"></i> -->
             </span>
@@ -696,5 +704,9 @@
 
     <script data-main="scripts/main" src="scripts/require.js"></script>
     <script type="module" src="scripts/main.js"></script>
+
+    <div id="body-wallpaper">
+        <img src="media/wallpapers/minimal-landscape-k-wallpaper.png" alt="background_wallpaper">
+    </div>
 </body>
 </html>
