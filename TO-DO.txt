@@ -1,6 +1,7 @@
 change range slider colors
-add hover darken effect over content-window categories with <i class="fa-solid fa-play"></i>
 check why squeezing browser window laterally brings horizontal scroll bar (navbar and content-window probably have some width calculation issues)
 add background gradient (changes shades from orange to blue with time with javascript later)
+or
+change background picture from blue to orange with time
 add arrow buttons around .content-window-category-items-wrapper to allow viewing next items without using horizontal mouse scrolling
 profile drop down
