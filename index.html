@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     
     <!-- FAVICON LINKS -->
-    <link rel="shortcut icon" href="media/favicon/white/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/x-icon" href="/media/favicon/white/favicon.ico">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/media/favicon/white/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon/white/favicon-32x32.png">
@@ -29,7 +29,7 @@
     
     <main>
         <nav>
-            <div id="navbar-logo-space">
+            <div id="navbar-logo-container">
                 <div id="logo-wrapper">
                     <a href="#" id="logo-wrapper-a-tag">
                         Re<img src="media/logos/logo_white.png" alt="logo">und
@@ -78,14 +78,33 @@
                     </input>
                 </div>
                 <div id="header-right-part">
-                    <div class="header-right-part-button">
+                    <div class="header-right-part-button" title="Upload">
                         <i class="fa-solid fa-upload"></i>
                     </div>
-                    <div class="header-right-part-button">
+                    <div class="header-right-part-button" title="Messages">
                         <i class="fa-solid fa-envelope"></i>
                     </div>
-                    <div class="header-right-part-button">
+                    <div class="header-right-part-button" title="Profile & Settings">
                         <i class="fa-solid fa-user"></i>
+                        <!-- <div id="header-right-part-profile-dropdown-wrapper">
+                            <ul>
+                                <li>
+                                    <p>
+                                        User Profile
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Theme
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Settings
+                                    </p>
+                                </li>
+                            </ul>
+                        </div> -->
                     </div>
                 </div>
             </header>
@@ -791,7 +810,7 @@
                 <p id="player-song-artist">The Chainsmokers</p>
             </div>
             
-            <div id="player-left-part-like-container" class="player-control-button">
+            <div id="player-left-part-like-container" class="player-control-button" title="Like">
                 <!-- <i class="fa-regular fa-heart"></i> -->
                 <i class="fa-solid fa-heart"></i>
             </div>
@@ -801,22 +820,22 @@
         <div id="player-middle-part">
             <div id="player-middle-part-main">
                 <div id="player-middle-part-controls">
-                    <div class="player-control-button player-middle-part-control-container">
+                    <div class="player-control-button player-middle-part-control-container" title="Shuffle">
                         <i class="fa-solid fa-shuffle"></i>
                     </div>
         
-                    <div class="player-control-button player-middle-part-control-container">
+                    <div class="player-control-button player-middle-part-control-container" title="Play Previous Song">
                         <i class="fa-solid fa-backward-step"></i>
                     </div>
-                    <div class="player-control-button player-middle-part-control-container player-middle-part-play-pause-control-container">
+                    <div class="player-control-button player-middle-part-control-container player-middle-part-play-pause-control-container" title="Play">
                         <i class="fa-solid fa-circle-play"></i>
                         <!-- <i class="fa-solid fa-pause"></i> -->
                     </div>
-                    <div class="player-control-button player-middle-part-control-container">
+                    <div class="player-control-button player-middle-part-control-container" title="Play Next Song">
                         <i class="fa-solid fa-forward-step"></i>
                     </div>
         
-                    <div class="player-control-button player-middle-part-control-container">
+                    <div class="player-control-button player-middle-part-control-container" title="Repeat">
                         <i class="fa-solid fa-repeat"></i>
                         <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
                     </div>
@@ -826,7 +845,7 @@
             </div>
 
             <div id="player-middle-part-right">
-                <div id="player-middle-part-option-container" class="player-control-button">
+                <div id="player-middle-part-option-container" class="player-control-button" title="Options">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </div>
                 <div id="player-middle-part-timestamp">
@@ -838,10 +857,10 @@
 
         <div id="player-right-part">
             <div id="player-right-part-main-controls">
-                <span id="player-right-part-queue-button" class="player-control-button">
+                <span id="player-right-part-queue-button" class="player-control-button" title="Queue">
                     <i class="fa-solid fa-list"></i>
                 </span>
-                <span id="player-right-part-caption-button-container" class="player-control-button">
+                <span id="player-right-part-caption-button-container" class="player-control-button" title="Captions">
                     <!-- <i class="fa-regular fa-closed-captioning"></i> -->
                     <i class="fa-solid fa-closed-captioning"></i>
                 </span>
@@ -851,7 +870,7 @@
                 <!-- <i class="fa-solid fa-volume-xmark"></i>
                 <i class="fa-solid fa-volume-low"></i> -->
                 <!-- use volume high as regular volume -->
-                <span id="player-right-part-volume-button" class="player-control-button">
+                <span id="player-right-part-volume-button" class="player-control-button" title="Volume">
                     <i class="fa-solid fa-volume-high"></i>
                 </span>
     
@@ -860,7 +879,7 @@
                 </span>
             </div>
             
-            <div id="player-right-part-open-arrow-container" class="player-control-button">
+            <div id="player-right-part-open-arrow-container" class="player-control-button" title="Extend Player">
                 <i class="fa-solid fa-caret-up"></i>
                 <!-- <i class="fa-solid fa-caret-down"></i> -->
             </div>

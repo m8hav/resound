@@ -5,3 +5,6 @@ or
 change background picture from blue to orange with time
 add arrow buttons around .content-window-category-items-wrapper to allow viewing next items without using horizontal mouse scrolling
 profile drop down
+
+Guide:
+    change #content-window contents by making display: none of all it's children elements

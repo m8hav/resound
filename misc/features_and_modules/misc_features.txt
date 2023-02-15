@@ -1,0 +1,6 @@
+misc features
+    time based greetings
+    settings icon to change theme etc
+    local saving of songs to allow offline streaming
+    timestamped subtitles
+    recording and uploading directly
