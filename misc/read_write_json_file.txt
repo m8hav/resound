@@ -1,3 +1,7 @@
+READING JSON FILE:
+https://bobbyhadz.com/blog/javascript-import-json-file#import-a-json-file-in-the-browser
+
+WRITING PENDING:
 https://www.youtube.com/watch?v=psZ_nDAoCFc&ab_channel=AllThingsJavaScript%2CLLC
 
 https://stackabuse.com/reading-and-writing-json-files-with-node-js/
