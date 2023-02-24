@@ -1,4 +1,4 @@
-# Re&ound | An Interactive Music Sharing and Streaming Platform
+# Resound | An Interactive Music Sharing and Streaming Platform
 ## Web Development Integrated Project
 ## Chitkara University - CSE - Year 2, Semester 4
 <hr>
