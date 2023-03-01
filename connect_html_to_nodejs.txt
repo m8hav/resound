@@ -1,0 +1,14 @@
+https://stackoverflow.com/questions/60395077/handle-html-event-in-node-js
+
+install Socket IO
+npm i socket.io
+
+
+
+Socket IO, Node JS Chat Application Tutorial:
+https://socket.io/get-started/chat
+
+Learn Socket IO and its implementation by making basic chat application
+
+Source Code:
+https://github.com/socketio/chat-example
