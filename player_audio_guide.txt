@@ -1,3 +1,7 @@
+https://www.w3schools.com/tags/tag_audio.asp
+
+https://www.w3docs.com/learn-html/html-audio-tag.html
+
 https://www.w3schools.com/jsref/event_onloadedmetadata.asp
 
 https://www.w3schools.com/tags/ref_av_dom.asp
