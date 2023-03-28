@@ -3,8 +3,23 @@
 // import data from "./misc/testing/student.json" assert {type: 'json'};
 // console.log(data);
 
+// DOM Elements
 const content_window = document.getElementById("content-window");
 
+const play_pause_control = document.getElementById("play-pause-control");
+const play_pause_control_container = play_pause_control.parentElement;
+const audio_controls = document.getElementById("player-audio-controls");
+const audio_seek_bar = document.getElementById("player-seek-bar");
+const audio_current_duration_label = document.getElementById("audio-current-duration");
+const audio_total_duration_label = document.getElementById("audio-total-duration");
+
+const volume_seek_bar = document.getElementById("volume-seek-bar");
+const volume_button = document.getElementById("player-right-part-volume-button");
+const volume_button_container = document.getElementById("player-right-part-volume-button-container");
+
+audio_controls.volume = volume_seek_bar.value / 100;
+
+// Content Objects
 const home_content = {
     "categories": [
         {
@@ -218,7 +233,8 @@ const home_content = {
     ]
 }
 
-function render_home(){
+// Functions
+function render_home_page(){
     content_window.innerHTML = "";
 
     for (let category_index in home_content.categories){
@@ -297,4 +313,80 @@ function render_home(){
     }
 }
 
-render_home();
+function play_pause(){
+    if (play_pause_control.classList.contains("fa-circle-play")){
+        audio_controls.play();
+        play_pause_control.classList.remove("fa-circle-play");
+        play_pause_control.classList.add("fa-circle-pause");
+        play_pause_control_container.title = "Pause";
+        var update_seek_bar_interval = setInterval(update_audio_seek_bar, 500);
+    }
+    else{
+        audio_controls.pause();
+        play_pause_control.classList.add("fa-circle-play");
+        play_pause_control.classList.remove("fa-circle-pause");
+        play_pause_control_container.title = "Play";
+        clearInterval(update_seek_bar_interval);
+    }
+}
+
+function update_audio_seek_bar(){
+    audio_seek_bar.value = audio_controls.currentTime;
+    audio_current_duration_label.innerText = new Date(audio_controls.currentTime * 1000).toISOString().slice(14, 19);
+}
+
+function update_volume_icon(){
+    volume_button.classList = "fa-solid";
+    if (audio_controls.volume == 0 || audio_controls.muted){
+        volume_button.classList.add("fa-volume-xmark");
+    }
+    else{
+        volume_button.classList.add("fa-volume-high");
+    }
+}
+
+// Event Listeners
+play_pause_control_container.onclick = play_pause;
+
+document.onkeydown = (event) => {
+    if (event.key == " " && !(document.activeElement.tagName == "INPUT" && document.activeElement.type == "text")){
+        event.preventDefault();
+        play_pause();
+    }
+}
+
+audio_controls.onloadedmetadata = () => {
+    audio_seek_bar.max = audio_controls.duration;
+    audio_current_duration_label.innerText = new Date(audio_controls.currentTime * 1000).toISOString().slice(14, 19);
+    audio_total_duration_label.innerText = new Date(audio_controls.duration * 1000).toISOString().slice(14, 19);
+}
+
+audio_controls.onended = () => {
+    audio_controls.currentTime = 0;
+    audio_seek_bar.value = 0;
+    play_pause();
+}
+
+audio_seek_bar.oninput = () => {
+    audio_controls.currentTime = audio_seek_bar.value;
+}
+
+volume_seek_bar.oninput = () => {
+    audio_controls.volume = volume_seek_bar.value / 100;
+    update_volume_icon();
+}
+
+volume_button_container.onclick = () => {
+    if (audio_controls.muted){
+        audio_controls.muted = false;
+        volume_button_container.title = "Mute";
+    }
+    else{
+        audio_controls.muted = true;
+        volume_button_container.title = "Unmute";
+    }
+    update_volume_icon();
+}
+
+// Function Calls
+render_home_page();

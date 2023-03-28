@@ -32,27 +32,31 @@
         <nav>
             <div id="navbar-logo-container">
                 <div id="logo-wrapper">
-                    <a href="#" id="logo-wrapper-a-tag">
-                        Re<img src="./media/logos/logo_white.png" alt="logo">und
-                        <!-- Re𝄞ound -->
-                    </a>
+                    Re<img src="./media/logos/logo_white.png" alt="logo">und
+                    <!-- Re𝄞ound -->
                 </div>
             </div>
             <div id="nav-content">
                 <div id="nav-content-home-tab-button" class="nav-content-item">
-                    <i class="fa-solid fa-house"></i> &nbsp;
+                    <div class="nav-content-item-icon-wrapper">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
                     <p class="nav-content-item-label">
                         Home
                     </p>
                 </div>
                 <div id="nav-content-explore-tab-button" class="nav-content-item">
-                    <i class="fa-solid fa-mountain-sun"></i> &nbsp;
+                    <div class="nav-content-item-icon-wrapper">
+                        <i class="fa-solid fa-mountain-sun"></i>
+                    </div>
                     <p class="nav-content-item-label">
                         Explore
                     </p>
                 </div>
                 <div id="nav-content-library-tab-button" class="nav-content-item">
-                    <i class="fa-solid fa-lines-leaning"></i> &nbsp;
+                    <div class="nav-content-item-icon-wrapper">
+                        <i class="fa-solid fa-lines-leaning"></i>
+                    </div>
                     <p class="nav-content-item-label">
                         Library
                     </p>
@@ -79,13 +83,13 @@
                     </input>
                 </div>
                 <div id="header-right-part">
-                    <div class="header-right-part-button" title="Upload">
+                    <button class="header-right-part-button" title="Upload">
                         <i class="fa-solid fa-upload"></i>
-                    </div>
-                    <div class="header-right-part-button" title="Messages">
+                    </button>
+                    <button class="header-right-part-button" title="Messages">
                         <i class="fa-solid fa-envelope"></i>
-                    </div>
-                    <div class="header-right-part-button" title="Profile & Settings">
+                    </button>
+                    <button class="header-right-part-button" title="Profile & Settings">
                         <i class="fa-solid fa-user"></i>
                         <!-- <div id="header-right-part-profile-dropdown-wrapper">
                             <ul>
@@ -106,7 +110,7 @@
                                 </li>
                             </ul>
                         </div> -->
-                    </div>
+                    </button>
                 </div>
             </header>
 
@@ -216,47 +220,51 @@
                 <p id="player-song-name">Closer</p><br>
                 <p id="player-song-artist">The Chainsmokers</p>
             </div>
+            <!-- <div id="player-song-info">
+                <p id="player-song-name">I Don't Wanna Live Forever</p><br>
+                <p id="player-song-artist">Taylor Swift and Zayn Malik</p>
+            </div> -->
             
-            <div id="player-left-part-like-container" class="player-control-button" title="Like">
+            <button id="player-left-part-like-container" class="player-control-button" title="Like">
                 <!-- <i class="fa-regular fa-heart"></i> -->
                 <i class="fa-solid fa-heart"></i>
-            </div>
+            </button>
 
         </div>
 
         <div id="player-middle-part">
             <div id="player-middle-part-main">
                 <div id="player-middle-part-controls">
-                    <div class="player-control-button player-middle-part-control-container" title="Shuffle">
+                    <button class="player-control-button player-middle-part-control-container" title="Shuffle">
                         <i class="fa-solid fa-shuffle"></i>
-                    </div>
+                    </button>
         
-                    <div class="player-control-button player-middle-part-control-container" title="Play Previous Song">
+                    <button class="player-control-button player-middle-part-control-container" title="Play Previous Song">
                         <i class="fa-solid fa-backward-step"></i>
-                    </div>
-                    <div class="player-control-button player-middle-part-control-container player-middle-part-play-pause-control-container" title="Play">
-                        <i class="fa-solid fa-circle-play"></i>
-                        <!-- <i class="fa-solid fa-pause"></i> -->
-                    </div>
-                    <div class="player-control-button player-middle-part-control-container" title="Play Next Song">
+                    </button>
+                    <button class="player-control-button player-middle-part-control-container" id="player-middle-part-play-pause-control-container" title="Play">
+                        <i class="fa-solid fa-circle-play" id="play-pause-control"></i>
+                        <!-- <i class="fa-solid fa-circle-pause"></i> -->
+                    </button>
+                    <button class="player-control-button player-middle-part-control-container" title="Play Next Song">
                         <i class="fa-solid fa-forward-step"></i>
-                    </div>
+                    </button>
         
-                    <div class="player-control-button player-middle-part-control-container" title="Repeat">
+                    <button class="player-control-button player-middle-part-control-container" title="Repeat">
                         <i class="fa-solid fa-repeat"></i>
                         <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
-                    </div>
+                    </button>
                 </div>
         
-                <input type="range" name="player-seek-bar" id="player-seek-bar" min="0" max="100">
+                <input type="range" name="player-seek-bar" id="player-seek-bar" value="0">
             </div>
 
             <div id="player-middle-part-right">
-                <div id="player-middle-part-option-container" class="player-control-button" title="Options">
+                <button id="player-middle-part-option-container" class="player-control-button" title="Options">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
-                </div>
+                </button>
                 <div id="player-middle-part-timestamp">
-                    2:02/4:04
+                    <span id="audio-current-duration"></span>/<span id="audio-total-duration"></span>
                 </div>
             </div>
             
@@ -264,33 +272,32 @@
 
         <div id="player-right-part">
             <div id="player-right-part-main-controls">
-                <span id="player-right-part-queue-button" class="player-control-button" title="Queue">
+                <button id="player-right-part-queue-button" class="player-control-button" title="Queue">
                     <i class="fa-solid fa-list"></i>
-                </span>
-                <span id="player-right-part-caption-button-container" class="player-control-button" title="Captions">
+                </button>
+                <button id="player-right-part-caption-button-container" class="player-control-button" title="Captions">
                     <!-- <i class="fa-regular fa-closed-captioning"></i> -->
                     <i class="fa-solid fa-closed-captioning"></i>
-                </span>
+                </button>
             </div>
 
             <div id="player-right-part-volume-controls">
-                <!-- <i class="fa-solid fa-volume-xmark"></i>
-                <i class="fa-solid fa-volume-low"></i> -->
-                <!-- use volume high as regular volume -->
-                <span id="player-right-part-volume-button" class="player-control-button" title="Volume">
-                    <i class="fa-solid fa-volume-high"></i>
-                </span>
+                <button id="player-right-part-volume-button-container" class="player-control-button" title="Mute">
+                    <i id="player-right-part-volume-button" class="fa-solid fa-volume-high"></i>
+                </button>
     
-                <span id="player-right-part-volume-seek-bar-container">
-                    <input type="range" name="volume-seek-bar" id="volume-seek-bar" min="0" max="100">
-                </span>
+                <input type="range" name="volume-seek-bar" id="volume-seek-bar" value="80" title="Volume" >
             </div>
             
-            <div id="player-right-part-open-arrow-container" class="player-control-button" title="Extend Player">
+            <button id="player-right-part-open-arrow-container" class="player-control-button" title="Extend Player">
                 <i class="fa-solid fa-caret-up"></i>
                 <!-- <i class="fa-solid fa-caret-down"></i> -->
-            </div>
+            </button>
         </div>
+
+        <audio id="player-audio-controls">
+            <source src="./media/audio/renamed/Closer___The_Chainsmokers_ft__Halsey_320_PagalWorld_.mp3" type="audio/mpeg">
+        </audio>
 
     </div>
 
@@ -299,6 +306,6 @@
     </div>
 
     <!-- IMPORTING SCRIPTS -->
-    <script src="./script.js" type="module"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
