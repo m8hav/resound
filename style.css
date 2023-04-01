@@ -1,13 +1,20 @@
 :root{
-    --top-bar-height: 64px;
+    --header-height: 64px;
     --player-height: 75px;
+    --nav-width: 20%;
+    --nav-min-width: 225px;
+    --nav-max-width: 400px;
     --content-window-category-item-cover-side: 180px;
     --sub-label-color: rgba(255, 255, 255, 0.5);
     --control-button-bg-color: rgba(255, 255, 255, 0.2);
     --panels-bg-color: rgba(0, 0, 0, 0.75);
-    --transition-properties: all 0.2s;
-    /* --transition-properties: none; */
+    --panels-box-shadow-color: black;
+    --panels-box-shadow: 0 0 5px 5px var(--panels-box-shadow-color);
+    --overlay-box-shadow: 0 0 2px 2px var(--panels-box-shadow-color);
     --hover-box-shadow-color: rgba(0, 0, 0, 0.5);
+    --floating-panels-bg-color: rgba(0, 0, 0, 0.90);
+    --transition-properties: all 0.3s;
+    /* --transition-properties: none; */
 }
 
 /* SCROLLBAR CUSTOMIZATION */
@@ -28,8 +35,11 @@
 }
 
 html, body{
+    --html-height: 100%;
+    --html-width: 100%;
     height: 100%;
     width: 100%;
+    min-width: 900px;
     font-size: 20px;
     font-family: 'Ubuntu', sans-serif;
     box-sizing: border-box;
@@ -42,16 +52,6 @@ html, body{
     box-sizing: inherit;
 	transition: var(--transition-properties);
 }
-body::before{
-	content: "";
-	background-color: rgb(0, 0, 0, 0.25);
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	overflow-y: auto;
-	z-index: -50;
-}
 
 /* TAGS */
 p{
@@ -61,7 +61,6 @@ a{
     color: white;
 }
 input[type='range']{
-    color: black;
     cursor: pointer;
 }
 button{
@@ -74,14 +73,24 @@ button{
 
 
 /* WALLPAPER */
-#body-wallpaper img{
-    height: 100%;
-    width: 100%;
+.body-wallpaper-image{
+    height: 100vh;
+    width: 100vw;
     object-fit: cover;
     position: fixed;
     top: 0;
     left: 0;
     z-index: -100;
+}
+.body-wallpaper-overlay{
+    height: 100vh;
+	width: 100vw;
+	background-color: rgb(0, 0, 0, 0.25);
+	position: fixed;
+	top: 0;
+    left: 0;
+	z-index: -50;
+	overflow-y: auto;
 }
 
 
@@ -96,15 +105,15 @@ main{
 /* INSIDE MAIN */
 nav{
     height: calc(100% - var(--player-height));
-    width: 20%;
-    min-width: 225px;
-    max-width: 400px;
+    width: var(--nav-width);
+    min-width: var(--nav-min-width);
+    max-width: var(--nav-max-width);
     background-color: var(--panels-bg-color);
     color: white;
     z-index: 10;
 }
-#navbar-logo-container{
-    height: calc(1rem + var(--top-bar-height));
+#nav-logo-container{
+    height: calc(1rem + var(--header-height));
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -125,11 +134,11 @@ nav{
     padding: 0 3px;
 }
 #nav-content{
-    height: calc(100% - 1rem - var(--top-bar-height));
+    height: calc(100% - 1rem - var(--header-height));
     overflow-y: auto;
     padding: 0.8rem;
 }
-.nav-content-item{
+.nav-button-container{
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 0.75rem;
     margin: 0.75rem;
@@ -137,13 +146,13 @@ nav{
     text-align: left;
     cursor: pointer;
 }
-.nav-content-item-icon-wrapper{
+.nav-button-icon-wrapper{
     display: inline-block;
     width: 1.5rem;
     text-align: center;
     margin-right: 0.5rem;
 }
-.nav-content-item-label{
+.nav-button-container-label{
     font-weight: 500;
 }
 #nav-content-library-tab-items{
@@ -168,10 +177,10 @@ nav{
 
 /* INSIDE RIGHT WINDOW */
 header{
-    height: var(--top-bar-height);
+    height: var(--header-height);
     width: inherit;
     background-color: var(--panels-bg-color);
-    box-shadow: 5px 0 10px 10px black;
+    box-shadow: var(--panels-box-shadow);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -179,7 +188,8 @@ header{
     padding: 0 4%;
     position: fixed;
     top: 0;
-    z-index: 5;
+    left: 20%;
+    z-index: 10;
 }
 #header-left-empty-part{
     height: 100%;
@@ -229,31 +239,32 @@ header{
 .header-right-part-button:hover{
     box-shadow: 0 0 10px 10px var(--control-button-bg-color) inset;
 }
-#header-right-part-profile-dropdown-wrapper{
+.profile-dropdown-overlay{
     position: absolute;
-    right: 30px;
-    top: 40px;
+    top: var(--header-height);
+    right: 0;
     width: 120px;
     background-color: var(--panels-bg-color);
-    box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.2);
+    box-shadow: var(--overlay-box-shadow);
     padding: 7px;
     border-radius: 10px 0 10px 10px;
     font-weight: 300;
     font-size: 0.8rem;
+    /* overflow: hidden; */
 }
-#header-right-part-profile-dropdown-wrapper ul li{
-    padding: 5px;
+.profile-dropdown-overlay ul li{
+    padding: 10px 5px;
     list-style: none;
     width: 100%;
 }
-#header-right-part-profile-dropdown-wrapper ul li:hover{
+.profile-dropdown-overlay ul li:hover{
     background-color: var(--control-button-bg-color);
-    border-radius: 5px;
+    border-radius: 0.5rem;
 }
 
 /* RIGHT CONTENT WINDOW */
 #content-window{
-    padding: var(--player-height) 0 calc(1.5*var(--player-height));
+    padding: calc(var(--header-height) + 1rem) 0 calc(1.5*var(--player-height));
     max-height: 100%;
     max-width: 100%;
     overflow-y: auto;
@@ -266,7 +277,7 @@ header{
     width: 90%;
     flex-shrink: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    margin: calc(var(--top-bar-height)/2) 0 0;
+    margin: 1.25rem 0 0;
     border-radius: 1rem;
     padding: 1rem 1rem 0;
 }
@@ -307,7 +318,7 @@ header{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 1;
     border-radius: 5px;
     box-shadow: 0 0 50px 50px var(--hover-box-shadow-color) inset;
     cursor: pointer;
@@ -352,8 +363,8 @@ header{
 #player{
     height: var(--player-height);
     width: 100%;
-    background-color: var(--panels-bg-color);
-    box-shadow: 0 0 10px 10px black;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: var(--panels-box-shadow);
     padding: 5px 10px 15px;
     display: flex;
     align-items: center;
@@ -363,16 +374,6 @@ header{
     bottom: 0;
     left: 0;
     z-index: 10;
-}
-#player::before{
-    content: "";
-    height: inherit;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: -10;
 }
 
 /* player left part */
@@ -395,7 +396,7 @@ header{
     font-size: 0.75rem;
     color: var(--sub-label-color);
 }
-#player-left-part-like-container{
+#player-left-part-like-button-container{
     margin-left: 10%;
 }
 
@@ -419,14 +420,11 @@ header{
     align-items: center;
     justify-content: space-evenly;
 }
-#player-middle-part-play-pause-control-container{
+#play-pause-button-container{
     font-size: 1.2rem;
     width: 2.2rem;
     height: 2.2rem;
     border-radius: 1.1rem;
-}
-#player-middle-part-option-container{
-    margin: 0 0 0 5%;
 }
 #player-seek-bar{
     width: 90%;
@@ -472,4 +470,73 @@ header{
 }
 .player-control-button:hover{
     box-shadow: 0 0 10px 7px var(--control-button-bg-color) inset;
+}
+
+/* player floating part */
+#player-floating-part{
+    position: fixed;
+    right: 1.5rem;
+    bottom: calc(var(--player-height) + 0.75rem);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: end;
+}
+.player-floating-part-item-overlay{
+    height: calc(100vh - var(--header-height) - var(--player-height) - 3.4rem);
+    width: 24vw;
+    min-width: 300px;
+    max-width: 350px;
+    margin-left: 5px;
+    display: inline-block;
+    border-radius: 0.5rem;
+    box-shadow: var(--overlay-box-shadow);
+    background-color: var(--floating-panels-bg-color);
+}
+.player-floating-part-item-overlay:last-child{
+    margin-left: 0.75rem;
+}
+
+/* EXTENDED PLAYER */
+.player-extended-overlay{
+    height: calc(100vh - var(--header-height) - var(--player-height));
+    width: calc(100vw - var(--nav-width));
+    min-width: calc(100vw - var(--nav-max-width));
+    max-width: calc(100vw - var(--nav-min-width));
+    background-color: var(--panels-bg-color);
+    box-shadow: var(--panels-box-shadow);
+    position: fixed;
+    bottom: var(--player-height);
+    right: 0;
+    z-index: 10;
+}
+
+
+/* GENERAL STYLE CLASSES */
+.rotate-180{
+    transform: rotate(180deg);
+}
+
+.shrunk-overlay{
+    height: 0;
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.hidden-element{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.inactive-button{
+    opacity: 0.5;
+}
+
+.black-background{
+    background-color: black;
 }

@@ -30,34 +30,34 @@
     
     <main>
         <nav>
-            <div id="navbar-logo-container">
+            <div id="nav-logo-container">
                 <div id="logo-wrapper">
                     Re<img src="./media/logos/logo_white.png" alt="logo">und
                     <!-- Re𝄞ound -->
                 </div>
             </div>
             <div id="nav-content">
-                <div id="nav-content-home-tab-button" class="nav-content-item">
-                    <div class="nav-content-item-icon-wrapper">
+                <div id="nav-home-button-container" class="nav-button-container">
+                    <div class="nav-button-icon-wrapper">
                         <i class="fa-solid fa-house"></i>
                     </div>
-                    <p class="nav-content-item-label">
+                    <p class="nav-button-container-label">
                         Home
                     </p>
                 </div>
-                <div id="nav-content-explore-tab-button" class="nav-content-item">
-                    <div class="nav-content-item-icon-wrapper">
+                <div id="nav-explore-button-container" class="nav-button-container">
+                    <div class="nav-button-icon-wrapper">
                         <i class="fa-solid fa-mountain-sun"></i>
                     </div>
-                    <p class="nav-content-item-label">
+                    <p class="nav-button-container-label">
                         Explore
                     </p>
                 </div>
-                <div id="nav-content-library-tab-button" class="nav-content-item">
-                    <div class="nav-content-item-icon-wrapper">
+                <div id="nav-library-button-container" class="nav-button-container">
+                    <div class="nav-button-icon-wrapper">
                         <i class="fa-solid fa-lines-leaning"></i>
                     </div>
-                    <p class="nav-content-item-label">
+                    <p class="nav-button-container-label">
                         Library
                     </p>
                     <div id="nav-content-library-tab-items">
@@ -83,15 +83,15 @@
                     </input>
                 </div>
                 <div id="header-right-part">
-                    <button class="header-right-part-button" title="Upload">
+                    <button id="upload-button-container" class="header-right-part-button" title="Upload">
                         <i class="fa-solid fa-upload"></i>
                     </button>
-                    <button class="header-right-part-button" title="Messages">
+                    <button id="messages-button-container" class="header-right-part-button" title="Messages">
                         <i class="fa-solid fa-envelope"></i>
                     </button>
-                    <button class="header-right-part-button" title="Profile & Settings">
+                    <button id="profile-button-container" class="header-right-part-button" title="Profile & Settings">
                         <i class="fa-solid fa-user"></i>
-                        <!-- <div id="header-right-part-profile-dropdown-wrapper">
+                        <div class="profile-dropdown-overlay shrunk-overlay hidden-element">
                             <ul>
                                 <li>
                                     <p>
@@ -109,7 +109,7 @@
                                     </p>
                                 </li>
                             </ul>
-                        </div> -->
+                        </div>
                     </button>
                 </div>
             </header>
@@ -217,17 +217,15 @@
             </div>
 
             <div id="player-song-info">
-                <p id="player-song-name">Closer</p><br>
-                <p id="player-song-artist">The Chainsmokers</p>
-            </div>
-            <!-- <div id="player-song-info">
+                <!-- <p id="player-song-name">Closer</p><br>
+                <p id="player-song-artist">The Chainsmokers</p> -->
                 <p id="player-song-name">I Don't Wanna Live Forever</p><br>
                 <p id="player-song-artist">Taylor Swift and Zayn Malik</p>
-            </div> -->
+            </div>
             
-            <button id="player-left-part-like-container" class="player-control-button" title="Like">
+            <button id="player-left-part-like-button-container" class="player-control-button" title="Like">
+                <i class="fa-regular fa-heart"></i>
                 <!-- <i class="fa-regular fa-heart"></i> -->
-                <i class="fa-solid fa-heart"></i>
             </button>
 
         </div>
@@ -235,23 +233,23 @@
         <div id="player-middle-part">
             <div id="player-middle-part-main">
                 <div id="player-middle-part-controls">
-                    <button class="player-control-button player-middle-part-control-container" title="Shuffle">
-                        <i class="fa-solid fa-shuffle"></i>
+                    <button id="shuffle-button-container" class="player-control-button player-middle-part-control-container" title="Shuffle">
+                        <i class="fa-solid fa-shuffle inactive-button"></i>
                     </button>
         
-                    <button class="player-control-button player-middle-part-control-container" title="Play Previous Song">
+                    <button id="previous-song-button-container" class="player-control-button player-middle-part-control-container" title="Play Previous Song">
                         <i class="fa-solid fa-backward-step"></i>
                     </button>
-                    <button class="player-control-button player-middle-part-control-container" id="player-middle-part-play-pause-control-container" title="Play">
-                        <i class="fa-solid fa-circle-play" id="play-pause-control"></i>
+                    <button id="play-pause-button-container" class="player-control-button player-middle-part-control-container" title="Play">
+                        <i class="fa-solid fa-circle-play"></i>
                         <!-- <i class="fa-solid fa-circle-pause"></i> -->
                     </button>
-                    <button class="player-control-button player-middle-part-control-container" title="Play Next Song">
+                    <button id="next-song-button-container" class="player-control-button player-middle-part-control-container" title="Play Next Song">
                         <i class="fa-solid fa-forward-step"></i>
                     </button>
         
-                    <button class="player-control-button player-middle-part-control-container" title="Repeat">
-                        <i class="fa-solid fa-repeat"></i>
+                    <button id="repeat-button-container" class="player-control-button player-middle-part-control-container" title="Repeat">
+                        <i class="fa-solid fa-repeat inactive-button"></i>
                         <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
                     </button>
                 </div>
@@ -260,7 +258,7 @@
             </div>
 
             <div id="player-middle-part-right">
-                <button id="player-middle-part-option-container" class="player-control-button" title="Options">
+                <button id="player-options-button-container" class="player-control-button" title="Options">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
                 <div id="player-middle-part-timestamp">
@@ -272,28 +270,35 @@
 
         <div id="player-right-part">
             <div id="player-right-part-main-controls">
-                <button id="player-right-part-queue-button" class="player-control-button" title="Queue">
-                    <i class="fa-solid fa-list"></i>
+                <button id="queue-button-container" class="player-control-button" title="Queue">
+                    <i class="fa-solid fa-list inactive-button"></i>
                 </button>
-                <button id="player-right-part-caption-button-container" class="player-control-button" title="Captions">
-                    <!-- <i class="fa-regular fa-closed-captioning"></i> -->
-                    <i class="fa-solid fa-closed-captioning"></i>
+                <button id="lyrics-button-container" class="player-control-button" title="Lyrics">
+                    <!-- <i class="fa-solid fa-closed-captioning"></i> -->
+                    <i class="fa-regular fa-closed-captioning"></i>
                 </button>
             </div>
 
             <div id="player-right-part-volume-controls">
-                <button id="player-right-part-volume-button-container" class="player-control-button" title="Mute">
+                <button id="volume-button-container" class="player-control-button" title="Mute">
                     <i id="player-right-part-volume-button" class="fa-solid fa-volume-high"></i>
                 </button>
     
                 <input type="range" name="volume-seek-bar" id="volume-seek-bar" value="80" title="Volume" >
             </div>
             
-            <button id="player-right-part-open-arrow-container" class="player-control-button" title="Extend Player">
+            <button id="player-extend-button-container" class="player-control-button" title="Extend Player">
                 <i class="fa-solid fa-caret-up"></i>
                 <!-- <i class="fa-solid fa-caret-down"></i> -->
             </button>
         </div>
+
+        <div id="player-floating-part">
+            <div id="floating-queue-overlay" class="player-floating-part-item-overlay shrunk-overlay"></div>
+            <div id="floating-lyrics-overlay" class="player-floating-part-item-overlay shrunk-overlay"></div>
+        </div>
+
+        <div class="player-extended-overlay shrunk-overlay"></div>
 
         <audio id="player-audio-controls">
             <source src="./media/audio/renamed/Closer___The_Chainsmokers_ft__Halsey_320_PagalWorld_.mp3" type="audio/mpeg">
@@ -302,7 +307,8 @@
     </div>
 
     <div id="body-wallpaper">
-        <img src="./media/wallpapers/3046432.jpg" alt="background_wallpaper">
+        <img class="body-wallpaper-image" src="./media/wallpapers/3046432.jpg" alt="background_wallpaper">
+        <div class="body-wallpaper-overlay"></div>
     </div>
 
     <!-- IMPORTING SCRIPTS -->

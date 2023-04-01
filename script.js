@@ -1,26 +1,68 @@
 "use strict";
 
-// import data from "./misc/testing/student.json" assert {type: 'json'};
-// console.log(data);
+// Global Variables
+const body_wallpaper_overlay = document.getElementsByClassName("body-wallpaper-overlay")[0];
 
-// DOM Elements
+const nav_home_button_container = document.getElementById("nav-home-button-container");
+const nav_explore_button_container = document.getElementById("nav-explore-button-container");
+const nav_library_button_container = document.getElementById("nav-library-button-container");
+
+const profile_button_container = document.getElementById("profile-button-container");
+const profile_dropdown_overlay = document.getElementsByClassName("profile-dropdown-overlay")[0];
+
 const content_window = document.getElementById("content-window");
 
-const play_pause_control = document.getElementById("play-pause-control");
-const play_pause_control_container = play_pause_control.parentElement;
+const player = document.getElementById("player");
+
+const like_button_container = document.getElementById("player-left-part-like-button-container");
+const like_button_icon = like_button_container.firstElementChild;
+
+const shuffle_button_container = document.getElementById("shuffle-button-container");
+const shuffle_button_icon = shuffle_button_container.firstElementChild;
+
+const previous_song_button_container = document.getElementById("previous-song-button-container");
+const previous_song_button_icon = previous_song_button_container.firstElementChild;
+
+const play_pause_button_container = document.getElementById("play-pause-button-container");
+const play_pause_button_icon = play_pause_button_container.firstElementChild;
+
+const next_song_button_container = document.getElementById("next-song-button-container");
+const next_song_button_icon = next_song_button_container.firstElementChild;
+
+const repeat_button_container = document.getElementById("repeat-button-container");
+const repeat_button_icon = repeat_button_container.firstElementChild;
+
+const player_options_button_container = document.getElementById("player-options-button-container");
+const player_options_button_icon = player_options_button_container.firstElementChild;
+
 const audio_controls = document.getElementById("player-audio-controls");
 const audio_seek_bar = document.getElementById("player-seek-bar");
 const audio_current_duration_label = document.getElementById("audio-current-duration");
 const audio_total_duration_label = document.getElementById("audio-total-duration");
 
+const queue_button_container = document.getElementById("queue-button-container");
+const queue_button_icon = queue_button_container.firstElementChild;
+
+const lyrics_button_container = document.getElementById("lyrics-button-container");
+const lyrics_button_icon = lyrics_button_container.firstElementChild;
+
 const volume_seek_bar = document.getElementById("volume-seek-bar");
-const volume_button = document.getElementById("player-right-part-volume-button");
-const volume_button_container = document.getElementById("player-right-part-volume-button-container");
+const volume_button_container = document.getElementById("volume-button-container");
+const volume_button_icon = volume_button_container.firstElementChild;
+
+const player_extend_button_container = document.getElementById("player-extend-button-container");
+const player_extend_button_icon = player_extend_button_container.firstElementChild;
+
+const floating_queue_overlay = document.getElementById("floating-queue-overlay");
+const floating_lyrics_overlay = document.getElementById("floating-lyrics-overlay");
+
+const player_extended_overlay = document.getElementsByClassName("player-extended-overlay")[0];
 
 audio_controls.volume = volume_seek_bar.value / 100;
 
+
 // Content Objects
-const home_content = {
+const home_page_content = {
     "categories": [
         {
             "tag": "recents",
@@ -233,12 +275,13 @@ const home_content = {
     ]
 }
 
+
 // Functions
 function render_home_page(){
     content_window.innerHTML = "";
 
-    for (let category_index in home_content.categories){
-        let category = home_content.categories[category_index];
+    for (let category_index in home_page_content.categories){
+        let category = home_page_content.categories[category_index];
 
         let category_tag = category.tag;
         let category_type = category.type;
@@ -313,40 +356,173 @@ function render_home_page(){
     }
 }
 
+function render_explore_page(){
+    content_window.innerHTML = "";
+    // Render explore page
+}
+
+function render_library_page(){
+    content_window.innerHTML = "";
+    // Render library page
+}
+
+function profile_dropdown_open_close(){
+    profile_dropdown_overlay.classList.toggle("hidden-element");
+    profile_dropdown_overlay.classList.toggle("shrunk-overlay");
+}
+
+function like_unlike_song(){
+    if (like_button_icon.classList.contains("fa-regular")){
+        // Add song to liked songs
+    }
+    else{
+        // Remove song from liked songs
+    }
+    like_button_icon.classList.toggle("fa-regular");
+    like_button_icon.classList.toggle("fa-solid");
+}
+
+function shuffle_on_off(){
+    if (shuffle_button_icon.classList.contains("inactive-button")){
+        // turn shuffle on
+    }
+    else{
+        // turn shuffle off
+    }
+    shuffle_button_icon.classList.toggle("inactive-button");
+}
+
+function play_previous_song(){
+    // Play previous song
+    audio_controls.currentTime = 0;
+}
+
 function play_pause(){
-    if (play_pause_control.classList.contains("fa-circle-play")){
+    if (play_pause_button_icon.classList.contains("fa-circle-play")){
         audio_controls.play();
-        play_pause_control.classList.remove("fa-circle-play");
-        play_pause_control.classList.add("fa-circle-pause");
-        play_pause_control_container.title = "Pause";
+        play_pause_button_container.title = "Pause";
         var update_seek_bar_interval = setInterval(update_audio_seek_bar, 500);
     }
     else{
         audio_controls.pause();
-        play_pause_control.classList.add("fa-circle-play");
-        play_pause_control.classList.remove("fa-circle-pause");
-        play_pause_control_container.title = "Play";
+        play_pause_button_container.title = "Play";
         clearInterval(update_seek_bar_interval);
     }
+    play_pause_button_icon.classList.toggle("fa-circle-play");
+    play_pause_button_icon.classList.toggle("fa-circle-pause");
 }
 
 function update_audio_seek_bar(){
     audio_seek_bar.value = audio_controls.currentTime;
+    update_current_duration_time_stamp();
+}
+
+function update_current_duration_time_stamp(){
     audio_current_duration_label.innerText = new Date(audio_controls.currentTime * 1000).toISOString().slice(14, 19);
 }
 
-function update_volume_icon(){
-    volume_button.classList = "fa-solid";
-    if (audio_controls.volume == 0 || audio_controls.muted){
-        volume_button.classList.add("fa-volume-xmark");
+function play_next_song(){
+    // Play next song
+    audio_controls.currentTime = 0;
+}
+
+function repeat_on_off(){
+    if (repeat_button_icon.classList.contains("inactive-button")){
+        // turn repeat on
     }
     else{
-        volume_button.classList.add("fa-volume-high");
+        // turn repeat off
+    }
+    repeat_button_icon.classList.toggle("inactive-button");
+}
+
+function options_dialog_open_close(){
+    // open or close options dialog
+}
+
+function queue_overlay_open_close(){
+    if (shuffle_button_icon.classList.contains("inactive-button")){
+        floating_queue_overlay.classList.toggle("shrunk-overlay");
+    }
+    else{
+        floating_queue_overlay.classList.toggle("shrunk-overlay");
+    }
+    queue_button_icon.classList.toggle("inactive-button");
+}
+
+function lyrics_overlay_open_close(){
+    if (lyrics_button_icon.classList.contains("fa-regular")){
+        floating_lyrics_overlay.classList.toggle("shrunk-overlay");
+    }
+    else{
+        floating_lyrics_overlay.classList.toggle("shrunk-overlay");
+    }
+    lyrics_button_icon.classList.toggle("fa-regular");
+    lyrics_button_icon.classList.toggle("fa-solid");
+}
+
+function update_volume_icon(){
+    volume_button_icon.classList = "fa-solid";
+    if (audio_controls.volume == 0 || audio_controls.muted){
+        volume_button_icon.classList.add("fa-volume-xmark");
+    }
+    else{
+        volume_button_icon.classList.add("fa-volume-high");
     }
 }
 
+function mute_unmute(){
+    if (audio_controls.muted){
+        audio_controls.muted = false;
+        volume_button_container.title = "Mute";
+    }
+    else{
+        audio_controls.muted = true;
+        volume_button_container.title = "Unmute";
+    }
+    update_volume_icon();
+}
+
+function update_volume_seek_bar(){
+    audio_controls.volume = volume_seek_bar.value / 100;
+    update_volume_icon();
+}
+
+function extend_shrink_player(){
+    player_extended_overlay.classList.toggle("shrunk-overlay");
+    content_window.classList.toggle("hidden-element");
+
+    queue_button_container.classList.toggle("shrunk-overlay");
+    queue_button_container.classList.toggle("hidden-element");
+    lyrics_button_container.classList.toggle("shrunk-overlay");
+    lyrics_button_container.classList.toggle("hidden-element");
+    
+    player_extend_button_icon.classList.toggle("rotate-180");
+}
+
+
 // Event Listeners
-play_pause_control_container.onclick = play_pause;
+nav_home_button_container.onclick = render_home_page;
+
+nav_explore_button_container.onclick = render_explore_page;
+
+nav_library_button_container.onclick = render_library_page;
+
+profile_button_container.onclick = profile_dropdown_open_close;
+
+like_button_container.onclick = like_unlike_song;
+
+shuffle_button_container.onclick = shuffle_on_off;
+
+previous_song_button_container.onclick = play_previous_song;
+
+play_pause_button_container.onclick = play_pause;
+
+next_song_button_container.onclick = play_next_song;
+
+repeat_button_container.onclick = repeat_on_off;
+
+player_options_button_container.onclick = options_dialog_open_close;
 
 document.onkeydown = (event) => {
     if (event.key == " " && !(document.activeElement.tagName == "INPUT" && document.activeElement.type == "text")){
@@ -357,7 +533,7 @@ document.onkeydown = (event) => {
 
 audio_controls.onloadedmetadata = () => {
     audio_seek_bar.max = audio_controls.duration;
-    audio_current_duration_label.innerText = new Date(audio_controls.currentTime * 1000).toISOString().slice(14, 19);
+    update_current_duration_time_stamp();
     audio_total_duration_label.innerText = new Date(audio_controls.duration * 1000).toISOString().slice(14, 19);
 }
 
@@ -369,24 +545,19 @@ audio_controls.onended = () => {
 
 audio_seek_bar.oninput = () => {
     audio_controls.currentTime = audio_seek_bar.value;
+    update_current_duration_time_stamp();
 }
 
-volume_seek_bar.oninput = () => {
-    audio_controls.volume = volume_seek_bar.value / 100;
-    update_volume_icon();
-}
+queue_button_container.onclick = queue_overlay_open_close;
 
-volume_button_container.onclick = () => {
-    if (audio_controls.muted){
-        audio_controls.muted = false;
-        volume_button_container.title = "Mute";
-    }
-    else{
-        audio_controls.muted = true;
-        volume_button_container.title = "Unmute";
-    }
-    update_volume_icon();
-}
+lyrics_button_container.onclick = lyrics_overlay_open_close;
+
+volume_button_container.onclick = mute_unmute;
+
+volume_seek_bar.oninput = update_volume_seek_bar;
+
+player_extend_button_container.onclick = extend_shrink_player;
+
 
 // Function Calls
 render_home_page();
