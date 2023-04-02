@@ -566,4 +566,4 @@ player_extend_button_container.onclick = extend_shrink_player;
 
 
 // Function Calls
-render_home_page();
+// render_home_page();

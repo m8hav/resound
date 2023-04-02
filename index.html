@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- FONT AWESOME CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    
+
     <!-- FAVICON LINKS -->
     <link rel="icon" type="image/x-icon" href="./media/favicon/white/favicon.ico">
 
@@ -21,200 +21,279 @@
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courgette&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
 
     <title>Re&ound | An Interactive Music Streaming Platform</title>
-</head
->
+</head>
+
 <body>
-    
-    <!-- <main> -->
-        <nav>
-            <div id="nav-logo-container">
-                <div id="logo-wrapper">
-                    Re<img src="./media/logos/logo_white.png" alt="logo">und
-                    <!-- Re𝄞ound -->
+
+    <nav>
+        <div id="nav-logo-container">
+            <div id="logo-wrapper">
+                Re<img src="./media/logos/logo_white.png" alt="logo">und
+                <!-- Re𝄞ound -->
+            </div>
+        </div>
+        <div id="nav-content">
+            <div id="nav-home-button-container" class="nav-button-container">
+                <div class="nav-button-icon-wrapper">
+                    <i class="fa-solid fa-house"></i>
+                </div>
+                <p class="nav-button-container-label">
+                    Home
+                </p>
+            </div>
+            <div id="nav-explore-button-container" class="nav-button-container">
+                <div class="nav-button-icon-wrapper">
+                    <i class="fa-solid fa-mountain-sun"></i>
+                </div>
+                <p class="nav-button-container-label">
+                    Explore
+                </p>
+            </div>
+            <div id="nav-library-button-container" class="nav-button-container">
+                <div class="nav-button-icon-wrapper">
+                    <i class="fa-solid fa-lines-leaning"></i>
+                </div>
+                <p class="nav-button-container-label">
+                    Library
+                </p>
+                <div id="nav-content-library-tab-items">
+                    <p class="nav-content-library-tab-item">History</p>
+                    <p class="nav-content-library-tab-item">Liked Songs</p>
+                    <p class="nav-content-library-tab-item">2020 Favourites</p>
+                    <p class="nav-content-library-tab-item">2021 Favourites</p>
+                    <p class="nav-content-library-tab-item">Favourite Pop Music</p>
+                    <p class="nav-content-library-tab-item">2022 Recap</p>
+                    <p class="nav-content-library-tab-item">2021 Summer Recap</p>
+                    <p class="nav-content-library-tab-item">My SuperMix 4</p>
                 </div>
             </div>
-            <div id="nav-content">
-                <div id="nav-home-button-container" class="nav-button-container">
-                    <div class="nav-button-icon-wrapper">
-                        <i class="fa-solid fa-house"></i>
-                    </div>
-                    <p class="nav-button-container-label">
-                        Home
-                    </p>
-                </div>
-                <div id="nav-explore-button-container" class="nav-button-container">
-                    <div class="nav-button-icon-wrapper">
-                        <i class="fa-solid fa-mountain-sun"></i>
-                    </div>
-                    <p class="nav-button-container-label">
-                        Explore
-                    </p>
-                </div>
-                <div id="nav-library-button-container" class="nav-button-container">
-                    <div class="nav-button-icon-wrapper">
-                        <i class="fa-solid fa-lines-leaning"></i>
-                    </div>
-                    <p class="nav-button-container-label">
-                        Library
-                    </p>
-                    <div id="nav-content-library-tab-items">
-                        <p class="nav-content-library-tab-item">History</p>
-                        <p class="nav-content-library-tab-item">Liked Songs</p>
-                        <p class="nav-content-library-tab-item">2020 Favourites</p>
-                        <p class="nav-content-library-tab-item">2021 Favourites</p>
-                        <p class="nav-content-library-tab-item">Favourite Pop Music</p>
-                        <p class="nav-content-library-tab-item">2022 Recap</p>
-                        <p class="nav-content-library-tab-item">2021 Summer Recap</p>
-                        <p class="nav-content-library-tab-item">My SuperMix 4</p>
-                    </div>
-                </div>
+        </div>
+    </nav>
+
+    <section id="right-window">
+        <header>
+            <div id="header-left-empty-part"></div>
+            <div id="search-bar-wrapper">
+                <input type="text" name="search" id="search-bar" placeholder="Search">
+                <i id="search-bar-icon" class="fa-solid fa-magnifying-glass"></i>
+                </input>
             </div>
-        </nav>
+            <div id="header-right-part">
+                <button id="upload-button-container" class="header-right-part-button" title="Upload">
+                    <i class="fa-solid fa-upload"></i>
+                </button>
+                <button id="messages-button-container" class="header-right-part-button" title="Messages">
+                    <i class="fa-solid fa-envelope"></i>
+                </button>
+                <button id="profile-button-container" class="header-right-part-button" title="Profile & Settings">
+                    <i class="fa-solid fa-user"></i>
+                    <div class="profile-dropdown-overlay shrunk-overlay hidden-element">
+                        <ul>
+                            <li>
+                                <p>
+                                    User Profile
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Theme
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Settings
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+            </div>
+        </header>
 
-        <section id="right-window">
-            <header>
-                <div id="header-left-empty-part"></div>
-                <div id="search-bar-wrapper">
-                    <input type="text" name="search" id="search-bar" placeholder="Search">
-                        <i id="search-bar-icon" class="fa-solid fa-magnifying-glass"></i>
-                    </input>
-                </div>
-                <div id="header-right-part">
-                    <button id="upload-button-container" class="header-right-part-button" title="Upload">
-                        <i class="fa-solid fa-upload"></i>
-                    </button>
-                    <button id="messages-button-container" class="header-right-part-button" title="Messages">
-                        <i class="fa-solid fa-envelope"></i>
-                    </button>
-                    <button id="profile-button-container" class="header-right-part-button" title="Profile & Settings">
-                        <i class="fa-solid fa-user"></i>
-                        <div class="profile-dropdown-overlay shrunk-overlay hidden-element">
-                            <ul>
-                                <li>
-                                    <p>
-                                        User Profile
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Theme
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Settings
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    </button>
-                </div>
-            </header>
-
-            <section id="content-window">
+        <section id="content-window">
             <!--
-                <div id="recents-category" class="content-window-category">
-                    <p class="content-window-category-label">Recently Played</p>
-                    <div class="content-window-category-items-wrapper">
-                        <div class="content-window-category-item">
-                            <div class="content-window-category-item-cover">
-                                <img src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="recents_cover" class="content-window-category-item-cover-image">
-                                <div class="content-window-category-item-cover-image-overlay">
-                                    <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
-                                        <i class="fa-solid fa-play"></i>
-                                    </div>
-                                </div>    
-                            </div>
-                            <div class="content-window-category-item-labels">
-                                <p class="content-window-category-item-mainlabel">
-                                    Closer
-                                </p>
-                                <p class="content-window-category-item-sublabel">
-                                    The Chainsmokers
-                                </p>
-                            </div>
+            <div id="recents-category" class="content-window-category">
+                <p class="content-window-category-label">Recently Played</p>
+                <div class="content-window-category-items-wrapper">
+                    <div class="content-window-category-item">
+                        <div class="content-window-category-item-cover">
+                            <img src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="recents_cover" class="content-window-category-item-cover-image">
+                            <div class="content-window-category-item-cover-image-overlay">
+                                <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="content-window-category-item-labels">
+                            <p class="content-window-category-item-mainlabel">
+                                Closer
+                            </p>
+                            <p class="content-window-category-item-sublabel">
+                                The Chainsmokers
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div id="recommended-category" class="content-window-category">
-                    <p class="content-window-category-label">Recommended For You</p>
-                    <div class="content-window-category-items-wrapper">
-                        <div class="content-window-category-item">
-                            <div class="content-window-category-item-cover">
-                                <img src="./media/covers/imagine_dragons-birds-cover.jpeg" alt="recommended_cover" class="content-window-category-item-cover-image">
-                                <div class="content-window-category-item-cover-image-overlay">
-                                    <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
-                                        <i class="fa-solid fa-play"></i>
-                                    </div>
-                                </div>    
-                            </div>
-                            <div class="content-window-category-item-labels">
-                                <p class="content-window-category-item-mainlabel">
-                                    Birds
-                                </p>
-                                <p class="content-window-category-item-sublabel">
-                                    Imagine Dragons
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="genres-category" class="content-window-category">
-                    <p class="content-window-category-label">Popular Genres</p>
-                    <div class="content-window-category-items-wrapper">
-                        <div class="content-window-category-item">
-                            <div class="content-window-category-item-cover">
-                                <img src="./media/covers/pop-cover.jpg" alt="genres_cover" class="content-window-category-item-cover-image">
-                                <div class="content-window-category-item-cover-image-overlay">
-                                    <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
-                                        <i class="fa-solid fa-play"></i>
-                                    </div>
-                                </div>    
-                            </div>
-                            <div class="content-window-category-item-labels">
-                                <p class="content-window-category-item-mainlabel">
-                                    Pop
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="moods-category" class="content-window-category">
-                    <p class="content-window-category-label">Moods</p>
-                    <div class="content-window-category-items-wrapper">
-                        <div class="content-window-category-item">
-                            <div class="content-window-category-item-cover">
-                                <img src="./media/covers/chill-cover.png" alt="moods_cover" class="content-window-category-item-cover-image">
-                                <div class="content-window-category-item-cover-image-overlay">
-                                    <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
-                                        <i class="fa-solid fa-play"></i>
-                                    </div>
-                                </div>    
-                            </div>
-                            <div class="content-window-category-item-labels">
-                                <p class="content-window-category-item-mainlabel">
-                                    Chill
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            -->
-                
-            </section>
-
-            <div id="player-floating-part">
-                <div id="floating-queue-overlay" class="player-floating-part-item-overlay shrunk-overlay"></div>
-                <div id="floating-lyrics-overlay" class="player-floating-part-item-overlay shrunk-overlay"></div>
             </div>
+            <div id="recommended-category" class="content-window-category">
+                <p class="content-window-category-label">Recommended For You</p>
+                <div class="content-window-category-items-wrapper">
+                    <div class="content-window-category-item">
+                        <div class="content-window-category-item-cover">
+                            <img src="./media/covers/imagine_dragons-birds-cover.jpeg" alt="recommended_cover" class="content-window-category-item-cover-image">
+                            <div class="content-window-category-item-cover-image-overlay">
+                                <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="content-window-category-item-labels">
+                            <p class="content-window-category-item-mainlabel">
+                                Birds
+                            </p>
+                            <p class="content-window-category-item-sublabel">
+                                Imagine Dragons
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="genres-category" class="content-window-category">
+                <p class="content-window-category-label">Popular Genres</p>
+                <div class="content-window-category-items-wrapper">
+                    <div class="content-window-category-item">
+                        <div class="content-window-category-item-cover">
+                            <img src="./media/covers/pop-cover.jpg" alt="genres_cover" class="content-window-category-item-cover-image">
+                            <div class="content-window-category-item-cover-image-overlay">
+                                <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="content-window-category-item-labels">
+                            <p class="content-window-category-item-mainlabel">
+                                Pop
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="moods-category" class="content-window-category">
+                <p class="content-window-category-label">Moods</p>
+                <div class="content-window-category-items-wrapper">
+                    <div class="content-window-category-item">
+                        <div class="content-window-category-item-cover">
+                            <img src="./media/covers/chill-cover.png" alt="moods_cover" class="content-window-category-item-cover-image">
+                            <div class="content-window-category-item-cover-image-overlay">
+                                <div class="content-window-category-item-cover-image-overlay-icon-wrapper">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="content-window-category-item-labels">
+                            <p class="content-window-category-item-mainlabel">
+                                Chill
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        -->
+
+            <div id="playlist-description">
+
+                <div id="playlist-description-cover">
+                    <img id="playlist-description-cover-image" src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_cover">
+                </div>
+
+                <div id="playlist-description-info-and-options">
+                    <div id="playlist-description-info">
+                        <p id="playlist-info-title">Playlist Title</p>
+                        <p id="playlist-info-artists">Playlist Artists</p>
+                        <div id="playlist-info-count-and-duration">
+                            <p id="playlist-info-song-count">
+                                <span class="playlist-info-song-count-number">x</span>
+                                <span class="playlist-info-song-count-label">Songs &nbsp;•&nbsp;</span>
+                            </p>
+                            <p id="playlist-info-duration">
+                                <span class="playlist-info-duration-number">y</span>
+                                <span class="playlist-info-duration-label">Minutes</span>
+                            </p>
+                        </div>
+                    </div>
     
-            <div class="player-extended-overlay shrunk-overlay"></div>
+                    <div id="playlist-description-options">
+                        <button id="playlist-description-options-play" class="playlist-description-option-button">
+                            <i class="fa-solid fa-play playlist-description-option-icon"></i>
+                            <p class="playlist-description-option-label">Play</p>
+                        </button>
+                        <button id="playlist-description-options-shuffle-play" class="playlist-description-option-button">
+                            <i class="fa-solid fa-shuffle playlist-description-option-icon"></i>
+                            <p class="playlist-description-option-label">Shuffle Play</p>
+                        </button><br>
+                        <button id="playlist-description-options-add-to-library" class="playlist-description-option-button">
+                            <i class="fa-solid fa-plus playlist-description-option-icon"></i>
+                            <p class="playlist-description-option-label">Add to Library</p>
+                        </button>
+                        <button id="playlist-description-more-options-more" class="playlist-description-option-button">
+                            <i class="fa-solid fa-ellipsis-vertical playlist-description-option-icon"></i>
+                            <p class="playlist-description-option-label">More Options</p>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!--
+            <div id="playlist-contents">
+                <div id="playlist-contents-header">
+                    <p id="playlist-contents-header-name">Name</p>
+                    <p id="playlist-contents-header-artist">Artist</p>
+                    <p id="playlist-contents-header-duration">Duration</p>
+                </div>
+                <hr>
+                <div id="playlist-contents-items">
+                    <div class="playlist-contents-item">
+                        <div class="playlist-contents-item-cover">
+                            <img src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover"
+                                class="playlist-contents-item-cover-image">
+                            <div class="playlist-contents-item-cover-image-overlay">
+                                <div class="playlist-contents-item-cover-image-overlay-icon-wrapper">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playlist-contents-item-labels">
+                            <p class="playlist-contents-item-mainlabel">
+                                Closer
+                            </p>
+                            <p class="playlist-contents-item-sublabel">
+                                The Chainsmokers
+                            </p>
+                        </div>
+                        <p class="playlist-contents-item-duration">
+                            4:03
+                        </p>
+                    </div>
+                </div>
+            </div>
+             -->
 
         </section>
-    <!-- </main> -->
+
+        <div id="player-floating-part">
+            <div id="floating-queue-overlay" class="player-floating-part-item-overlay shrunk-overlay"></div>
+            <div id="floating-lyrics-overlay" class="player-floating-part-item-overlay shrunk-overlay"></div>
+        </div>
+
+        <div class="player-extended-overlay shrunk-overlay"></div>
+
+    </section>
 
     <div id="player">
 
@@ -229,7 +308,7 @@
                 <p id="player-song-name">I Don't Wanna Live Forever</p><br>
                 <p id="player-song-artist">Taylor Swift and Zayn Malik</p>
             </div>
-            
+
             <button id="player-left-part-like-button-container" class="player-control-button" title="Like">
                 <i class="fa-regular fa-heart"></i>
                 <!-- <i class="fa-regular fa-heart"></i> -->
@@ -240,27 +319,32 @@
         <div id="player-middle-part">
             <div id="player-middle-part-main">
                 <div id="player-middle-part-controls">
-                    <button id="shuffle-button-container" class="player-control-button player-middle-part-control-container" title="Shuffle">
+                    <button id="shuffle-button-container"
+                        class="player-control-button player-middle-part-control-container" title="Shuffle">
                         <i class="fa-solid fa-shuffle inactive-button"></i>
                     </button>
-        
-                    <button id="previous-song-button-container" class="player-control-button player-middle-part-control-container" title="Play Previous Song">
+
+                    <button id="previous-song-button-container"
+                        class="player-control-button player-middle-part-control-container" title="Play Previous Song">
                         <i class="fa-solid fa-backward-step"></i>
                     </button>
-                    <button id="play-pause-button-container" class="player-control-button player-middle-part-control-container" title="Play">
+                    <button id="play-pause-button-container"
+                        class="player-control-button player-middle-part-control-container" title="Play">
                         <i class="fa-solid fa-circle-play"></i>
                         <!-- <i class="fa-solid fa-circle-pause"></i> -->
                     </button>
-                    <button id="next-song-button-container" class="player-control-button player-middle-part-control-container" title="Play Next Song">
+                    <button id="next-song-button-container"
+                        class="player-control-button player-middle-part-control-container" title="Play Next Song">
                         <i class="fa-solid fa-forward-step"></i>
                     </button>
-        
-                    <button id="repeat-button-container" class="player-control-button player-middle-part-control-container" title="Repeat">
+
+                    <button id="repeat-button-container"
+                        class="player-control-button player-middle-part-control-container" title="Repeat">
                         <i class="fa-solid fa-repeat inactive-button"></i>
                         <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
                     </button>
                 </div>
-        
+
                 <input type="range" name="player-seek-bar" id="player-seek-bar" value="0">
             </div>
 
@@ -272,7 +356,7 @@
                     <span id="audio-current-duration"></span>/<span id="audio-total-duration"></span>
                 </div>
             </div>
-            
+
         </div>
 
         <div id="player-right-part">
@@ -290,10 +374,10 @@
                 <button id="volume-button-container" class="player-control-button" title="Mute">
                     <i id="player-right-part-volume-button" class="fa-solid fa-volume-high"></i>
                 </button>
-    
-                <input type="range" name="volume-seek-bar" id="volume-seek-bar" value="80" title="Volume" >
+
+                <input type="range" name="volume-seek-bar" id="volume-seek-bar" value="80" title="Volume">
             </div>
-            
+
             <button id="player-extend-button-container" class="player-control-button" title="Extend Player">
                 <i class="fa-solid fa-caret-up"></i>
                 <!-- <i class="fa-solid fa-caret-down"></i> -->
@@ -301,7 +385,8 @@
         </div>
 
         <audio id="player-audio-controls">
-            <source src="./media/audio/renamed/Closer___The_Chainsmokers_ft__Halsey_320_PagalWorld_.mp3" type="audio/mpeg">
+            <source src="./media/audio/renamed/Closer___The_Chainsmokers_ft__Halsey_320_PagalWorld_.mp3"
+                type="audio/mpeg">
         </audio>
 
     </div>
@@ -314,4 +399,5 @@
     <!-- IMPORTING SCRIPTS -->
     <script src="./script.js"></script>
 </body>
+
 </html>
