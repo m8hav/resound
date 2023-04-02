@@ -440,25 +440,28 @@ function options_dialog_open_close(){
     // open or close options dialog
 }
 
-function queue_overlay_open_close(){
-    if (shuffle_button_icon.classList.contains("inactive-button")){
-        floating_queue_overlay.classList.toggle("shrunk-overlay");
+function queue_overlay_open_close(open = true){
+    if (queue_button_icon.classList.contains("inactive-button") && open){
+        queue_button_icon.classList.remove("inactive-button");
+        floating_queue_overlay.classList.remove("shrunk-overlay");
     }
     else{
-        floating_queue_overlay.classList.toggle("shrunk-overlay");
+        queue_button_icon.classList.add("inactive-button");
+        floating_queue_overlay.classList.add("shrunk-overlay");
     }
-    queue_button_icon.classList.toggle("inactive-button");
 }
 
-function lyrics_overlay_open_close(){
-    if (lyrics_button_icon.classList.contains("fa-regular")){
-        floating_lyrics_overlay.classList.toggle("shrunk-overlay");
+function lyrics_overlay_open_close(open = true){
+    if (lyrics_button_icon.classList.contains("fa-regular") && open){
+        floating_lyrics_overlay.classList.remove("shrunk-overlay");
+        lyrics_button_icon.classList.add("fa-solid");
+        lyrics_button_icon.classList.remove("fa-regular");
     }
     else{
-        floating_lyrics_overlay.classList.toggle("shrunk-overlay");
+        floating_lyrics_overlay.classList.add("shrunk-overlay");
+        lyrics_button_icon.classList.remove("fa-solid");
+        lyrics_button_icon.classList.add("fa-regular");
     }
-    lyrics_button_icon.classList.toggle("fa-regular");
-    lyrics_button_icon.classList.toggle("fa-solid");
 }
 
 function update_volume_icon(){
@@ -494,8 +497,11 @@ function extend_shrink_player(){
 
     queue_button_container.classList.toggle("shrunk-overlay");
     queue_button_container.classList.toggle("hidden-element");
+    queue_overlay_open_close(false);
+    
     lyrics_button_container.classList.toggle("shrunk-overlay");
     lyrics_button_container.classList.toggle("hidden-element");
+    lyrics_overlay_open_close(false);
     
     player_extend_button_icon.classList.toggle("rotate-180");
 }
