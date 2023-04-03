@@ -15,8 +15,6 @@ const profile_dropdown_overlay = document.getElementsByClassName("profile-dropdo
 // Content Window
 const content_window = document.getElementById("content-window");
 
-// Playlist Page
-
 
 // Player
 const player = document.getElementById("player");
@@ -60,6 +58,8 @@ const player_volume_button_icon = player_volume_button_container.firstElementChi
 const player_extend_button_container = document.getElementById("player-extend-button-container");
 const player_extend_button_icon = player_extend_button_container.firstElementChild;
 
+const player_floating_part = document.getElementById("player-floating-part");
+const player_floating_part_full_height = "calc(100% - var(--header-height) - 3.1rem)"
 const floating_queue_overlay = document.getElementById("floating-queue-overlay");
 const floating_lyrics_overlay = document.getElementById("floating-lyrics-overlay");
 
@@ -288,6 +288,8 @@ function render_home_page(){
     content_window.innerHTML = "";
 
     for (let category_index in home_page_content.categories){
+
+        // getting category data
         let category = home_page_content.categories[category_index];
 
         let category_tag = category.tag;
@@ -295,76 +297,119 @@ function render_home_page(){
         let category_name = category.name;
         let category_items = category.items;
 
-        let category_div = document.createElement("div");
-        category_div.id = category_tag + "-category";
-        category_div.classList.add("content-window-category");
-        content_window.appendChild(category_div);
+        // creating content window category
+        let content_window_category = document.createElement("div");
+        content_window_category.id = category_tag + "-category";
+        content_window_category.classList.add("content-window-category");
+        content_window.appendChild(content_window_category);
 
-        let category_label = document.createElement("p");
-        category_label.classList.add("content-window-category-label");
-        category_label.innerText = category_name;
-        category_div.appendChild(category_label);
-
-        let category_items_wrapper = document.createElement("div");
-        category_items_wrapper.classList.add("content-window-category-items-wrapper");
-        category_div.appendChild(category_items_wrapper);
+        // creating scroll buttons
+        let content_window_category_scroll_left_button = document.createElement("button");
+        content_window_category_scroll_left_button.classList.add("content-window-category-scroll-button");
+        content_window_category_scroll_left_button.classList.add("content-window-category-scroll-left-button");
+        content_window_category_scroll_left_button.classList.add("hidden-element");
+        content_window_category_scroll_left_button.innerHTML = "<i class='fa-solid fa-chevron-left'></i>";
+        content_window_category.appendChild(content_window_category_scroll_left_button);
         
+        let content_window_category_scroll_right_button = document.createElement("button");
+        content_window_category_scroll_right_button.classList.add("content-window-category-scroll-button");
+        content_window_category_scroll_right_button.classList.add("content-window-category-scroll-right-button");
+        content_window_category_scroll_right_button.innerHTML = "<i class='fa-solid fa-chevron-right'></i>";
+        content_window_category.appendChild(content_window_category_scroll_right_button);
+
+        // creating category label and items wrapper
+        let content_window_category_label = document.createElement("p");
+        content_window_category_label.classList.add("content-window-category-label");
+        content_window_category_label.innerText = category_name;
+        content_window_category.appendChild(content_window_category_label);
+
+        let content_window_category_items_wrapper = document.createElement("div");
+        content_window_category_items_wrapper.classList.add("content-window-category-items-wrapper");
+        content_window_category.appendChild(content_window_category_items_wrapper);
+
+        // adding scroll buttons event listeners
+        content_window_category_scroll_left_button.onclick = () => {
+            let scroll_amount = (Math.floor(content_window_category_items_wrapper.clientWidth/200) - 1) * 200;
+            content_window_category_items_wrapper.scrollLeft -= scroll_amount;
+        };
+        content_window_category_scroll_right_button.onclick = () => {
+            let scroll_amount = (Math.floor(content_window_category_items_wrapper.clientWidth/200) - 1) * 200;
+            content_window_category_items_wrapper.scrollLeft += scroll_amount;
+        };
+
+        // adding scroll event listener to category items wrapper to show/hide scroll buttons
+        content_window_category_items_wrapper.onscroll = () => {
+            if (content_window_category_items_wrapper.scrollLeft == 0){
+                content_window_category_scroll_left_button.classList.add("hidden-element");
+            }
+            else{
+                content_window_category_scroll_left_button.classList.remove("hidden-element");
+            }
+            if (content_window_category_items_wrapper.scrollLeft >= content_window_category_items_wrapper.scrollWidth - content_window_category_items_wrapper.clientWidth){
+                content_window_category_scroll_right_button.classList.add("hidden-element");
+            }
+            else{
+                content_window_category_scroll_right_button.classList.remove("hidden-element");
+            }
+        }
+        
+        // adding items to category items wrapper
         for (let category_index in category_items){
-            let category_item_details = category_items[category_index];
-            let category_img_name = category_item_details["img_name"];
-            let category_mainlabel, category_sublabel;
-            category_mainlabel = category_item_details["main_label"];
+            let content_window_category_item_details = category_items[category_index];
+            let content_window_category_img_name = content_window_category_item_details["img_name"];
+            let content_window_category_mainlabel, content_window_category_sublabel;
+            content_window_category_mainlabel = content_window_category_item_details["main_label"];
             if (category_type == "song"){
-                category_sublabel = category_item_details["sub_label"];
+                content_window_category_sublabel = content_window_category_item_details["sub_label"];
             }
             
-            let category_item = document.createElement("div");
-            category_item.classList.add("content-window-category-item");
-            category_items_wrapper.appendChild(category_item);
+            let content_window_category_item = document.createElement("div");
+            content_window_category_item.classList.add("content-window-category-item");
+            content_window_category_items_wrapper.appendChild(content_window_category_item);
 
-            let category_item_cover = document.createElement("div");
-            category_item_cover.classList.add("content-window-category-item-cover");
-            category_item.appendChild(category_item_cover);
+            let content_window_category_item_cover = document.createElement("div");
+            content_window_category_item_cover.classList.add("content-window-category-item-cover");
+            content_window_category_item.appendChild(content_window_category_item_cover);
 
-            let category_item_cover_image = document.createElement("img");
-            category_item_cover_image.src = "./media/covers/" + category_img_name;
-            category_item_cover_image.classList.add("content-window-category-item-cover-image");
-            category_item_cover_image.alt = "recents_cover";
-            category_item_cover.appendChild(category_item_cover_image);
+            let content_window_category_item_cover_image = document.createElement("img");
+            content_window_category_item_cover_image.src = "./media/covers/" + content_window_category_img_name;
+            content_window_category_item_cover_image.classList.add("content-window-category-item-cover-image");
+            content_window_category_item_cover_image.alt = "recents_cover";
+            content_window_category_item_cover.appendChild(content_window_category_item_cover_image);
 
-            let category_item_cover_image_overlay = document.createElement("div");
-            category_item_cover_image_overlay.classList.add("content-window-category-item-cover-image-overlay");
-            category_item_cover.appendChild(category_item_cover_image_overlay);
+            let content_window_category_item_cover_image_overlay = document.createElement("div");
+            content_window_category_item_cover_image_overlay.classList.add("content-window-category-item-cover-image-overlay");
+            content_window_category_item_cover.appendChild(content_window_category_item_cover_image_overlay);
 
-            let category_item_cover_image_overlay_icon_wrapper = document.createElement("div");
-            category_item_cover_image_overlay_icon_wrapper.classList.add("content-window-category-item-cover-image-overlay-icon-wrapper");
-            category_item_cover_image_overlay.appendChild(category_item_cover_image_overlay_icon_wrapper);
+            let content_window_category_item_cover_image_overlay_icon_wrapper = document.createElement("div");
+            content_window_category_item_cover_image_overlay_icon_wrapper.classList.add("content-window-category-item-cover-image-overlay-icon-wrapper");
+            content_window_category_item_cover_image_overlay.appendChild(content_window_category_item_cover_image_overlay_icon_wrapper);
 
-            let category_overlay_wrapper_icon = document.createElement("i");
-            category_overlay_wrapper_icon.classList.add("fa-solid", "fa-play");
-            category_item_cover_image_overlay_icon_wrapper.appendChild(category_overlay_wrapper_icon);
+            let content_window_category_overlay_wrapper_icon = document.createElement("i");
+            content_window_category_overlay_wrapper_icon.classList.add("fa-solid", "fa-play");
+            content_window_category_item_cover_image_overlay_icon_wrapper.appendChild(content_window_category_overlay_wrapper_icon);
 
-            let category_item_labels = document.createElement("div");
-            category_item_labels.classList.add("content-window-category-item-labels");
-            category_item.appendChild(category_item_labels);
+            let content_window_category_item_labels = document.createElement("div");
+            content_window_category_item_labels.classList.add("content-window-category-item-labels");
+            content_window_category_item.appendChild(content_window_category_item_labels);
 
-            let category_item_mainlabel = document.createElement("p");
-            category_item_mainlabel.classList.add("content-window-category-item-mainlabel");
-            category_item_mainlabel.innerText = category_mainlabel;
-            category_item_labels.appendChild(category_item_mainlabel);
+            let content_window_category_item_mainlabel = document.createElement("p");
+            content_window_category_item_mainlabel.classList.add("content-window-category-item-mainlabel");
+            content_window_category_item_mainlabel.innerText = content_window_category_mainlabel;
+            content_window_category_item_labels.appendChild(content_window_category_item_mainlabel);
 
             if (category_type == "song"){
-                let category_item_sublabel = document.createElement("p");
-                category_item_sublabel.classList.add("content-window-category-item-sublabel");
-                category_item_sublabel.innerText = category_sublabel;
-                category_item_labels.appendChild(category_item_sublabel);
+                let content_window_category_item_sublabel = document.createElement("p");
+                content_window_category_item_sublabel.classList.add("content-window-category-item-sublabel");
+                content_window_category_item_sublabel.innerText = content_window_category_sublabel;
+                content_window_category_item_labels.appendChild(content_window_category_item_sublabel);
                 // add event listener to play that song
-                category_item.addEventListener("click", function(){
+                content_window_category_item.addEventListener("click", function(){
                     play_next_song();
                 });
             }
             else{
-                category_item.addEventListener("click", function(){
+                content_window_category_item.addEventListener("click", function(){
                     render_playlist();
                 });
             }
@@ -720,23 +765,18 @@ function play_pause(){
     else{
         player_audio_controls.pause();
         player_play_pause_button_container.title = "Play";
-        clearInterval(update_seek_bar_interval);
     }
     player_play_pause_button_icon.classList.toggle("fa-circle-play");
     player_play_pause_button_icon.classList.toggle("fa-circle-pause");
 }
 
 function update_audio_seek_bar(){
-    // updating seek bar
+    // updating seek bar current position and max value
     player_audio_seek_bar.value = player_audio_controls.currentTime;
     player_audio_seek_bar.max = player_audio_controls.duration;
     // updating current timestamp
     player_audio_current_duration_label.innerText = new Date(player_audio_controls.currentTime * 1000).toISOString().slice(14, 19);
 }
-
-// function update_current_duration_time_stamp(){
-//     player_audio_current_duration_label.innerText = new Date(player_audio_controls.currentTime * 1000).toISOString().slice(14, 19);
-// }
 
 function play_next_song(){
     // Play next song
@@ -761,22 +801,30 @@ function queue_overlay_open_close(open = true){
     if (player_queue_button_icon.classList.contains("inactive-button") && open){
         player_queue_button_icon.classList.remove("inactive-button");
         floating_queue_overlay.classList.remove("shrunk-overlay");
+        player_floating_part.style.height = player_floating_part_full_height;
     }
     else{
         player_queue_button_icon.classList.add("inactive-button");
         floating_queue_overlay.classList.add("shrunk-overlay");
+        if (floating_lyrics_overlay.classList.contains("shrunk-overlay")){
+            player_floating_part.style.height = 0;
+        }
     }
 }
 
 function lyrics_overlay_open_close(open = true){
     if (player_lyrics_button_icon.classList.contains("fa-regular") && open){
         floating_lyrics_overlay.classList.remove("shrunk-overlay");
+        player_floating_part.style.height = player_floating_part_full_height;
         player_lyrics_button_icon.classList.remove("inactive-button");
         player_lyrics_button_icon.classList.add("fa-solid");
         player_lyrics_button_icon.classList.remove("fa-regular");
     }
     else{
         floating_lyrics_overlay.classList.add("shrunk-overlay");
+        if (floating_queue_overlay.classList.contains("shrunk-overlay")){
+            player_floating_part.style.height = 0;
+        }
         player_lyrics_button_icon.classList.add("inactive-button");
         player_lyrics_button_icon.classList.remove("fa-solid");
         player_lyrics_button_icon.classList.add("fa-regular");
@@ -857,7 +905,6 @@ document.onkeydown = (event) => {
 }
 
 player_audio_controls.onloadedmetadata = () => {
-    // player_audio_seek_bar.max = player_audio_controls.duration;
     player_audio_controls.currentTime = 0;
     player_audio_total_duration_label.innerText = new Date(player_audio_controls.duration * 1000).toISOString().slice(14, 19);
 }
@@ -887,4 +934,3 @@ player_extend_button_container.onclick = extend_shrink_player;
 
 // Function Calls
 render_home_page();
-// render_library_page();

@@ -261,22 +261,25 @@ header{
     position: absolute;
     top: var(--header-height);
     right: 0;
-    width: 120px;
+    width: 6rem;
     background-color: var(--panels-bg-color);
     box-shadow: var(--overlay-box-shadow);
-    padding: 7px;
+    padding: 0.35rem;
     border-radius: 10px 0 10px 10px;
     font-weight: 300;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 .profile-dropdown-overlay ul li{
-    padding: 10px 5px;
-    list-style: none;
     width: 100%;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    list-style: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .profile-dropdown-overlay ul li:hover{
     background-color: var(--control-button-bg-color);
-    border-radius: 0.5rem;
 }
 
 /* RIGHT CONTENT WINDOW */
@@ -298,13 +301,13 @@ header{
 
 /* GENERAL CONTENT WINDOW STYLES */
 .content-window-category{
-    width: 90%;
+    width: calc(100% - 4rem);
     flex-shrink: 0;
-    /* background-color: var(--content-window-item-background-color); */
     background-color: var(--panels-bg-color);
-    margin: 1.25rem 0 0;
+    margin-top: 1.25rem;
     border-radius: 0.5rem;
     padding: 1rem 1rem 0;
+    position: relative;
 }
 .content-window-category:first-child{
     margin-top: 2rem;
@@ -326,7 +329,7 @@ header{
 }
 .content-window-category-item{
     width: var(--content-window-category-item-cover-side);
-    margin: 1rem 1rem 0 0;
+    margin: 1rem 1rem 0.35rem 0;
     border-radius: 10px;
     flex-shrink: 0;
     flex-grow: 0;
@@ -386,6 +389,30 @@ header{
 .content-window-category-item-sublabel{
     font-size: 0.75rem;
     color: var(--sub-label-color);
+}
+.content-window-category-scroll-button{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 0 1rem 0.5rem var(--panels-bg-color) inset, 0 0 0.5rem 0 rgba(255, 255, 255, 0.5);
+    color: var(--sub-label-color);
+    position: absolute;
+    top: calc(50% - 1.25rem);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-window-category-scroll-left-button{
+    left: -1.25rem;
+}
+.content-window-category-scroll-right-button{
+    right: -1.25rem;
+}
+.content-window-category-scroll-button:hover{
+    color: white;
+    background-color: var(--control-button-bg-color);
+    box-shadow: 0 0 1rem 0.5rem var(--panels-bg-color) inset, 0 0 1rem 0.1rem rgba(255, 255, 255, 0.5);
 }
 
 /* PLAYLIST PAGE */
@@ -684,7 +711,7 @@ header{
     position: absolute;
     right: 1.5rem;
     bottom: 0.7rem;
-    height: calc(100% - var(--header-height) - 3.1rem);
+    height: 0;
     display: flex;
     flex-wrap: nowrap;
     align-items: end;
