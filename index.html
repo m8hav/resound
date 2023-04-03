@@ -61,7 +61,7 @@
                 <p class="nav-button-container-label">
                     Library
                 </p>
-                <div id="nav-content-library-tab-items">
+                <div id="nav-content-library-tab-items-wrapper">
                     <p class="nav-content-library-tab-item">History</p>
                     <p class="nav-content-library-tab-item">Liked Songs</p>
                     <p class="nav-content-library-tab-item">2020 Favourites</p>
@@ -205,84 +205,139 @@
             </div>
         -->
 
+        <!--
             <div id="playlist-description">
 
                 <div id="playlist-description-cover">
                     <img id="playlist-description-cover-image" src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_cover">
                 </div>
 
-                <div id="playlist-description-info-and-options">
+                <div id="playlist-description-info-and-buttons">
                     <div id="playlist-description-info">
                         <p id="playlist-info-title">Playlist Title</p>
                         <p id="playlist-info-artists">Playlist Artists</p>
                         <div id="playlist-info-count-and-duration">
                             <p id="playlist-info-song-count">
                                 <span class="playlist-info-song-count-number">x</span>
-                                <span class="playlist-info-song-count-label">Songs &nbsp;•&nbsp;</span>
+                                <span class="playlist-info-song-count-label">&nbsp;songs &nbsp;•&nbsp;&nbsp;</span>
                             </p>
                             <p id="playlist-info-duration">
                                 <span class="playlist-info-duration-number">y</span>
-                                <span class="playlist-info-duration-label">Minutes</span>
+                                <span class="playlist-info-duration-label">&nbsp;minutes</span>
                             </p>
                         </div>
                     </div>
     
-                    <div id="playlist-description-options">
-                        <button id="playlist-description-options-play" class="playlist-description-option-button">
-                            <i class="fa-solid fa-play playlist-description-option-icon"></i>
-                            <p class="playlist-description-option-label">Play</p>
+                    <div id="playlist-description-buttons">
+                        <button id="playlist-description-play-button" class="playlist-description-button">
+                            <i class="fa-solid fa-play playlist-description-button-icon"></i>
+                            <p class="playlist-description-button-label">Play</p>
                         </button>
-                        <button id="playlist-description-options-shuffle-play" class="playlist-description-option-button">
-                            <i class="fa-solid fa-shuffle playlist-description-option-icon"></i>
-                            <p class="playlist-description-option-label">Shuffle Play</p>
+                        <button id="playlist-description-shuffle-play-button" class="playlist-description-button">
+                            <i class="fa-solid fa-shuffle playlist-description-button-icon"></i>
+                            <p class="playlist-description-button-label">Shuffle Play</p>
                         </button><br>
-                        <button id="playlist-description-options-add-to-library" class="playlist-description-option-button">
-                            <i class="fa-solid fa-plus playlist-description-option-icon"></i>
-                            <p class="playlist-description-option-label">Add to Library</p>
+                        <button id="playlist-description-add-to-library-button" class="playlist-description-button">
+                            <i class="fa-solid fa-plus playlist-description-button-icon"></i>
+                            <p class="playlist-description-button-label">Add to Library</p>
                         </button>
-                        <button id="playlist-description-more-options-more" class="playlist-description-option-button">
-                            <i class="fa-solid fa-ellipsis-vertical playlist-description-option-icon"></i>
-                            <p class="playlist-description-option-label">More Options</p>
+                        <button id="playlist-description-more-options-button" class="playlist-description-button">
+                            <i class="fa-solid fa-ellipsis-vertical playlist-description-button-icon"></i>
+                            <p class="playlist-description-button-label">More Options</p>
                         </button>
                     </div>
                 </div>
                 
             </div>
 
-            <!--
-            <div id="playlist-contents">
-                <div id="playlist-contents-header">
-                    <p id="playlist-contents-header-name">Name</p>
-                    <p id="playlist-contents-header-artist">Artist</p>
-                    <p id="playlist-contents-header-duration">Duration</p>
+            <div id="playlist-content">
+
+                <div id="playlist-content-header">
+                    <div class="playlist-content-cover-column"></div>
+                    <p class="playlist-content-name-column">Name</p>
+                    <p class="playlist-content-artists-column">Artists</p>
+                    <p class="playlist-content-duration-column">Duration</p>
+                    <p class="playlist-content-options-column">Options</p>
                 </div>
+
                 <hr>
-                <div id="playlist-contents-items">
-                    <div class="playlist-contents-item">
-                        <div class="playlist-contents-item-cover">
-                            <img src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover"
-                                class="playlist-contents-item-cover-image">
-                            <div class="playlist-contents-item-cover-image-overlay">
-                                <div class="playlist-contents-item-cover-image-overlay-icon-wrapper">
-                                    <i class="fa-solid fa-play"></i>
-                                </div>
+
+                <div id="playlist-content-items">
+
+                    <div class="playlist-content-item">
+
+                        <div class="playlist-content-cover-column">
+                            <img class="playlist-content-item-cover-image" src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover">
+                            <div class="playlist-content-item-cover-image-overlay-icon-wrapper">
+                                <i class="fa-solid fa-play playlist-content-item-cover-image-overlay-icon"></i>
                             </div>
                         </div>
-                        <div class="playlist-contents-item-labels">
-                            <p class="playlist-contents-item-mainlabel">
-                                Closer
-                            </p>
-                            <p class="playlist-contents-item-sublabel">
-                                The Chainsmokers
-                            </p>
-                        </div>
-                        <p class="playlist-contents-item-duration">
+
+                        <p class="playlist-content-name-column">
+                            Closer
+                        </p>
+                        <p class="playlist-content-artists-column">
+                            The Chainsmokers
+                        </p>
+                        
+                        <p class="playlist-content-duration-column">
                             4:03
                         </p>
+
+                        <div class="playlist-content-options-column">
+                            
+                            <button class="playlist-content-item-like-button playlist-content-item-option-button" title="Like">
+                                <i class="fa-regular fa-heart playlist-content-item-option-button-icon"></i>
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+
+                            <button class="playlist-content-item-options-button playlist-content-item-option-button" title="Options">
+                                <i class="fa-solid fa-ellipsis-vertical playlist-content-item-option-button-icon"></i>
+                            </button>
+
+                        </div>
+
                     </div>
+                    
+                    <div class="playlist-content-item">
+
+                        <div class="playlist-content-cover-column">
+                            <img class="playlist-content-item-cover-image" src="./media/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover">
+                            <div class="playlist-content-item-cover-image-overlay-icon-wrapper">
+                                <i class="fa-solid fa-play playlist-content-item-cover-image-overlay-icon"></i>
+                            </div>
+                        </div>
+
+                        <p class="playlist-content-name-column">
+                            Closer
+                        </p>
+                        <p class="playlist-content-artists-column">
+                            The Chainsmokers
+                        </p>
+                        
+                        <p class="playlist-content-duration-column">
+                            4:03
+                        </p>
+
+                        <div class="playlist-content-options-column">
+                            
+                            <button class="playlist-content-item-like-button playlist-content-item-option-button" title="Like">
+                                <i class="fa-regular fa-heart playlist-content-item-option-button-icon"></i>
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+
+                            <button class="playlist-content-item-options-button playlist-content-item-option-button" title="Options">
+                                <i class="fa-solid fa-ellipsis-vertical playlist-content-item-option-button-icon"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
-             -->
+        -->
 
         </section>
 
@@ -366,7 +421,7 @@
                 </button>
                 <button id="lyrics-button-container" class="player-control-button" title="Lyrics">
                     <!-- <i class="fa-solid fa-closed-captioning"></i> -->
-                    <i class="fa-regular fa-closed-captioning"></i>
+                    <i class="fa-regular fa-closed-captioning inactive-button"></i>
                 </button>
             </div>
 

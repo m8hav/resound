@@ -3,52 +3,59 @@
 // Global Variables
 const body_wallpaper_overlay = document.getElementsByClassName("body-wallpaper-overlay")[0];
 
+// Nav
 const nav_home_button_container = document.getElementById("nav-home-button-container");
 const nav_explore_button_container = document.getElementById("nav-explore-button-container");
 const nav_library_button_container = document.getElementById("nav-library-button-container");
 
+// Header
 const profile_button_container = document.getElementById("profile-button-container");
 const profile_dropdown_overlay = document.getElementsByClassName("profile-dropdown-overlay")[0];
 
+// Content Window
 const content_window = document.getElementById("content-window");
 
+// Playlist Page
+
+
+// Player
 const player = document.getElementById("player");
 
-const like_button_container = document.getElementById("player-left-part-like-button-container");
-const like_button_icon = like_button_container.firstElementChild;
+const player_like_button_container = document.getElementById("player-left-part-like-button-container");
+const player_like_button_icon = player_like_button_container.firstElementChild;
 
-const shuffle_button_container = document.getElementById("shuffle-button-container");
-const shuffle_button_icon = shuffle_button_container.firstElementChild;
+const player_shuffle_button_container = document.getElementById("shuffle-button-container");
+const player_shuffle_button_icon = player_shuffle_button_container.firstElementChild;
 
-const previous_song_button_container = document.getElementById("previous-song-button-container");
-const previous_song_button_icon = previous_song_button_container.firstElementChild;
+const player_previous_song_button_container = document.getElementById("previous-song-button-container");
+const player_previous_song_button_icon = player_previous_song_button_container.firstElementChild;
 
-const play_pause_button_container = document.getElementById("play-pause-button-container");
-const play_pause_button_icon = play_pause_button_container.firstElementChild;
+const player_play_pause_button_container = document.getElementById("play-pause-button-container");
+const player_play_pause_button_icon = player_play_pause_button_container.firstElementChild;
 
-const next_song_button_container = document.getElementById("next-song-button-container");
-const next_song_button_icon = next_song_button_container.firstElementChild;
+const player_next_song_button_container = document.getElementById("next-song-button-container");
+const player_next_song_button_icon = player_next_song_button_container.firstElementChild;
 
-const repeat_button_container = document.getElementById("repeat-button-container");
-const repeat_button_icon = repeat_button_container.firstElementChild;
+const player_repeat_button_container = document.getElementById("repeat-button-container");
+const player_repeat_button_icon = player_repeat_button_container.firstElementChild;
 
 const player_options_button_container = document.getElementById("player-options-button-container");
 const player_options_button_icon = player_options_button_container.firstElementChild;
 
-const audio_controls = document.getElementById("player-audio-controls");
-const audio_seek_bar = document.getElementById("player-seek-bar");
-const audio_current_duration_label = document.getElementById("audio-current-duration");
-const audio_total_duration_label = document.getElementById("audio-total-duration");
+const player_audio_controls = document.getElementById("player-audio-controls");
+const player_audio_seek_bar = document.getElementById("player-seek-bar");
+const player_audio_current_duration_label = document.getElementById("audio-current-duration");
+const player_audio_total_duration_label = document.getElementById("audio-total-duration");
 
-const queue_button_container = document.getElementById("queue-button-container");
-const queue_button_icon = queue_button_container.firstElementChild;
+const player_queue_button_container = document.getElementById("queue-button-container");
+const player_queue_button_icon = player_queue_button_container.firstElementChild;
 
-const lyrics_button_container = document.getElementById("lyrics-button-container");
-const lyrics_button_icon = lyrics_button_container.firstElementChild;
+const player_lyrics_button_container = document.getElementById("lyrics-button-container");
+const player_lyrics_button_icon = player_lyrics_button_container.firstElementChild;
 
-const volume_seek_bar = document.getElementById("volume-seek-bar");
-const volume_button_container = document.getElementById("volume-button-container");
-const volume_button_icon = volume_button_container.firstElementChild;
+const player_volume_seek_bar = document.getElementById("volume-seek-bar");
+const player_volume_button_container = document.getElementById("volume-button-container");
+const player_volume_button_icon = player_volume_button_container.firstElementChild;
 
 const player_extend_button_container = document.getElementById("player-extend-button-container");
 const player_extend_button_icon = player_extend_button_container.firstElementChild;
@@ -58,7 +65,7 @@ const floating_lyrics_overlay = document.getElementById("floating-lyrics-overlay
 
 const player_extended_overlay = document.getElementsByClassName("player-extended-overlay")[0];
 
-audio_controls.volume = volume_seek_bar.value / 100;
+player_audio_controls.volume = player_volume_seek_bar.value / 100;
 
 
 // Content Objects
@@ -302,68 +309,376 @@ function render_home_page(){
         category_items_wrapper.classList.add("content-window-category-items-wrapper");
         category_div.appendChild(category_items_wrapper);
         
-        for (let index in category_items){
-            let item_details = category_items[index];
-            let img_name = item_details["img_name"];
-            let mainlabel, sublabel;
-            mainlabel = item_details["main_label"];
+        for (let category_index in category_items){
+            let category_item_details = category_items[category_index];
+            let category_img_name = category_item_details["img_name"];
+            let category_mainlabel, category_sublabel;
+            category_mainlabel = category_item_details["main_label"];
             if (category_type == "song"){
-                sublabel = item_details["sub_label"];
+                category_sublabel = category_item_details["sub_label"];
             }
             
-            let item = document.createElement("div");
-            item.classList.add("content-window-category-item");
-            category_items_wrapper.appendChild(item);
+            let category_item = document.createElement("div");
+            category_item.classList.add("content-window-category-item");
+            category_items_wrapper.appendChild(category_item);
 
-            let item_cover = document.createElement("div");
-            item_cover.classList.add("content-window-category-item-cover");
-            item.appendChild(item_cover);
+            let category_item_cover = document.createElement("div");
+            category_item_cover.classList.add("content-window-category-item-cover");
+            category_item.appendChild(category_item_cover);
 
-            let item_cover_image = document.createElement("img");
-            item_cover_image.src = "./media/covers/" + img_name;
-            item_cover_image.classList.add("content-window-category-item-cover-image");
-            item_cover_image.alt = "recents_cover";
-            item_cover.appendChild(item_cover_image);
+            let category_item_cover_image = document.createElement("img");
+            category_item_cover_image.src = "./media/covers/" + category_img_name;
+            category_item_cover_image.classList.add("content-window-category-item-cover-image");
+            category_item_cover_image.alt = "recents_cover";
+            category_item_cover.appendChild(category_item_cover_image);
 
-            let item_cover_image_overlay = document.createElement("div");
-            item_cover_image_overlay.classList.add("content-window-category-item-cover-image-overlay");
-            item_cover.appendChild(item_cover_image_overlay);
+            let category_item_cover_image_overlay = document.createElement("div");
+            category_item_cover_image_overlay.classList.add("content-window-category-item-cover-image-overlay");
+            category_item_cover.appendChild(category_item_cover_image_overlay);
 
-            let item_cover_image_overlay_icon_wrapper = document.createElement("div");
-            item_cover_image_overlay_icon_wrapper.classList.add("content-window-category-item-cover-image-overlay-icon-wrapper");
-            item_cover_image_overlay.appendChild(item_cover_image_overlay_icon_wrapper);
+            let category_item_cover_image_overlay_icon_wrapper = document.createElement("div");
+            category_item_cover_image_overlay_icon_wrapper.classList.add("content-window-category-item-cover-image-overlay-icon-wrapper");
+            category_item_cover_image_overlay.appendChild(category_item_cover_image_overlay_icon_wrapper);
 
-            let overlap_wrapper_icon = document.createElement("i");
-            overlap_wrapper_icon.classList.add("fa-solid", "fa-play");
-            item_cover_image_overlay_icon_wrapper.appendChild(overlap_wrapper_icon);
+            let category_overlay_wrapper_icon = document.createElement("i");
+            category_overlay_wrapper_icon.classList.add("fa-solid", "fa-play");
+            category_item_cover_image_overlay_icon_wrapper.appendChild(category_overlay_wrapper_icon);
 
-            let item_labels = document.createElement("div");
-            item_labels.classList.add("content-window-category-item-labels");
-            item.appendChild(item_labels);
+            let category_item_labels = document.createElement("div");
+            category_item_labels.classList.add("content-window-category-item-labels");
+            category_item.appendChild(category_item_labels);
 
-            let item_mainlabel = document.createElement("p");
-            item_mainlabel.classList.add("content-window-category-item-mainlabel");
-            item_mainlabel.innerText = mainlabel;
-            item_labels.appendChild(item_mainlabel);
+            let category_item_mainlabel = document.createElement("p");
+            category_item_mainlabel.classList.add("content-window-category-item-mainlabel");
+            category_item_mainlabel.innerText = category_mainlabel;
+            category_item_labels.appendChild(category_item_mainlabel);
 
             if (category_type == "song"){
-                let item_sublabel = document.createElement("p");
-                item_sublabel.classList.add("content-window-category-item-sublabel");
-                item_sublabel.innerText = sublabel;
-                item_labels.appendChild(item_sublabel);
+                let category_item_sublabel = document.createElement("p");
+                category_item_sublabel.classList.add("content-window-category-item-sublabel");
+                category_item_sublabel.innerText = category_sublabel;
+                category_item_labels.appendChild(category_item_sublabel);
+                // add event listener to play that song
+                category_item.addEventListener("click", function(){
+                    play_next_song();
+                });
+            }
+            else{
+                category_item.addEventListener("click", function(){
+                    render_playlist();
+                });
             }
         }
     }
+    content_window.scrollTo(0, 0);
 }
 
 function render_explore_page(){
     content_window.innerHTML = "";
     // Render explore page
+
+    content_window.scrollTo(0, 0);
+
 }
 
 function render_library_page(){
     content_window.innerHTML = "";
     // Render library page
+
+    // Render playlists
+    render_playlist();
+
+    content_window.scrollTo(0, 0);
+
+}
+
+function render_playlist(){
+    content_window.innerHTML = "";
+    
+    // playlist description
+    let playlist_description = document.createElement("div");
+    playlist_description.id = "playlist-description";
+    content_window.appendChild(playlist_description);
+
+
+    // playlist descripton cover
+    let playlist_description_cover = document.createElement("div");
+    playlist_description_cover.id = "playlist-description-cover";
+    playlist_description.appendChild(playlist_description_cover);
+
+    let playlist_description_cover_image = document.createElement("img");
+    playlist_description_cover_image.id = "playlist-description-cover-image";
+    playlist_description_cover_image.src = "./media/covers/the_chainsmokers-closer-cover.jpg";
+    playlist_description_cover_image.alt = "playlist_cover";
+    playlist_description_cover.appendChild(playlist_description_cover_image);
+
+
+    // playlist description info and buttons
+    let playlist_description_info_and_buttons = document.createElement("div");
+    playlist_description_info_and_buttons.id = "playlist-description-info-and-buttons";
+    playlist_description.appendChild(playlist_description_info_and_buttons);
+
+    // playlist description info
+    let playlist_description_info = document.createElement("div");
+    playlist_description_info.id = "playlist-description-info";
+    playlist_description_info_and_buttons.appendChild(playlist_description_info);
+
+    let playlist_info_title = document.createElement("p");
+    playlist_info_title.id = "playlist-info-title";
+    playlist_info_title.innerText = "Playlist Title";
+    playlist_description_info.appendChild(playlist_info_title);
+
+    let playlist_info_artists = document.createElement("p");
+    playlist_info_artists.id = "playlist-info-artists";
+    playlist_info_artists.innerText = "Playlist Artists";
+    playlist_description_info.appendChild(playlist_info_artists);
+
+    let playlist_info_count_and_duration = document.createElement("div");
+    playlist_info_count_and_duration.id = "playlist-info-count-and-duration";
+    playlist_description_info.appendChild(playlist_info_count_and_duration);
+
+    let playlist_info_song_count = document.createElement("p");
+    playlist_info_song_count.id = "playlist-info-song-count";
+    playlist_info_count_and_duration.appendChild(playlist_info_song_count);
+
+    let playlist_info_song_count_number = document.createElement("span");
+    playlist_info_song_count_number.id = "playlist-info-song-count-number";
+    playlist_info_song_count_number.innerText = 23;
+    playlist_info_song_count.appendChild(playlist_info_song_count_number);
+
+    let playlist_info_song_count_label = document.createElement("span");
+    playlist_info_song_count_label.id = "playlist-info-song-count-label";
+    playlist_info_song_count_label.innerHTML = "&nbsp;songs &nbsp;•&nbsp;&nbsp;";
+    playlist_info_song_count.appendChild(playlist_info_song_count_label);
+
+    let playlist_info_duration = document.createElement("p");
+    playlist_info_duration.id = "playlist-info-duration";
+    playlist_info_count_and_duration.appendChild(playlist_info_duration);
+
+    let playlist_info_duration_number = document.createElement("span");
+    playlist_info_duration_number.id = "playlist-info-duration-number";
+    playlist_info_duration_number.innerText = 69;
+    playlist_info_duration.appendChild(playlist_info_duration_number);
+
+    let playlist_info_duration_label = document.createElement("span");
+    playlist_info_duration_label.id = "playlist-info-duration-label";
+    playlist_info_duration_label.innerHTML = "&nbsp;minutes";
+    playlist_info_duration.appendChild(playlist_info_duration_label);
+
+
+    // playlist description buttons
+    let playlist_description_buttons = document.createElement("div");
+    playlist_description_buttons.id = "playlist-description-buttons";
+    playlist_description_info_and_buttons.appendChild(playlist_description_buttons);
+
+    // play button
+    let playlist_description_play_button = document.createElement("button");
+    playlist_description_play_button.id = "playlist-description-play-button";
+    playlist_description_play_button.classList.add("playlist-description-button");
+    playlist_description_buttons.appendChild(playlist_description_play_button);
+    
+    let playlist_description_play_button_icon = document.createElement("i");
+    playlist_description_play_button_icon.classList.add("fa-solid");
+    playlist_description_play_button_icon.classList.add("fa-play");
+    playlist_description_play_button_icon.classList.add("playlist-description-button-icon");
+    playlist_description_play_button.appendChild(playlist_description_play_button_icon);
+
+    let playlist_description_play_button_label = document.createElement("p");
+    playlist_description_play_button_label.classList.add("playlist-description-button-label");
+    playlist_description_play_button_label.innerText = "Play";
+    playlist_description_play_button.appendChild(playlist_description_play_button_label);
+
+    // shuffle play button
+    let playlist_description_shuffle_play_button = document.createElement("button");
+    playlist_description_shuffle_play_button.id = "playlist-description-play-button";
+    playlist_description_shuffle_play_button.classList.add("playlist-description-button");
+    playlist_description_buttons.appendChild(playlist_description_shuffle_play_button);
+    
+    let playlist_description_shuffle_play_button_icon = document.createElement("i");
+    playlist_description_shuffle_play_button_icon.classList.add("fa-solid");
+    playlist_description_shuffle_play_button_icon.classList.add("fa-shuffle");
+    playlist_description_shuffle_play_button_icon.classList.add("playlist-description-button-icon");
+    playlist_description_shuffle_play_button.appendChild(playlist_description_shuffle_play_button_icon);
+
+    let playlist_description_shuffle_play_button_label = document.createElement("p");
+    playlist_description_shuffle_play_button_label.classList.add("playlist-description-button-label");
+    playlist_description_shuffle_play_button_label.innerText = "Shuffle Play";
+    playlist_description_shuffle_play_button.appendChild(playlist_description_shuffle_play_button_label);
+
+    // add to library button
+    let playlist_description_add_to_library_button = document.createElement("button");
+    playlist_description_add_to_library_button.id = "playlist-description-play-button";
+    playlist_description_add_to_library_button.classList.add("playlist-description-button");
+    playlist_description_buttons.appendChild(playlist_description_add_to_library_button);
+    
+    let playlist_description_add_to_library_button_icon = document.createElement("i");
+    playlist_description_add_to_library_button_icon.classList.add("fa-solid");
+    playlist_description_add_to_library_button_icon.classList.add("fa-plus");
+    playlist_description_add_to_library_button_icon.classList.add("playlist-description-button-icon");
+    playlist_description_add_to_library_button.appendChild(playlist_description_add_to_library_button_icon);
+
+    let playlist_description_add_to_library_button_label = document.createElement("p");
+    playlist_description_add_to_library_button_label.classList.add("playlist-description-button-label");
+    playlist_description_add_to_library_button_label.innerText = "Add to Library";
+    playlist_description_add_to_library_button.appendChild(playlist_description_add_to_library_button_label);
+
+    // more options button
+    let playlist_description_more_options_button = document.createElement("button");
+    playlist_description_more_options_button.id = "playlist-description-play-button";
+    playlist_description_more_options_button.classList.add("playlist-description-button");
+    playlist_description_buttons.appendChild(playlist_description_more_options_button);
+    
+    let playlist_description_more_options_button_icon = document.createElement("i");
+    playlist_description_more_options_button_icon.classList.add("fa-solid");
+    playlist_description_more_options_button_icon.classList.add("fa-ellipsis-vertical");
+    playlist_description_more_options_button_icon.classList.add("playlist-description-button-icon");
+    playlist_description_more_options_button.appendChild(playlist_description_more_options_button_icon);
+
+    let playlist_description_more_options_button_label = document.createElement("p");
+    playlist_description_more_options_button_label.classList.add("playlist-description-button-label");
+    playlist_description_more_options_button_label.innerText = "More Options";
+    playlist_description_more_options_button.appendChild(playlist_description_more_options_button_label);
+
+    
+    // playlist contents
+    let playlist_content = document.createElement("div");
+    playlist_content.id = "playlist-content";
+    content_window.appendChild(playlist_content);
+
+    // playlist contents header
+    let playlist_content_header = document.createElement("div");
+    playlist_content_header.id = "playlist-content-header";
+    playlist_content.appendChild(playlist_content_header);
+
+    let playlist_content_header_cover_space = document.createElement("div");
+    playlist_content_header_cover_space.classList.add("playlist-content-cover-column");
+    playlist_content_header.appendChild(playlist_content_header_cover_space);
+
+    let playlist_content_header_name = document.createElement("p");
+    playlist_content_header_name.classList.add("playlist-content-name-column");
+    playlist_content_header_name.innerText = "Name";
+    playlist_content_header.appendChild(playlist_content_header_name);
+
+    let playlist_content_header_artists = document.createElement("p");
+    playlist_content_header_artists.classList.add("playlist-content-artists-column");
+    playlist_content_header_artists.innerText = "Artists";
+    playlist_content_header.appendChild(playlist_content_header_artists);
+
+    let playlist_content_header_duration = document.createElement("p");
+    playlist_content_header_duration.classList.add("playlist-content-duration-column");
+    playlist_content_header_duration.innerText = "Duration";
+    playlist_content_header.appendChild(playlist_content_header_duration);
+
+    let playlist_content_header_options = document.createElement("p");
+    playlist_content_header_options.classList.add("playlist-content-options-column");
+    playlist_content_header_options.innerText = "Options";
+    playlist_content_header.appendChild(playlist_content_header_options);
+
+    let header_hr_line = document.createElement("hr");
+    playlist_content.appendChild(header_hr_line);
+    
+    // playlist contents body
+    let playlist_content_items = document.createElement("div");
+    playlist_content_items.id = "playlist-content-items";
+    playlist_content.appendChild(playlist_content_items);
+
+    // playlist contents items
+    for (let i = 0; i < 10; i++){
+
+        let playlist_content_item = document.createElement("div");
+        playlist_content_item.classList.add("playlist-content-item");
+        playlist_content_items.appendChild(playlist_content_item);
+
+        // playlist item cover
+        let playlist_content_item_cover = document.createElement("div");
+        playlist_content_item_cover.classList.add("playlist-content-cover-column");
+        playlist_content_item.appendChild(playlist_content_item_cover);    
+
+        let playlist_content_item_cover_image = document.createElement("img");
+        playlist_content_item_cover_image.classList.add("playlist-content-item-cover-image");
+        playlist_content_item_cover_image.src = "./media/covers/the_chainsmokers-closer-cover.jpg";
+        playlist_content_item_cover.appendChild(playlist_content_item_cover_image);
+
+        let playlist_content_item_cover_image_overlay_icon_wrapper = document.createElement("div");
+        playlist_content_item_cover_image_overlay_icon_wrapper.classList.add("playlist-content-item-cover-image-overlay-icon-wrapper");
+        playlist_content_item_cover.appendChild(playlist_content_item_cover_image_overlay_icon_wrapper);
+
+        let playlist_content_item_cover_image_overlay_icon = document.createElement("i");
+        playlist_content_item_cover_image_overlay_icon.classList.add("fa-solid");
+        playlist_content_item_cover_image_overlay_icon.classList.add("fa-play");
+        playlist_content_item_cover_image_overlay_icon.classList.add("playlist-content-item-cover-image-overlay-icon");
+        playlist_content_item_cover_image_overlay_icon_wrapper.appendChild(playlist_content_item_cover_image_overlay_icon);
+        
+        // add event listener to play that song
+        playlist_content_item_cover.addEventListener("click", function(){
+            play_next_song();
+        });
+
+        // playlist item name
+        let playlist_content_item_name = document.createElement("p");
+        playlist_content_item_name.classList.add("playlist-content-name-column");
+        playlist_content_item_name.innerText = "Closer";
+        playlist_content_item.appendChild(playlist_content_item_name);
+        
+        // add event listener to play that song
+        playlist_content_item_name.addEventListener("click", function(){
+            play_next_song();
+        });
+
+        // playlist item artists
+        let playlist_content_item_artist = document.createElement("p");
+        playlist_content_item_artist.classList.add("playlist-content-artists-column");
+        playlist_content_item_artist.innerText = "The Chainsmokers";
+        playlist_content_item.appendChild(playlist_content_item_artist);
+
+        // playlist item duration
+        let playlist_content_item_duration = document.createElement("p");
+        playlist_content_item_duration.classList.add("playlist-content-duration-column");
+        playlist_content_item_duration.innerText = "4:03";
+        playlist_content_item.appendChild(playlist_content_item_duration);
+
+
+        // playlist item options
+        let playlist_content_item_options = document.createElement("div");
+        playlist_content_item_options.classList.add("playlist-content-options-column");
+        playlist_content_item.appendChild(playlist_content_item_options);
+
+        // playlist item option like button
+        let playlist_content_item_like_button = document.createElement("button");
+        playlist_content_item_like_button.classList.add("playlist-content-item-like-button");
+        playlist_content_item_like_button.classList.add("playlist-content-item-option-button");
+        playlist_content_item_options.appendChild(playlist_content_item_like_button);
+
+        let playlist_content_item_like_button_icon = document.createElement("i");
+        playlist_content_item_like_button_icon.classList.add("fa-regular");
+        playlist_content_item_like_button_icon.classList.add("fa-heart");
+        playlist_content_item_like_button_icon.classList.add("playlist-content-item-option-button-icon");
+        playlist_content_item_like_button.appendChild(playlist_content_item_like_button_icon);
+
+        playlist_content_item_like_button.addEventListener("click", function(){
+            if (playlist_content_item_like_button_icon.classList.contains("fa-regular")){
+                playlist_content_item_like_button_icon.classList.remove("fa-regular");
+                playlist_content_item_like_button_icon.classList.add("fa-solid");
+            } else {
+                playlist_content_item_like_button_icon.classList.remove("fa-solid");
+                playlist_content_item_like_button_icon.classList.add("fa-regular");
+            }
+        });
+
+        // playlist item option options button
+        let playlist_content_item_options_button = document.createElement("button");
+        playlist_content_item_options_button.classList.add("playlist-content-item-options-button");
+        playlist_content_item_options_button.classList.add("playlist-content-item-option-button");
+        playlist_content_item_options.appendChild(playlist_content_item_options_button);
+
+        let playlist_content_item_options_button_icon = document.createElement("i");
+        playlist_content_item_options_button_icon.classList.add("fa-solid");
+        playlist_content_item_options_button_icon.classList.add("fa-ellipsis-vertical");
+        playlist_content_item_options_button_icon.classList.add("playlist-content-item-option-button-icon");
+        playlist_content_item_options_button.appendChild(playlist_content_item_options_button_icon);
+    }
+
+    content_window.scrollTo(0, 0);
 }
 
 function profile_dropdown_open_close(){
@@ -372,68 +687,70 @@ function profile_dropdown_open_close(){
 }
 
 function like_unlike_song(){
-    if (like_button_icon.classList.contains("fa-regular")){
+    if (player_like_button_icon.classList.contains("fa-regular")){
         // Add song to liked songs
     }
     else{
         // Remove song from liked songs
     }
-    like_button_icon.classList.toggle("fa-regular");
-    like_button_icon.classList.toggle("fa-solid");
+    player_like_button_icon.classList.toggle("fa-regular");
+    player_like_button_icon.classList.toggle("fa-solid");
 }
 
 function shuffle_on_off(){
-    if (shuffle_button_icon.classList.contains("inactive-button")){
+    if (player_shuffle_button_icon.classList.contains("inactive-button")){
         // turn shuffle on
     }
     else{
         // turn shuffle off
     }
-    shuffle_button_icon.classList.toggle("inactive-button");
+    player_shuffle_button_icon.classList.toggle("inactive-button");
 }
 
 function play_previous_song(){
     // Play previous song
-    audio_controls.currentTime = 0;
+    player_audio_controls.currentTime = 0;
 }
 
 function play_pause(){
-    if (play_pause_button_icon.classList.contains("fa-circle-play")){
-        audio_controls.play();
-        play_pause_button_container.title = "Pause";
-        var update_seek_bar_interval = setInterval(update_audio_seek_bar, 500);
+    if (player_play_pause_button_icon.classList.contains("fa-circle-play")){
+        player_audio_controls.play();
+        player_play_pause_button_container.title = "Pause";
     }
     else{
-        audio_controls.pause();
-        play_pause_button_container.title = "Play";
+        player_audio_controls.pause();
+        player_play_pause_button_container.title = "Play";
         clearInterval(update_seek_bar_interval);
     }
-    play_pause_button_icon.classList.toggle("fa-circle-play");
-    play_pause_button_icon.classList.toggle("fa-circle-pause");
+    player_play_pause_button_icon.classList.toggle("fa-circle-play");
+    player_play_pause_button_icon.classList.toggle("fa-circle-pause");
 }
 
 function update_audio_seek_bar(){
-    audio_seek_bar.value = audio_controls.currentTime;
-    update_current_duration_time_stamp();
+    // updating seek bar
+    player_audio_seek_bar.value = player_audio_controls.currentTime;
+    player_audio_seek_bar.max = player_audio_controls.duration;
+    // updating current timestamp
+    player_audio_current_duration_label.innerText = new Date(player_audio_controls.currentTime * 1000).toISOString().slice(14, 19);
 }
 
-function update_current_duration_time_stamp(){
-    audio_current_duration_label.innerText = new Date(audio_controls.currentTime * 1000).toISOString().slice(14, 19);
-}
+// function update_current_duration_time_stamp(){
+//     player_audio_current_duration_label.innerText = new Date(player_audio_controls.currentTime * 1000).toISOString().slice(14, 19);
+// }
 
 function play_next_song(){
     // Play next song
-    audio_controls.currentTime = 0;
+    player_audio_controls.currentTime = 0;
 }
 
 function repeat_on_off(){
-    if (repeat_button_icon.classList.contains("inactive-button")){
+    if (player_repeat_button_icon.classList.contains("inactive-button")){
         // turn repeat on
     }
     else{
         // turn repeat off
     }
-    repeat_button_icon.classList.toggle("inactive-button");
+    player_repeat_button_icon.classList.toggle("inactive-button");
 }
 
 function options_dialog_open_close(){
@@ -441,53 +758,55 @@ function options_dialog_open_close(){
 }
 
 function queue_overlay_open_close(open = true){
-    if (queue_button_icon.classList.contains("inactive-button") && open){
-        queue_button_icon.classList.remove("inactive-button");
+    if (player_queue_button_icon.classList.contains("inactive-button") && open){
+        player_queue_button_icon.classList.remove("inactive-button");
         floating_queue_overlay.classList.remove("shrunk-overlay");
     }
     else{
-        queue_button_icon.classList.add("inactive-button");
+        player_queue_button_icon.classList.add("inactive-button");
         floating_queue_overlay.classList.add("shrunk-overlay");
     }
 }
 
 function lyrics_overlay_open_close(open = true){
-    if (lyrics_button_icon.classList.contains("fa-regular") && open){
+    if (player_lyrics_button_icon.classList.contains("fa-regular") && open){
         floating_lyrics_overlay.classList.remove("shrunk-overlay");
-        lyrics_button_icon.classList.add("fa-solid");
-        lyrics_button_icon.classList.remove("fa-regular");
+        player_lyrics_button_icon.classList.remove("inactive-button");
+        player_lyrics_button_icon.classList.add("fa-solid");
+        player_lyrics_button_icon.classList.remove("fa-regular");
     }
     else{
         floating_lyrics_overlay.classList.add("shrunk-overlay");
-        lyrics_button_icon.classList.remove("fa-solid");
-        lyrics_button_icon.classList.add("fa-regular");
+        player_lyrics_button_icon.classList.add("inactive-button");
+        player_lyrics_button_icon.classList.remove("fa-solid");
+        player_lyrics_button_icon.classList.add("fa-regular");
     }
 }
 
 function update_volume_icon(){
-    volume_button_icon.classList = "fa-solid";
-    if (audio_controls.volume == 0 || audio_controls.muted){
-        volume_button_icon.classList.add("fa-volume-xmark");
+    player_volume_button_icon.classList = "fa-solid";
+    if (player_audio_controls.volume == 0 || player_audio_controls.muted){
+        player_volume_button_icon.classList.add("fa-volume-xmark");
     }
     else{
-        volume_button_icon.classList.add("fa-volume-high");
+        player_volume_button_icon.classList.add("fa-volume-high");
     }
 }
 
 function mute_unmute(){
-    if (audio_controls.muted){
-        audio_controls.muted = false;
-        volume_button_container.title = "Mute";
+    if (player_audio_controls.muted){
+        player_audio_controls.muted = false;
+        player_volume_button_container.title = "Mute";
     }
     else{
-        audio_controls.muted = true;
-        volume_button_container.title = "Unmute";
+        player_audio_controls.muted = true;
+        player_volume_button_container.title = "Unmute";
     }
     update_volume_icon();
 }
 
 function update_volume_seek_bar(){
-    audio_controls.volume = volume_seek_bar.value / 100;
+    player_audio_controls.volume = player_volume_seek_bar.value / 100;
     update_volume_icon();
 }
 
@@ -495,12 +814,12 @@ function extend_shrink_player(){
     player_extended_overlay.classList.toggle("shrunk-overlay");
     content_window.classList.toggle("hidden-element");
 
-    queue_button_container.classList.toggle("shrunk-overlay");
-    queue_button_container.classList.toggle("hidden-element");
+    player_queue_button_container.classList.toggle("shrunk-overlay");
+    player_queue_button_container.classList.toggle("hidden-element");
     queue_overlay_open_close(false);
     
-    lyrics_button_container.classList.toggle("shrunk-overlay");
-    lyrics_button_container.classList.toggle("hidden-element");
+    player_lyrics_button_container.classList.toggle("shrunk-overlay");
+    player_lyrics_button_container.classList.toggle("hidden-element");
     lyrics_overlay_open_close(false);
     
     player_extend_button_icon.classList.toggle("rotate-180");
@@ -516,17 +835,17 @@ nav_library_button_container.onclick = render_library_page;
 
 profile_button_container.onclick = profile_dropdown_open_close;
 
-like_button_container.onclick = like_unlike_song;
+player_like_button_container.onclick = like_unlike_song;
 
-shuffle_button_container.onclick = shuffle_on_off;
+player_shuffle_button_container.onclick = shuffle_on_off;
 
-previous_song_button_container.onclick = play_previous_song;
+player_previous_song_button_container.onclick = play_previous_song;
 
-play_pause_button_container.onclick = play_pause;
+player_play_pause_button_container.onclick = play_pause;
 
-next_song_button_container.onclick = play_next_song;
+player_next_song_button_container.onclick = play_next_song;
 
-repeat_button_container.onclick = repeat_on_off;
+player_repeat_button_container.onclick = repeat_on_off;
 
 player_options_button_container.onclick = options_dialog_open_close;
 
@@ -537,33 +856,35 @@ document.onkeydown = (event) => {
     }
 }
 
-audio_controls.onloadedmetadata = () => {
-    audio_seek_bar.max = audio_controls.duration;
-    update_current_duration_time_stamp();
-    audio_total_duration_label.innerText = new Date(audio_controls.duration * 1000).toISOString().slice(14, 19);
+player_audio_controls.onloadedmetadata = () => {
+    // player_audio_seek_bar.max = player_audio_controls.duration;
+    player_audio_controls.currentTime = 0;
+    player_audio_total_duration_label.innerText = new Date(player_audio_controls.duration * 1000).toISOString().slice(14, 19);
 }
 
-audio_controls.onended = () => {
-    audio_controls.currentTime = 0;
-    audio_seek_bar.value = 0;
+player_audio_controls.onended = () => {
+    player_audio_controls.currentTime = 0;
+    player_audio_seek_bar.value = 0;
     play_pause();
 }
 
-audio_seek_bar.oninput = () => {
-    audio_controls.currentTime = audio_seek_bar.value;
-    update_current_duration_time_stamp();
+player_audio_controls.ontimeupdate = update_audio_seek_bar;
+
+player_audio_seek_bar.oninput = () => {
+    player_audio_controls.currentTime = player_audio_seek_bar.value;
 }
 
-queue_button_container.onclick = queue_overlay_open_close;
+player_queue_button_container.onclick = queue_overlay_open_close;
 
-lyrics_button_container.onclick = lyrics_overlay_open_close;
+player_lyrics_button_container.onclick = lyrics_overlay_open_close;
 
-volume_button_container.onclick = mute_unmute;
+player_volume_button_container.onclick = mute_unmute;
 
-volume_seek_bar.oninput = update_volume_seek_bar;
+player_volume_seek_bar.oninput = update_volume_seek_bar;
 
 player_extend_button_container.onclick = extend_shrink_player;
 
 
 // Function Calls
-// render_home_page();
+render_home_page();
+// render_library_page();
