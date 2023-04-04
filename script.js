@@ -330,11 +330,23 @@ function render_home_page(){
         // adding scroll buttons event listeners
         content_window_category_scroll_left_button.onclick = () => {
             let scroll_amount = (Math.floor(content_window_category_items_wrapper.clientWidth/200) - 1) * 200;
-            content_window_category_items_wrapper.scrollLeft -= scroll_amount;
+            let new_scroll_left = content_window_category_items_wrapper.scrollLeft;
+            let scroll_min = 0;
+            content_window_category_items_wrapper.scrollTo({
+                top: 0,
+                left: Math.max(new_scroll_left -= scroll_amount, scroll_min),
+                behavior: "smooth"
+            })
         };
         content_window_category_scroll_right_button.onclick = () => {
             let scroll_amount = (Math.floor(content_window_category_items_wrapper.clientWidth/200) - 1) * 200;
-            content_window_category_items_wrapper.scrollLeft += scroll_amount;
+            let new_scroll_left = content_window_category_items_wrapper.scrollLeft;
+            let scroll_max = content_window_category_items_wrapper.clientWidth;
+            content_window_category_items_wrapper.scrollTo({
+                top: 0,
+                left: Math.min(new_scroll_left += scroll_amount, scroll_max),
+                behavior: "smooth"
+            })
         };
 
         // adding scroll event listener to category items wrapper to show/hide scroll buttons
