@@ -53,6 +53,7 @@ html, body{
     text-decoration: none;
     box-sizing: inherit;
 	transition: var(--transition-properties);
+    scroll-behavior: smooth;
 }
 
 /* TAGS */
