@@ -59,9 +59,13 @@ const player_extend_button_container = document.getElementById("player-extend-bu
 const player_extend_button_icon = player_extend_button_container.firstElementChild;
 
 const player_floating_part = document.getElementById("player-floating-part");
-const player_floating_part_full_height = "calc(100% - var(--header-height) - 3.1rem)"
+const player_floating_part_full_height = "calc(100% - var(--header-height) - 8rem)"
+
 const floating_queue_overlay = document.getElementById("floating-queue-overlay");
+const floating_queue_overlay_content_wrapper = floating_queue_overlay.getElementsByClassName("floating-overlay-content-wrapper")[0];
+
 const floating_lyrics_overlay = document.getElementById("floating-lyrics-overlay");
+const floating_lyrics_overlay_content_wrapper = floating_lyrics_overlay.getElementsByClassName("floating-overlay-content-wrapper")[0];
 
 const player_extended_overlay = document.getElementsByClassName("player-extended-overlay")[0];
 
@@ -382,7 +386,7 @@ function render_home_page(){
             content_window_category_item_cover.appendChild(content_window_category_item_cover_image_overlay);
 
             let content_window_category_item_cover_image_overlay_icon_wrapper = document.createElement("div");
-            content_window_category_item_cover_image_overlay_icon_wrapper.classList.add("content-window-category-item-cover-image-overlay-icon-wrapper");
+            content_window_category_item_cover_image_overlay_icon_wrapper.classList.add("content-window-category-item-cover-overlay-icon-wrapper");
             content_window_category_item_cover_image_overlay.appendChild(content_window_category_item_cover_image_overlay_icon_wrapper);
 
             let content_window_category_overlay_wrapper_icon = document.createElement("i");
@@ -437,7 +441,7 @@ function render_library_page(){
 
 }
 
-function render_playlist(){
+function render_playlist(playlist_id){
     content_window.innerHTML = "";
     
     // playlist description
@@ -642,10 +646,11 @@ function render_playlist(){
         let playlist_content_item_cover_image = document.createElement("img");
         playlist_content_item_cover_image.classList.add("playlist-content-item-cover-image");
         playlist_content_item_cover_image.src = "./media/covers/the_chainsmokers-closer-cover.jpg";
+        playlist_content_item_cover_image.alt = "playlist_item_cover";
         playlist_content_item_cover.appendChild(playlist_content_item_cover_image);
 
         let playlist_content_item_cover_image_overlay_icon_wrapper = document.createElement("div");
-        playlist_content_item_cover_image_overlay_icon_wrapper.classList.add("playlist-content-item-cover-image-overlay-icon-wrapper");
+        playlist_content_item_cover_image_overlay_icon_wrapper.classList.add("playlist-content-item-cover-overlay-icon-wrapper");
         playlist_content_item_cover.appendChild(playlist_content_item_cover_image_overlay_icon_wrapper);
 
         let playlist_content_item_cover_image_overlay_icon = document.createElement("i");
@@ -653,11 +658,6 @@ function render_playlist(){
         playlist_content_item_cover_image_overlay_icon.classList.add("fa-play");
         playlist_content_item_cover_image_overlay_icon.classList.add("playlist-content-item-cover-image-overlay-icon");
         playlist_content_item_cover_image_overlay_icon_wrapper.appendChild(playlist_content_item_cover_image_overlay_icon);
-        
-        // add event listener to play that song
-        playlist_content_item_cover.addEventListener("click", function(){
-            play_next_song();
-        });
 
         // playlist item name
         let playlist_content_item_name = document.createElement("p");
@@ -665,21 +665,24 @@ function render_playlist(){
         playlist_content_item_name.innerText = "Closer";
         playlist_content_item.appendChild(playlist_content_item_name);
         
-        // add event listener to play that song
+        // add event listeners to play that song
+        playlist_content_item_cover.addEventListener("click", function(){
+            play_next_song();
+        });
         playlist_content_item_name.addEventListener("click", function(){
             play_next_song();
         });
 
         // playlist item artists
-        let playlist_content_item_artist = document.createElement("p");
-        playlist_content_item_artist.classList.add("playlist-content-artists-column");
-        playlist_content_item_artist.innerText = "The Chainsmokers";
-        playlist_content_item.appendChild(playlist_content_item_artist);
+        let playlist_content_item_artists = document.createElement("p");
+        playlist_content_item_artists.classList.add("playlist-content-artists-column");
+        playlist_content_item_artists.innerText = "The Chainsmokers & Halsey";
+        playlist_content_item.appendChild(playlist_content_item_artists);
 
         // playlist item duration
         let playlist_content_item_duration = document.createElement("p");
         playlist_content_item_duration.classList.add("playlist-content-duration-column");
-        playlist_content_item_duration.innerText = "4:03";
+        playlist_content_item_duration.innerText = "04:03";
         playlist_content_item.appendChild(playlist_content_item_duration);
 
 
@@ -726,6 +729,73 @@ function render_playlist(){
     content_window.scrollTo(0, 0);
 }
 
+function render_queue(playlist_id){
+    floating_queue_overlay_content_wrapper.innerHTML = "";
+
+    for (let i = 0; i < 10; i++){
+        // creating queue overlay item
+        let queue_overlay_content_item = document.createElement("div");
+        queue_overlay_content_item.classList.add("queue-overlay-content-item");
+        floating_queue_overlay_content_wrapper.appendChild(queue_overlay_content_item);
+
+        // queue overlay item cover
+        let queue_overlay_content_item_cover = document.createElement("div");
+        queue_overlay_content_item_cover.classList.add("queue-overlay-content-item-cover-column");
+        queue_overlay_content_item.appendChild(queue_overlay_content_item_cover);    
+
+        let queue_overlay_content_item_cover_image = document.createElement("img");
+        queue_overlay_content_item_cover_image.classList.add("queue-overlay-content-item-cover-image");
+        queue_overlay_content_item_cover_image.src = "./media/covers/the_chainsmokers-closer-cover.jpg";
+        queue_overlay_content_item_cover_image.alt = "queue_item_cover";
+        queue_overlay_content_item_cover.appendChild(queue_overlay_content_item_cover_image);
+
+        let queue_overlay_content_item_cover_image_overlay_icon_wrapper = document.createElement("div");
+        queue_overlay_content_item_cover_image_overlay_icon_wrapper.classList.add("queue-overlay-content-item-cover-overlay-icon-wrapper");
+        queue_overlay_content_item_cover.appendChild(queue_overlay_content_item_cover_image_overlay_icon_wrapper);
+
+        let queue_overlay_content_item_cover_image_overlay_icon = document.createElement("i");
+        queue_overlay_content_item_cover_image_overlay_icon.classList.add("fa-solid");
+        queue_overlay_content_item_cover_image_overlay_icon.classList.add("fa-play");
+        queue_overlay_content_item_cover_image_overlay_icon.classList.add("queue-overlay-content-item-cover-image-overlay-icon");
+        queue_overlay_content_item_cover_image_overlay_icon_wrapper.appendChild(queue_overlay_content_item_cover_image_overlay_icon);
+
+        // queue overlay item name and artists
+        let queue_overlay_content_item_name_and_artists_column = document.createElement("div");
+        queue_overlay_content_item_name_and_artists_column.classList.add("queue-overlay-content-item-name-and-artists-column");
+        queue_overlay_content_item.appendChild(queue_overlay_content_item_name_and_artists_column);
+
+        let queue_overlay_content_item_name = document.createElement("p");
+        queue_overlay_content_item_name.classList.add("queue-overlay-content-item-name-column");
+        queue_overlay_content_item_name.innerText = "Closer";
+        queue_overlay_content_item_name_and_artists_column.appendChild(queue_overlay_content_item_name);
+
+        let queue_overlay_content_item_artists = document.createElement("p");
+        queue_overlay_content_item_artists.classList.add("queue-overlay-content-item-artists-column");
+        queue_overlay_content_item_artists.innerText = "The Chainsmokers";
+        queue_overlay_content_item_name_and_artists_column.appendChild(queue_overlay_content_item_artists);
+        
+        // add event listener to play that song
+        queue_overlay_content_item_cover.addEventListener("click", function(){
+            play_next_song();
+        });
+        queue_overlay_content_item_name_and_artists_column.addEventListener("click", function(){
+            play_next_song();
+        });
+
+        // queue overlay item duration
+        let queue_overlay_content_item_duration = document.createElement("p");
+        queue_overlay_content_item_duration.classList.add("queue-overlay-content-item-duration-column");
+        queue_overlay_content_item_duration.innerText = "04:03";
+        queue_overlay_content_item.appendChild(queue_overlay_content_item_duration);
+    }
+    
+}
+
+function render_lyrics(song_id){
+    let lyrics = `Hey, I was doing just fine before I met you<br>I drink too much and that's an issue, but I'm okay<br>Hey, you tell your friends it was nice to meet them<br>But I hope I never see them again<br><br>I know it breaks your heart<br>Moved to the city in a broke-down car, and<br>Four years, no calls<br>Now you're looking pretty in a hotel bar<br>And I, I, I, I, I can't stop<br>No, I, I, I, I, I can't stop<br><br>So, baby, pull me closer<br>In the back seat of your Rover<br>That I know you can't afford<br>Bite that tattoo on your shoulder<br>Pull the sheets right off the corner<br>Of that mattress that you stole<br>From your roommate back in Boulder<br>We ain't ever getting older<br><br>We ain't ever getting older<br><br>We ain't ever getting older<br><br>You look as good as the day I met you<br>I forget just why I left you, I was insane<br>Stay and play that Blink-182 song<br>That we beat to death in Tucson, okay<br><br>I know it breaks your heart<br>Moved to the city in a broke-down car, and<br>Four years, no call<br>Now I'm looking pretty in a hotel bar<br>And I, I, I, I, I can't stop<br>No, I, I, I, I, I can't stop<br><br>So, baby, pull me closer<br>In the back seat of your Rover<br>That I know you can't afford<br>Bite that tattoo on your shoulder<br>Pull the sheets right off the corner<br>Of that mattress that you stole<br>From your roommate back in Boulder<br>We ain't ever getting older<br><br>We ain't ever getting older<br><br>We ain't ever getting older`;
+    floating_lyrics_overlay_content_wrapper.innerHTML = lyrics;
+}
+
 function profile_dropdown_open_close(){
     profile_dropdown_overlay.classList.toggle("hidden-element");
     profile_dropdown_overlay.classList.toggle("shrunk-overlay");
@@ -755,22 +825,25 @@ function shuffle_on_off(){
 function play_previous_song(){
     // Play previous song
     player_audio_controls.currentTime = 0;
+    play_pause(true);
 }
 
-function play_pause(){
-    if (player_play_pause_button_icon.classList.contains("fa-circle-play")){
+function play_pause(play = false){
+    if (player_play_pause_button_icon.classList.contains("fa-circle-play") || play){
         player_audio_controls.play();
         player_play_pause_button_container.title = "Pause";
+        player_play_pause_button_icon.classList.remove("fa-circle-play");
+        player_play_pause_button_icon.classList.add("fa-circle-pause");
     }
     else{
         player_audio_controls.pause();
         player_play_pause_button_container.title = "Play";
+        player_play_pause_button_icon.classList.add("fa-circle-play");
+        player_play_pause_button_icon.classList.remove("fa-circle-pause");
     }
-    player_play_pause_button_icon.classList.toggle("fa-circle-play");
-    player_play_pause_button_icon.classList.toggle("fa-circle-pause");
 }
 
-function update_audio_seek_bar(){
+function update_audio_seek_bar_and_time_stamp(){
     // updating seek bar current position and max value
     player_audio_seek_bar.value = player_audio_controls.currentTime;
     player_audio_seek_bar.max = player_audio_controls.duration;
@@ -781,6 +854,7 @@ function update_audio_seek_bar(){
 function play_next_song(){
     // Play next song
     player_audio_controls.currentTime = 0;
+    play_pause(true);
 }
 
 function repeat_on_off(){
@@ -907,6 +981,8 @@ document.onkeydown = (event) => {
 player_audio_controls.onloadedmetadata = () => {
     player_audio_controls.currentTime = 0;
     player_audio_total_duration_label.innerText = new Date(player_audio_controls.duration * 1000).toISOString().slice(14, 19);
+    // render lyrics when new song loads
+    render_lyrics();
 }
 
 player_audio_controls.onended = () => {
@@ -915,7 +991,7 @@ player_audio_controls.onended = () => {
     play_pause();
 }
 
-player_audio_controls.ontimeupdate = update_audio_seek_bar;
+player_audio_controls.ontimeupdate = update_audio_seek_bar_and_time_stamp;
 
 player_audio_seek_bar.oninput = () => {
     player_audio_controls.currentTime = player_audio_seek_bar.value;
@@ -934,3 +1010,4 @@ player_extend_button_container.onclick = extend_shrink_player;
 
 // Function Calls
 render_home_page();
+render_queue();
