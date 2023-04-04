@@ -1,6 +1,7 @@
 print()
 import os, glob, shutil
 
+# go to parent directory and then to media/audio
 files_dir = os.path.abspath(f"{os.path.dirname(__file__)}/../media/audio")
 
 print("Root DIR:\t", files_dir, "\n")
