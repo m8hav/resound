@@ -1,5 +1,5 @@
 print()
-import os, glob, shutil, json, sys
+import os, glob, shutil, json
 from pydub import AudioSegment
 
 # go to parent directory and then to media/audio
@@ -54,7 +54,7 @@ for og_file_path in og_files_paths_list:
     file_name_ext = os.path.splitext(og_file_name)[1]
 
     # song and playlist info
-    artist_name = og_file_name_root.split("-")[0].replace("_", " ")
+    song_artist_names = og_file_name_root.split("-")[0].replace("_", " ")
     song_name = og_file_name_root.split("-")[-1].replace("_", " ")
     playlist_name = og_file_dir.split("\\")[-1]
     
@@ -81,17 +81,17 @@ for og_file_path in og_files_paths_list:
                 shutil.copyfile(cover_file_old_path, cover_file_new_path)
 
                 with open(lyric_file_old_path, "r", encoding="utf-8") as f:
-                    song_lyrics_html = f.read().replace("\n", "<br>")
+                    song_lyrics_markup = f.read().replace("\n", "<br>")
 
                 with open(lyric_file_new_path, "w", encoding="utf-8") as f:
-                    f.write(song_lyrics_html)
+                    f.write(song_lyrics_markup)
                 
                 # adding song to songs_obj
                 songs_obj[song_index] = {
                     "song_name": song_name,
-                    "artist_name": artist_name,
+                    "song_artist_names": song_artist_names,
                     "song_duration": song_duration,
-                    "song_lyrics_html": song_lyrics_html,
+                    "song_lyrics_markup": song_lyrics_markup,
                 }
                 song_names_and_ids_obj[song_name] = song_index
                 
@@ -100,29 +100,29 @@ for og_file_path in og_files_paths_list:
                     playlist_names_and_ids_obj[playlist_name] = playlist_index
                     playlists_obj[playlist_index] = {
                         "playlist_name": playlist_name,
-                        "playlist_artists": [artist_name],
-                        "playlist_songs": [song_index],
+                        "playlist_song_artist_names": [song_artist_names],
+                        "playlist_song_ids": [song_index],
                     }
                     playlist_index += 1
                 else:
                     playlist_id = playlist_names_and_ids_obj[playlist_name]
-                    playlists_obj[playlist_id]["playlist_songs"].append(song_index)
-                    if artist_name not in playlists_obj[playlist_id]["playlist_artists"]:
-                        playlists_obj[playlist_id]["playlist_artists"].append(artist_name)
+                    playlists_obj[playlist_id]["playlist_song_ids"].append(song_index)
+                    if song_artist_names not in playlists_obj[playlist_id]["playlist_song_artist_names"]:
+                        playlists_obj[playlist_id]["playlist_song_artist_names"].append(song_artist_names)
                 
                 print(f"SONG {song_index} DONE")
 
             else:
                 missing_lyrics_obj[song_index] = {
                     "song_name": song_name,
-                    "artist_name": artist_name,
-                    "lyric_file_path": lyric_file_old_path,
+                    "song_artist_names": song_artist_names,
+                    "song_lyric_file_path": lyric_file_old_path,
                 }
         else:
             missing_covers_obj[song_index] = {
                 "song_name": song_name,
-                "artist_name": artist_name,
-                "cover_file_path": cover_file_old_path,
+                "song_artist_names": song_artist_names,
+                "song_cover_file_path": cover_file_old_path,
             }
         song_index += 1
 

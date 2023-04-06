@@ -1,0 +1,514 @@
+{
+    "1": {
+        "playlist_name": "Bollywood Dance Music",
+        "playlist_song_artist_names": [
+            "Arijit Singh",
+            "A R Rahman",
+            "Harrdy Sandhu",
+            "Neha kakkar",
+            "Neha Kakkar",
+            "Pritam",
+            "SachinJigar",
+            "Tanishk Bagchi",
+            "Vishal Sheykhar"
+        ],
+        "playlist_song_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ]
+    },
+    "2": {
+        "playlist_name": "Chill Hits",
+        "playlist_song_artist_names": [
+            "Ali Gati",
+            "Charlie Puth",
+            "dhruv",
+            "Glass Animal",
+            "SHY Martin",
+            "Tate McRae",
+            "The Chainsmokers Illenium",
+            "The Kid LAROI"
+        ],
+        "playlist_song_ids": [
+            11,
+            12,
+            13,
+            14,
+            16,
+            17,
+            18,
+            19,
+            20
+        ]
+    },
+    "3": {
+        "playlist_name": "Chill With Bollywood",
+        "playlist_song_artist_names": [
+            "Arijit Singh",
+            "AR Rahman",
+            "Kavita Seth",
+            "Mithoon",
+            "Pritam",
+            "Rekha Bhardwaj",
+            "Shreya Ghoshal"
+        ],
+        "playlist_song_ids": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            27,
+            28,
+            29,
+            30
+        ]
+    },
+    "4": {
+        "playlist_name": "Dance party",
+        "playlist_song_artist_names": [
+            "Alan Walker",
+            "Alesso",
+            "Becky Hill",
+            "Britney Spears",
+            "David Guetta",
+            "Felix Jaehn",
+            "Ian Asher",
+            "Loud Luxury",
+            "Nicky Romero"
+        ],
+        "playlist_song_ids": [
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            40
+        ]
+    },
+    "5": {
+        "playlist_name": "Essential Indie",
+        "playlist_song_artist_names": [
+            "Beach Bunny",
+            "Conan Gray",
+            "Ed Sheeran",
+            "Glass Animals",
+            "Joji",
+            "Maggie Rogers",
+            "Mild High Club",
+            "The Neighbourhood",
+            "The Rare Occasions"
+        ],
+        "playlist_song_ids": [
+            41,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+        ]
+    },
+    "6": {
+        "playlist_name": "Hindi Sad",
+        "playlist_song_artist_names": [
+            "Arijit Singh",
+            "Atif Aslam",
+            "Lata Mangeshkar",
+            "Pritam",
+            "Rahat Fateh Ali Khan",
+            "Vikram Bhatt",
+            "Vishal Mishra",
+            "Vishal Shekhar"
+        ],
+        "playlist_song_ids": [
+            51,
+            52,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60
+        ]
+    },
+    "7": {
+        "playlist_name": "Hip Hop Mix",
+        "playlist_song_artist_names": [
+            "Don Toliver",
+            "Lil Tjay",
+            "Logic",
+            "Post Malone",
+            "The Weeknd",
+            "XXXTENTACION"
+        ],
+        "playlist_song_ids": [
+            61,
+            63,
+            64,
+            68,
+            69,
+            70
+        ]
+    },
+    "8": {
+        "playlist_name": "K-pop",
+        "playlist_song_artist_names": [
+            "BLACKPINK",
+            "BTS",
+            "JENNIE",
+            "LE SSERAFIM",
+            "LISA",
+            "NewJeans",
+            "ROS\u00c9"
+        ],
+        "playlist_song_ids": [
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            80
+        ]
+    },
+    "9": {
+        "playlist_name": "Life Sucks",
+        "playlist_song_artist_names": [
+            "Billie Eilish",
+            "blackbear idfc",
+            "Conan Gray",
+            "Giveon",
+            "James Arthur",
+            "Jeremy Zucker",
+            "keshi",
+            "Lauv",
+            "Lykke Li"
+        ],
+        "playlist_song_ids": [
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            88,
+            89,
+            90
+        ]
+    },
+    "10": {
+        "playlist_name": "Metal",
+        "playlist_song_artist_names": [
+            "Avenged Sevenfold",
+            "A Day to Remember",
+            "Falling In Reverse",
+            "Five Finger Death Punch",
+            "From Ashes to New",
+            "I Prevail",
+            "Make Them Suffer",
+            "Metallica",
+            "Periphery"
+        ],
+        "playlist_song_ids": [
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+        ]
+    },
+    "11": {
+        "playlist_name": "Music Shuttle",
+        "playlist_song_artist_names": [
+            "Aditya A",
+            "Amit Trivedi",
+            "Arijit Singh",
+            "Arjit singh",
+            "Dikshant",
+            "Mohit Chauhan",
+            "Pritam",
+            "Sachin jigar",
+            "Shaan"
+        ],
+        "playlist_song_ids": [
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+        ]
+    },
+    "12": {
+        "playlist_name": "Old Hindi",
+        "playlist_song_artist_names": [
+            "Asha Bhosle",
+            "Kishore Kumar",
+            "Manna Dey",
+            "Mohammed Rafi",
+            "Mukesh",
+            "Shailendra Singh"
+        ],
+        "playlist_song_ids": [
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120
+        ]
+    },
+    "13": {
+        "playlist_name": "Pop Mix",
+        "playlist_song_artist_names": [
+            "Bazzi",
+            "Charlie Puth",
+            "Jaymes Young",
+            "Khalid",
+            "Michael Jackson",
+            "One Republic",
+            "Selena Gomez",
+            "The Vamps",
+            "Zyan"
+        ],
+        "playlist_song_ids": [
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            130
+        ]
+    },
+    "14": {
+        "playlist_name": "Punjabi Party Hits",
+        "playlist_song_artist_names": [
+            "Amrit Maan",
+            "Diljit Dosanjh",
+            "Dr Zeus",
+            "Garry Sandhu",
+            "Jordan Sandhu",
+            "QARAN"
+        ],
+        "playlist_song_ids": [
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            139,
+            140
+        ]
+    },
+    "15": {
+        "playlist_name": "Retro Pop",
+        "playlist_song_artist_names": [
+            "John Legend",
+            "Miley Cyrus",
+            "Molly Grace",
+            "Rex Orange County",
+            "Stacey Ryan",
+            "Tai Verdes",
+            "The Weeknd"
+        ],
+        "playlist_song_ids": [
+            143,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150
+        ]
+    },
+    "16": {
+        "playlist_name": "RNB Mix",
+        "playlist_song_artist_names": [
+            "6LACK",
+            "Chris Brown",
+            "dhruv",
+            "keshi",
+            "Khalid",
+            "Pop Smoke",
+            "Strawberry Skies",
+            "The Weeknd",
+            "tobi lou"
+        ],
+        "playlist_song_ids": [
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160
+        ]
+    },
+    "17": {
+        "playlist_name": "Rock Mix",
+        "playlist_song_artist_names": [
+            "ACDC",
+            "Aerosmith",
+            "Imagine Dragons",
+            "Joan Jett",
+            "Linkin Park",
+            "Metallica",
+            "Queen",
+            "twenty one pilots"
+        ],
+        "playlist_song_ids": [
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            170
+        ]
+    },
+    "18": {
+        "playlist_name": "Romantic",
+        "playlist_song_artist_names": [
+            "Adele",
+            "Ben E King",
+            "Ed Sheeran",
+            "Gabrielle",
+            "John Legend",
+            "Leona Lewis",
+            "Macy Gray",
+            "Taylor Swift",
+            "The Bangles"
+        ],
+        "playlist_song_ids": [
+            171,
+            172,
+            173,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180
+        ]
+    },
+    "19": {
+        "playlist_name": "Sad Hindi Melodies",
+        "playlist_song_artist_names": [
+            "Arijit Singh",
+            "Atif Aslam",
+            "Lata Mangeshkar",
+            "Pritam",
+            "Rahat Fateh Ali Khan",
+            "Vikram Bhatt",
+            "Vishal Mishra",
+            "Vishal Shekhar"
+        ],
+        "playlist_song_ids": [
+            181,
+            182,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190
+        ]
+    },
+    "20": {
+        "playlist_name": "Sad Songs",
+        "playlist_song_artist_names": [
+            "AURORA",
+            "Billie Eilish",
+            "Eminem",
+            "Joji",
+            "Olivia Rodrigo",
+            "Rosa Linn",
+            "Stephen Sanchez",
+            "Wiz Khalifa"
+        ],
+        "playlist_song_ids": [
+            191,
+            192,
+            193,
+            194,
+            195,
+            197,
+            198,
+            199,
+            200
+        ]
+    },
+    "21": {
+        "playlist_name": "Selena Gomez",
+        "playlist_song_artist_names": [
+            "Selena Gomez"
+        ],
+        "playlist_song_ids": [
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210
+        ]
+    },
+    "22": {
+        "playlist_name": "Taylor swift",
+        "playlist_song_artist_names": [
+            "Taylor Swift"
+        ],
+        "playlist_song_ids": [
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220
+        ]
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "1": {
+        "category_tag": "recents",
+        "category_name": "Recently Played",
+        "category_items_type": "song",
+        "category_item_ids": [
+            119,
+            120,
+            121,
+            122,
+            123,
+            125,
+            126,
+            127,
+            128
+        ]
+    },
+    "2": {
+        "category_tag": "recommended",
+        "category_name": "Recommended For You",
+        "category_items_type": "song",
+        "category_item_ids": [
+            99,
+            100,
+            101,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108
+        ]
+    },
+    "3": {
+        "category_tag": "genres",
+        "category_name": "Genres",
+        "category_items_type": "playlist",
+        "category_item_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+        ]
+    },
+    "4": {
+        "category_tag": "moods",
+        "category_name": "Moods",
+        "category_items_type": "playlist",
+        "category_item_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+        ]
+    }
+}

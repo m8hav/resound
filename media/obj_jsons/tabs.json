@@ -1,0 +1,26 @@
+{
+    "home": {
+        "tab_category_ids": [
+            1,
+            2,
+            3,
+            4
+        ]
+    },
+    "explore": {
+        "tab_category_ids": [
+            1,
+            2,
+            3,
+            4
+        ]
+    },
+    "library": {
+        "tab_category_ids": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+}

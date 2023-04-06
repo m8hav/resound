@@ -19,6 +19,11 @@ const content_window = document.getElementById("content-window");
 // Player
 const player = document.getElementById("player");
 
+const player_song_cover_image = document.getElementById("player-song-cover-image");
+
+const player_song_name = document.getElementById("player-song-name");
+const player_song_artist = document.getElementById("player-song-artist");
+
 const player_like_button_container = document.getElementById("player-left-part-like-button-container");
 const player_like_button_icon = player_like_button_container.firstElementChild;
 
@@ -59,15 +64,18 @@ const player_extend_button_container = document.getElementById("player-extend-bu
 const player_extend_button_icon = player_extend_button_container.firstElementChild;
 
 const player_floating_part = document.getElementById("player-floating-part");
-const player_floating_part_full_height = "calc(100% - var(--header-height) - 8rem)"
+const player_floating_part_full_height = "calc(100% - var(--header-height) - 12rem)"
 
 const floating_queue_overlay = document.getElementById("floating-queue-overlay");
-const floating_queue_overlay_content_wrapper = floating_queue_overlay.getElementsByClassName("floating-overlay-content-wrapper")[0];
+const floating_queue_overlay_content_wrapper = floating_queue_overlay.getElementsByClassName("queue-lyrics-content-wrapper")[0];
 
 const floating_lyrics_overlay = document.getElementById("floating-lyrics-overlay");
-const floating_lyrics_overlay_content_wrapper = floating_lyrics_overlay.getElementsByClassName("floating-overlay-content-wrapper")[0];
+const floating_lyrics_overlay_content_wrapper = floating_lyrics_overlay.getElementsByClassName("queue-lyrics-content-wrapper")[0];
 
 const player_extended_overlay = document.getElementsByClassName("player-extended-overlay")[0];
+const player_extended_overlay_queue_part = document.getElementById("player-extended-queue-content-wrapper");
+const player_extended_overlay_cover_part = document.getElementById("player-extended-cover");
+const player_extended_overlay_lyrics_part = document.getElementById("player-extended-lyrics-content-wrapper");
 
 player_audio_controls.volume = player_volume_seek_bar.value / 100;
 
@@ -286,8 +294,170 @@ const home_page_content = {
     ]
 }
 
+import songs_obj from "./media/obj_jsons/songs.json" assert {type: 'json'};
+import playlists_obj from "./media/obj_jsons/playlists.json" assert {type: 'json'}
+import tabs_obj from "./media/obj_jsons/tabs.json" assert {type: 'json'}
+import categories_obj from "./media/obj_jsons/categories.json" assert {type: 'json'}
+
+// console.log(songs_obj);
+// console.log(playlists_obj);
+// console.log(tabs_obj);
+
 
 // Functions
+function return_duration_string(duration){
+    return new Date(duration * 1000).toISOString().slice(14, 19);
+}
+
+function render_tab(tab_tag){
+    content_window.innerHTML = "";
+    
+    let tab_obj = tabs_obj[tab_tag];
+
+    let tab_category_ids = tab_obj.tab_category_ids;
+
+    for (let category_index in tab_category_ids){
+
+        let category_id = tab_category_ids[category_index];
+
+        // getting category object
+        let category_obj = categories_obj[category_id];
+
+        let category_tag = category_obj.category_tag;
+        let category_name = category_obj.category_name;
+        let category_items_type = category_obj.category_items_type;
+        let category_item_ids = category_obj.category_item_ids;
+
+        // creating content window category
+        let content_window_category = document.createElement("div");
+        content_window_category.id = category_tag + "-category";
+        content_window_category.classList.add("content-window-category");
+        content_window.appendChild(content_window_category);
+
+        // creating scroll buttons
+        let content_window_category_scroll_left_button = document.createElement("button");
+        content_window_category_scroll_left_button.classList.add("content-window-category-scroll-button");
+        content_window_category_scroll_left_button.classList.add("content-window-category-scroll-left-button");
+        content_window_category_scroll_left_button.classList.add("hidden-element");
+        content_window_category_scroll_left_button.innerHTML = "<i class='fa-solid fa-chevron-left'></i>";
+        content_window_category.appendChild(content_window_category_scroll_left_button);
+        
+        let content_window_category_scroll_right_button = document.createElement("button");
+        content_window_category_scroll_right_button.classList.add("content-window-category-scroll-button");
+        content_window_category_scroll_right_button.classList.add("content-window-category-scroll-right-button");
+        content_window_category_scroll_right_button.innerHTML = "<i class='fa-solid fa-chevron-right'></i>";
+        content_window_category.appendChild(content_window_category_scroll_right_button);
+
+        // creating category label and items wrapper
+        let content_window_category_label = document.createElement("p");
+        content_window_category_label.classList.add("content-window-category-label");
+        content_window_category_label.innerText = category_name;
+        content_window_category.appendChild(content_window_category_label);
+
+        let content_window_category_items_wrapper = document.createElement("div");
+        content_window_category_items_wrapper.classList.add("content-window-category-items-wrapper");
+        content_window_category.appendChild(content_window_category_items_wrapper);
+
+        // adding scroll buttons event listeners
+        content_window_category_scroll_left_button.onclick = () => {
+            let scroll_amount = (Math.floor(content_window_category_items_wrapper.clientWidth/200) - 1) * 200;
+            content_window_category_items_wrapper.scrollLeft -= scroll_amount;
+        };
+        content_window_category_scroll_right_button.onclick = () => {
+            let scroll_amount = (Math.floor(content_window_category_items_wrapper.clientWidth/200) - 1) * 200;
+            content_window_category_items_wrapper.scrollLeft += scroll_amount;
+        };
+
+        // adding scroll event listener to category items wrapper to show/hide scroll buttons
+        content_window_category_items_wrapper.onscroll = () => {
+            if (content_window_category_items_wrapper.scrollLeft == 0){
+                content_window_category_scroll_left_button.classList.add("hidden-element");
+            }
+            else{
+                content_window_category_scroll_left_button.classList.remove("hidden-element");
+            }
+            if (content_window_category_items_wrapper.scrollLeft >= content_window_category_items_wrapper.scrollWidth - content_window_category_items_wrapper.clientWidth){
+                content_window_category_scroll_right_button.classList.add("hidden-element");
+            }
+            else{
+                content_window_category_scroll_right_button.classList.remove("hidden-element");
+            }
+        }
+        
+        // adding items to category items wrapper
+        for (let category_item_index in category_item_ids){
+
+            let category_item_id = category_item_ids[category_item_index];
+
+            let category_item_obj, content_window_category_mainlabel, content_window_category_sublabel;
+
+            if (category_items_type == "song"){
+                category_item_obj = songs_obj[category_item_id];
+                content_window_category_mainlabel = category_item_obj.song_name;
+                content_window_category_sublabel = category_item_obj.song_artist_names;
+            }
+            else{
+                category_item_obj = playlists_obj[category_item_id];
+                content_window_category_mainlabel = category_item_obj.playlist_name;
+                content_window_category_sublabel = category_item_obj.playlist_song_artist_names.join(", ");
+            }
+            
+            let content_window_category_item = document.createElement("div");
+            content_window_category_item.classList.add("content-window-category-item");
+            content_window_category_items_wrapper.appendChild(content_window_category_item);
+
+            let content_window_category_item_cover = document.createElement("div");
+            content_window_category_item_cover.classList.add("content-window-category-item-cover");
+            content_window_category_item.appendChild(content_window_category_item_cover);
+
+            let content_window_category_item_cover_image = document.createElement("img");
+            content_window_category_item_cover_image.src = "./media/covers/" + category_item_id + ".jpg";
+            content_window_category_item_cover_image.classList.add("content-window-category-item-cover-image");
+            content_window_category_item_cover_image.alt = category_tag + "_item_cover";
+            content_window_category_item_cover.appendChild(content_window_category_item_cover_image);
+
+            let content_window_category_item_cover_image_overlay = document.createElement("div");
+            content_window_category_item_cover_image_overlay.classList.add("content-window-category-item-cover-image-overlay");
+            content_window_category_item_cover.appendChild(content_window_category_item_cover_image_overlay);
+
+            let content_window_category_item_cover_image_overlay_icon_wrapper = document.createElement("div");
+            content_window_category_item_cover_image_overlay_icon_wrapper.classList.add("content-window-category-item-cover-overlay-icon-wrapper");
+            content_window_category_item_cover_image_overlay.appendChild(content_window_category_item_cover_image_overlay_icon_wrapper);
+
+            let content_window_category_overlay_wrapper_icon = document.createElement("i");
+            content_window_category_overlay_wrapper_icon.classList.add("fa-solid", "fa-play");
+            content_window_category_item_cover_image_overlay_icon_wrapper.appendChild(content_window_category_overlay_wrapper_icon);
+
+            let content_window_category_item_labels = document.createElement("div");
+            content_window_category_item_labels.classList.add("content-window-category-item-labels");
+            content_window_category_item.appendChild(content_window_category_item_labels);
+
+            let content_window_category_item_mainlabel = document.createElement("p");
+            content_window_category_item_mainlabel.classList.add("content-window-category-item-mainlabel");
+            content_window_category_item_mainlabel.innerText = content_window_category_mainlabel;
+            content_window_category_item_labels.appendChild(content_window_category_item_mainlabel);
+
+            let content_window_category_item_sublabel = document.createElement("p");
+            content_window_category_item_sublabel.classList.add("content-window-category-item-sublabel");
+            content_window_category_item_sublabel.innerText = content_window_category_sublabel;
+            content_window_category_item_labels.appendChild(content_window_category_item_sublabel);
+
+            if (category_items_type == "song"){
+                // add event listener to play that song
+                content_window_category_item.addEventListener("click", function(){
+                    play_song(category_item_id);
+                });
+            }
+            else{
+                content_window_category_item.addEventListener("click", function(){
+                    render_playlist(category_item_id);
+                });
+            }
+        }
+    }
+    content_window.scrollTo(0, 0);
+}
+
 function render_home_page(){
     content_window.innerHTML = "";
 
@@ -376,7 +546,7 @@ function render_home_page(){
             content_window_category_item.appendChild(content_window_category_item_cover);
 
             let content_window_category_item_cover_image = document.createElement("img");
-            content_window_category_item_cover_image.src = "./media/covers/" + content_window_category_img_name;
+            content_window_category_item_cover_image.src = "./media/old_audio_and_covers/covers/" + content_window_category_img_name;
             content_window_category_item_cover_image.classList.add("content-window-category-item-cover-image");
             content_window_category_item_cover_image.alt = "recents_cover";
             content_window_category_item_cover.appendChild(content_window_category_item_cover_image);
@@ -444,6 +614,12 @@ function render_library_page(){
 function render_playlist(playlist_id){
     content_window.innerHTML = "";
     
+    let playlist_obj = playlists_obj[playlist_id];
+
+    let playlist_name = playlist_obj.playlist_name;
+    let playlist_song_artist_names = playlist_obj.playlist_song_artist_names.join(", ");
+    let playlist_song_ids = playlist_obj.playlist_song_ids;
+
     // playlist description
     let playlist_description = document.createElement("div");
     playlist_description.id = "playlist-description";
@@ -457,7 +633,7 @@ function render_playlist(playlist_id){
 
     let playlist_description_cover_image = document.createElement("img");
     playlist_description_cover_image.id = "playlist-description-cover-image";
-    playlist_description_cover_image.src = "./media/covers/the_chainsmokers-closer-cover.jpg";
+    playlist_description_cover_image.src = "./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg";
     playlist_description_cover_image.alt = "playlist_cover";
     playlist_description_cover.appendChild(playlist_description_cover_image);
 
@@ -474,12 +650,12 @@ function render_playlist(playlist_id){
 
     let playlist_info_title = document.createElement("p");
     playlist_info_title.id = "playlist-info-title";
-    playlist_info_title.innerText = "Playlist Title";
+    playlist_info_title.innerText = playlist_name;
     playlist_description_info.appendChild(playlist_info_title);
 
     let playlist_info_artists = document.createElement("p");
     playlist_info_artists.id = "playlist-info-artists";
-    playlist_info_artists.innerText = "Playlist Artists";
+    playlist_info_artists.innerText = playlist_song_artist_names;
     playlist_description_info.appendChild(playlist_info_artists);
 
     let playlist_info_count_and_duration = document.createElement("div");
@@ -492,7 +668,7 @@ function render_playlist(playlist_id){
 
     let playlist_info_song_count_number = document.createElement("span");
     playlist_info_song_count_number.id = "playlist-info-song-count-number";
-    playlist_info_song_count_number.innerText = 23;
+    playlist_info_song_count_number.innerText = playlist_song_ids.length;
     playlist_info_song_count.appendChild(playlist_info_song_count_number);
 
     let playlist_info_song_count_label = document.createElement("span");
@@ -504,9 +680,9 @@ function render_playlist(playlist_id){
     playlist_info_duration.id = "playlist-info-duration";
     playlist_info_count_and_duration.appendChild(playlist_info_duration);
 
+    let playlist_info_duration_sum = 0;
     let playlist_info_duration_number = document.createElement("span");
     playlist_info_duration_number.id = "playlist-info-duration-number";
-    playlist_info_duration_number.innerText = 69;
     playlist_info_duration.appendChild(playlist_info_duration_number);
 
     let playlist_info_duration_label = document.createElement("span");
@@ -632,8 +808,17 @@ function render_playlist(playlist_id){
     playlist_content.appendChild(playlist_content_items);
 
     // playlist contents items
-    for (let i = 0; i < 10; i++){
+    for (let song_index in playlist_song_ids){
 
+        // getting song object and info
+        let song_id = playlist_song_ids[song_index];
+        let song_obj = songs_obj[song_id];
+
+        let song_name = song_obj.song_name;
+        let song_artist_names = song_obj.song_artist_names;
+        let song_duration = song_obj.song_duration;
+
+        // playlist item
         let playlist_content_item = document.createElement("div");
         playlist_content_item.classList.add("playlist-content-item");
         playlist_content_items.appendChild(playlist_content_item);
@@ -645,7 +830,7 @@ function render_playlist(playlist_id){
 
         let playlist_content_item_cover_image = document.createElement("img");
         playlist_content_item_cover_image.classList.add("playlist-content-item-cover-image");
-        playlist_content_item_cover_image.src = "./media/covers/the_chainsmokers-closer-cover.jpg";
+        playlist_content_item_cover_image.src = "./media/covers/" + song_id + ".jpg";
         playlist_content_item_cover_image.alt = "playlist_item_cover";
         playlist_content_item_cover.appendChild(playlist_content_item_cover_image);
 
@@ -662,27 +847,28 @@ function render_playlist(playlist_id){
         // playlist item name
         let playlist_content_item_name = document.createElement("p");
         playlist_content_item_name.classList.add("playlist-content-name-column");
-        playlist_content_item_name.innerText = "Closer";
+        playlist_content_item_name.innerText = song_name;
         playlist_content_item.appendChild(playlist_content_item_name);
         
         // add event listeners to play that song
         playlist_content_item_cover.addEventListener("click", function(){
-            play_next_song();
+            play_song(song_id);
         });
         playlist_content_item_name.addEventListener("click", function(){
-            play_next_song();
+            play_song(song_id);
         });
 
         // playlist item artists
         let playlist_content_item_artists = document.createElement("p");
         playlist_content_item_artists.classList.add("playlist-content-artists-column");
-        playlist_content_item_artists.innerText = "The Chainsmokers & Halsey";
+        playlist_content_item_artists.innerText = song_artist_names;
         playlist_content_item.appendChild(playlist_content_item_artists);
 
         // playlist item duration
         let playlist_content_item_duration = document.createElement("p");
         playlist_content_item_duration.classList.add("playlist-content-duration-column");
-        playlist_content_item_duration.innerText = "04:03";
+        playlist_content_item_duration.innerText = return_duration_string(song_duration);
+        playlist_info_duration_sum += song_duration;
         playlist_content_item.appendChild(playlist_content_item_duration);
 
 
@@ -726,13 +912,15 @@ function render_playlist(playlist_id){
         playlist_content_item_options_button.appendChild(playlist_content_item_options_button_icon);
     }
 
+    playlist_info_duration_number.innerText = Math.ceil(playlist_info_duration_sum / 60);
+    
     content_window.scrollTo(0, 0);
 }
 
 function render_queue(playlist_id){
     floating_queue_overlay_content_wrapper.innerHTML = "";
 
-    for (let i = 0; i < 10; i++){
+    for (let i = 0; i < 20; i++){
         // creating queue overlay item
         let queue_overlay_content_item = document.createElement("div");
         queue_overlay_content_item.classList.add("queue-overlay-content-item");
@@ -740,37 +928,37 @@ function render_queue(playlist_id){
 
         // queue overlay item cover
         let queue_overlay_content_item_cover = document.createElement("div");
-        queue_overlay_content_item_cover.classList.add("queue-overlay-content-item-cover-column");
+        queue_overlay_content_item_cover.classList.add("queue-content-item-cover-column");
         queue_overlay_content_item.appendChild(queue_overlay_content_item_cover);    
 
         let queue_overlay_content_item_cover_image = document.createElement("img");
-        queue_overlay_content_item_cover_image.classList.add("queue-overlay-content-item-cover-image");
-        queue_overlay_content_item_cover_image.src = "./media/covers/the_chainsmokers-closer-cover.jpg";
+        queue_overlay_content_item_cover_image.classList.add("queue-content-item-cover-image");
+        queue_overlay_content_item_cover_image.src = "./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg";
         queue_overlay_content_item_cover_image.alt = "queue_item_cover";
         queue_overlay_content_item_cover.appendChild(queue_overlay_content_item_cover_image);
 
         let queue_overlay_content_item_cover_image_overlay_icon_wrapper = document.createElement("div");
-        queue_overlay_content_item_cover_image_overlay_icon_wrapper.classList.add("queue-overlay-content-item-cover-overlay-icon-wrapper");
+        queue_overlay_content_item_cover_image_overlay_icon_wrapper.classList.add("queue-content-item-cover-overlay-icon-wrapper");
         queue_overlay_content_item_cover.appendChild(queue_overlay_content_item_cover_image_overlay_icon_wrapper);
 
         let queue_overlay_content_item_cover_image_overlay_icon = document.createElement("i");
         queue_overlay_content_item_cover_image_overlay_icon.classList.add("fa-solid");
         queue_overlay_content_item_cover_image_overlay_icon.classList.add("fa-play");
-        queue_overlay_content_item_cover_image_overlay_icon.classList.add("queue-overlay-content-item-cover-image-overlay-icon");
+        queue_overlay_content_item_cover_image_overlay_icon.classList.add("queue-content-item-cover-image-overlay-icon");
         queue_overlay_content_item_cover_image_overlay_icon_wrapper.appendChild(queue_overlay_content_item_cover_image_overlay_icon);
 
         // queue overlay item name and artists
         let queue_overlay_content_item_name_and_artists_column = document.createElement("div");
-        queue_overlay_content_item_name_and_artists_column.classList.add("queue-overlay-content-item-name-and-artists-column");
+        queue_overlay_content_item_name_and_artists_column.classList.add("queue-content-item-name-and-artists-column");
         queue_overlay_content_item.appendChild(queue_overlay_content_item_name_and_artists_column);
 
         let queue_overlay_content_item_name = document.createElement("p");
-        queue_overlay_content_item_name.classList.add("queue-overlay-content-item-name-column");
+        queue_overlay_content_item_name.classList.add("queue-content-item-name-row");
         queue_overlay_content_item_name.innerText = "Closer";
         queue_overlay_content_item_name_and_artists_column.appendChild(queue_overlay_content_item_name);
 
         let queue_overlay_content_item_artists = document.createElement("p");
-        queue_overlay_content_item_artists.classList.add("queue-overlay-content-item-artists-column");
+        queue_overlay_content_item_artists.classList.add("queue-content-item-artists-row");
         queue_overlay_content_item_artists.innerText = "The Chainsmokers";
         queue_overlay_content_item_name_and_artists_column.appendChild(queue_overlay_content_item_artists);
         
@@ -784,16 +972,17 @@ function render_queue(playlist_id){
 
         // queue overlay item duration
         let queue_overlay_content_item_duration = document.createElement("p");
-        queue_overlay_content_item_duration.classList.add("queue-overlay-content-item-duration-column");
+        queue_overlay_content_item_duration.classList.add("queue-content-item-duration-column");
         queue_overlay_content_item_duration.innerText = "04:03";
         queue_overlay_content_item.appendChild(queue_overlay_content_item_duration);
     }
     
+    player_extended_overlay_queue_part.innerHTML = floating_queue_overlay_content_wrapper.innerHTML;
 }
 
 function render_lyrics(song_id){
-    let lyrics = `Hey, I was doing just fine before I met you<br>I drink too much and that's an issue, but I'm okay<br>Hey, you tell your friends it was nice to meet them<br>But I hope I never see them again<br><br>I know it breaks your heart<br>Moved to the city in a broke-down car, and<br>Four years, no calls<br>Now you're looking pretty in a hotel bar<br>And I, I, I, I, I can't stop<br>No, I, I, I, I, I can't stop<br><br>So, baby, pull me closer<br>In the back seat of your Rover<br>That I know you can't afford<br>Bite that tattoo on your shoulder<br>Pull the sheets right off the corner<br>Of that mattress that you stole<br>From your roommate back in Boulder<br>We ain't ever getting older<br><br>We ain't ever getting older<br><br>We ain't ever getting older<br><br>You look as good as the day I met you<br>I forget just why I left you, I was insane<br>Stay and play that Blink-182 song<br>That we beat to death in Tucson, okay<br><br>I know it breaks your heart<br>Moved to the city in a broke-down car, and<br>Four years, no call<br>Now I'm looking pretty in a hotel bar<br>And I, I, I, I, I can't stop<br>No, I, I, I, I, I can't stop<br><br>So, baby, pull me closer<br>In the back seat of your Rover<br>That I know you can't afford<br>Bite that tattoo on your shoulder<br>Pull the sheets right off the corner<br>Of that mattress that you stole<br>From your roommate back in Boulder<br>We ain't ever getting older<br><br>We ain't ever getting older<br><br>We ain't ever getting older`;
-    floating_lyrics_overlay_content_wrapper.innerHTML = lyrics;
+    floating_lyrics_overlay_content_wrapper.innerHTML = songs_obj[song_id].song_lyrics_markup;
+    player_extended_overlay_lyrics_part.innerHTML = songs_obj[song_id].song_lyrics_markup;
 }
 
 function profile_dropdown_open_close(){
@@ -828,19 +1017,38 @@ function play_previous_song(){
     play_pause(true);
 }
 
-function play_pause(play = false){
-    if (player_play_pause_button_icon.classList.contains("fa-circle-play") || play){
-        player_audio_controls.play();
-        player_play_pause_button_container.title = "Pause";
+function toggle_play_pause_icon(play){
+    if (play){
         player_play_pause_button_icon.classList.remove("fa-circle-play");
         player_play_pause_button_icon.classList.add("fa-circle-pause");
     }
     else{
+        player_play_pause_button_icon.classList.remove("fa-circle-pause");
+        player_play_pause_button_icon.classList.add("fa-circle-play");
+    }
+}
+
+function play_pause(play = false){
+    if (player_play_pause_button_icon.classList.contains("fa-circle-play") || play){
+        player_audio_controls.play();
+        player_play_pause_button_container.title = "Pause";
+    }
+    else{
         player_audio_controls.pause();
         player_play_pause_button_container.title = "Play";
-        player_play_pause_button_icon.classList.add("fa-circle-play");
-        player_play_pause_button_icon.classList.remove("fa-circle-pause");
     }
+}
+
+function play_song(song_id){
+    let song_obj = songs_obj[song_id];
+    player_audio_controls.innerHTML = `<source src="./media/audios/${song_id}.mp3" type="audio/mpeg">`;
+    player_song_cover_image.src = "./media/covers/" + song_id + ".jpg";
+    player_song_name.innerText = song_obj.song_name;
+    player_song_artist.innerText = song_obj.song_artist_names;
+    // change queue overlay content
+    render_lyrics(song_id);
+    player_audio_controls.load();
+    play_pause(true);
 }
 
 function update_audio_seek_bar_and_time_stamp(){
@@ -848,7 +1056,7 @@ function update_audio_seek_bar_and_time_stamp(){
     player_audio_seek_bar.value = player_audio_controls.currentTime;
     player_audio_seek_bar.max = player_audio_controls.duration;
     // updating current timestamp
-    player_audio_current_duration_label.innerText = new Date(player_audio_controls.currentTime * 1000).toISOString().slice(14, 19);
+    player_audio_current_duration_label.innerText = return_duration_string(player_audio_controls.currentTime);
 }
 
 function play_next_song(){
@@ -949,11 +1157,14 @@ function extend_shrink_player(){
 
 
 // Event Listeners
-nav_home_button_container.onclick = render_home_page;
+nav_home_button_container.onclick = () => render_tab("home");
 
-nav_explore_button_container.onclick = render_explore_page;
+nav_explore_button_container.onclick = () => render_tab("explore");
 
-nav_library_button_container.onclick = render_library_page;
+nav_library_button_container.onclick = () => render_tab("library");
+
+player_audio_controls.onplay = () => toggle_play_pause_icon(true);
+player_audio_controls.onpause = () => toggle_play_pause_icon(false);
 
 profile_button_container.onclick = profile_dropdown_open_close;
 
@@ -980,9 +1191,7 @@ document.onkeydown = (event) => {
 
 player_audio_controls.onloadedmetadata = () => {
     player_audio_controls.currentTime = 0;
-    player_audio_total_duration_label.innerText = new Date(player_audio_controls.duration * 1000).toISOString().slice(14, 19);
-    // render lyrics when new song loads
-    render_lyrics();
+    player_audio_total_duration_label.innerText = return_duration_string(player_audio_controls.duration);
 }
 
 player_audio_controls.onended = () => {
@@ -1009,5 +1218,6 @@ player_extend_button_container.onclick = extend_shrink_player;
 
 
 // Function Calls
-render_home_page();
+render_tab("home");
 render_queue();
+player_audio_controls.load();
