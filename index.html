@@ -30,11 +30,19 @@
 
 <body>
 
-    <nav>
+    <nav class="full-height">
         <div id="nav-logo-container">
             <div id="logo-wrapper">
-                Re<img src="./media/logos/logo_white.png" alt="logo">und
-                <!-- Re𝄞ound -->
+                
+                <span class="nav-logo-text nav-shrinking-item">
+                    Re
+                </span>
+                <img id="nav-logo-image" src="./media/logos/logo_white.png" alt="logo">
+                <span class="nav-logo-text nav-shrinking-item">
+                    und
+                </span>
+
+                <!-- Re𝄞Ound -->
             </div>
         </div>
         <div id="nav-content">
@@ -42,7 +50,7 @@
                 <div class="nav-button-icon-wrapper">
                     <i class="fa-solid fa-house"></i>
                 </div>
-                <p class="nav-button-container-label">
+                <p class="nav-button-container-label nav-shrinking-item">
                     Home
                 </p>
             </div>
@@ -50,7 +58,7 @@
                 <div class="nav-button-icon-wrapper">
                     <i class="fa-solid fa-mountain-sun"></i>
                 </div>
-                <p class="nav-button-container-label">
+                <p class="nav-button-container-label nav-shrinking-item">
                     Explore
                 </p>
             </div>
@@ -58,10 +66,10 @@
                 <div class="nav-button-icon-wrapper">
                     <i class="fa-solid fa-lines-leaning"></i>
                 </div>
-                <p class="nav-button-container-label">
+                <p class="nav-button-container-label nav-shrinking-item">
                     Library
                 </p>
-                <div id="nav-content-library-tab-items-wrapper">
+                <div class="nav-content-library-tab-items-wrapper nav-shrinking-item">
                     <p class="nav-content-library-tab-item">History</p>
                     <p class="nav-content-library-tab-item">Liked Songs</p>
                     <p class="nav-content-library-tab-item">2020 Favourites</p>
@@ -75,7 +83,7 @@
         </div>
     </nav>
 
-    <section id="right-window">
+    <section class="right-window full-height">
         <header>
             <div id="header-left-empty-part"></div>
             <div id="search-bar-wrapper">
@@ -92,7 +100,7 @@
                 </button>
                 <button id="profile-button-container" class="header-right-part-button" title="Profile & Settings">
                     <i class="fa-solid fa-user"></i>
-                    <div class="profile-dropdown-overlay shrunk-overlay hidden-element">
+                    <div class="profile-dropdown-overlay shrunk-element invisible-element">
                         <ul>
                             <li>
                                 <p>
@@ -125,9 +133,9 @@
                 <p class="content-window-category-label">Recently Played</p>
                 <div class="content-window-category-items-wrapper">
                     <div class="content-window-category-item">
-                        <div class="content-window-category-item-cover">
-                            <img src="./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="recents_cover" class="content-window-category-item-cover-image">
-                            <div class="content-window-category-item-cover-image-overlay">
+                        <div class="content-window-category-item-cover-wrapper">
+                            <img src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="recents_item_cover" class="content-window-category-item-cover">
+                            <div class="content-window-category-item-cover-overlay">
                                 <div class="content-window-category-item-cover-overlay-icon-wrapper">
                                     <i class="fa-solid fa-play"></i>
                                 </div>
@@ -154,9 +162,9 @@
                 <p class="content-window-category-label">Recommended For You</p>
                 <div class="content-window-category-items-wrapper">
                     <div class="content-window-category-item">
-                        <div class="content-window-category-item-cover">
-                            <img src="./media/old_audio_and_covers/covers/imagine_dragons-birds-cover.jpeg" alt="recommended_cover" class="content-window-category-item-cover-image">
-                            <div class="content-window-category-item-cover-image-overlay">
+                        <div class="content-window-category-item-cover-wrapper">
+                            <img src="./media/sample_audio_and_covers/covers/imagine_dragons-birds-cover.jpeg" alt="recommended_item_cover" class="content-window-category-item-cover">
+                            <div class="content-window-category-item-cover-overlay">
                                 <div class="content-window-category-item-cover-overlay-icon-wrapper">
                                     <i class="fa-solid fa-play"></i>
                                 </div>
@@ -183,9 +191,16 @@
                 <p class="content-window-category-label">Popular Genres</p>
                 <div class="content-window-category-items-wrapper">
                     <div class="content-window-category-item">
-                        <div class="content-window-category-item-cover">
-                            <img src="./media/old_audio_and_covers/covers/pop-cover.jpg" alt="genres_cover" class="content-window-category-item-cover-image">
-                            <div class="content-window-category-item-cover-image-overlay">
+                        <div class="content-window-category-item-cover-wrapper">
+
+                            <div class="content-window-category-item-cover">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                            </div>
+                            
+                            <div class="content-window-category-item-cover-overlay">
                                 <div class="content-window-category-item-cover-overlay-icon-wrapper">
                                     <i class="fa-solid fa-play"></i>
                                 </div>
@@ -209,9 +224,16 @@
                 <p class="content-window-category-label">Moods</p>
                 <div class="content-window-category-items-wrapper">
                     <div class="content-window-category-item">
-                        <div class="content-window-category-item-cover">
-                            <img src="./media/old_audio_and_covers/covers/chill-cover.png" alt="moods_cover" class="content-window-category-item-cover-image">
-                            <div class="content-window-category-item-cover-image-overlay">
+                        <div class="content-window-category-item-cover-wrapper">
+
+                            <div class="content-window-category-item-cover">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                                <img src="./media/sample_audio_and_covers/covers/pop-cover.jpg" alt="playlist_item_cover" class="content-window-category-item-cover-collage-image">
+                            </div>
+                            
+                            <div class="content-window-category-item-cover-overlay">
                                 <div class="content-window-category-item-cover-overlay-icon-wrapper">
                                     <i class="fa-solid fa-play"></i>
                                 </div>
@@ -233,8 +255,13 @@
             <!--
             <div id="playlist-description">
 
-                <div id="playlist-description-cover">
-                    <img id="playlist-description-cover-image" src="./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_cover">
+                <div id="playlist-description-cover-wrapper">
+                    <div id="playlist-description-cover">
+                        <img src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_cover" class="playlist-description-cover-collage-image">
+                        <img src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_cover" class="playlist-description-cover-collage-image">
+                        <img src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_cover" class="playlist-description-cover-collage-image">
+                        <img src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_cover" class="playlist-description-cover-collage-image">
+                    </div>
                 </div>
 
                 <div id="playlist-description-info-and-buttons">
@@ -292,8 +319,8 @@
                     <div class="playlist-content-item">
 
                         <div class="playlist-content-cover-column">
-                            <img class="playlist-content-item-cover-image" src="./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover">
-                            <div class="playlist-content-item-cover-overlay-icon-wrapper">
+                            <img class="playlist-content-item-cover-image" src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover">
+                            <div class="content-item-cover-overlay-icon-wrapper">
                                 <i class="fa-solid fa-play playlist-content-item-cover-image-overlay-icon"></i>
                             </div>
                         </div>
@@ -327,8 +354,8 @@
                     <div class="playlist-content-item">
 
                         <div class="playlist-content-cover-column">
-                            <img class="playlist-content-item-cover-image" src="./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover">
-                            <div class="playlist-content-item-cover-overlay-icon-wrapper">
+                            <img class="playlist-content-item-cover-image" src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="playlist_item_cover">
+                            <div class="content-item-cover-overlay-icon-wrapper">
                                 <i class="fa-solid fa-play playlist-content-item-cover-image-overlay-icon"></i>
                             </div>
                         </div>
@@ -368,16 +395,17 @@
 
         <div id="player-floating-part">
             
-            <div id="floating-queue-overlay" class="player-floating-part-item-overlay shrunk-overlay">
+            <div id="floating-queue-overlay" class="player-floating-part-item-overlay shrunk-element">
                 <p class="queue-lyrics-overlay-label">Queue</p>
                 <hr>
                 <div id="floating-queue-overlay-content-wrapper" class="queue-lyrics-content-wrapper">
                     <!-- 
                     <div class="queue-overlay-content-item">
                         <div class="queue-content-item-cover-column">
-                            <img class="queue-content-item-cover-image" src="./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="queue_item_cover">
-                            <div class="queue-content-item-cover-overlay-icon-wrapper">
-                                <i class="fa-solid fa-play queue-content-item-cover-image-overlay-icon"></i>
+                            <img class="queue-content-item-cover-image" src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="queue_item_cover">
+                            <div class="content-item-cover-overlay-icon-wrapper">
+                                <i class="fa-solid fa-play queue-content-item-cover-overlay-icon"></i>
+                                <i class="fa-solid fa-volume-high queue-content-item-cover-overlay-icon"></i>
                             </div>
                         </div>
                         <div class="queue-content-item-name-and-artists-column">
@@ -396,10 +424,11 @@
                 </div>
             </div>
 
-            <div id="floating-lyrics-overlay" class="player-floating-part-item-overlay shrunk-overlay">
+            <div id="floating-lyrics-overlay" class="player-floating-part-item-overlay shrunk-element">
                 <p class="queue-lyrics-overlay-label">Lyrics</p>
                 <hr>
                 <p id="floating-lyrics-overlay-content-wrapper" class="queue-lyrics-content-wrapper lyrics-content-wrapper">
+<!--                     
                     Hey, I was doing just fine before I met you<br>
                     I drink too much and that's an issue, but I'm okay<br>
                     Hey, you tell your friends it was nice to meet them<br>
@@ -449,12 +478,13 @@
                     We ain't ever getting older<br>
                     <br>
                     We ain't ever getting older
+                     -->
                 </p>
             </div>
 
         </div>
 
-        <div class="player-extended-overlay shrunk-overlay">
+        <div class="player-extended-overlay shrunk-element">
             <div id="player-extended-queue" class="player-extended-overlay-part">
                 <p class="queue-lyrics-overlay-label">Queue</p>
                 <hr>
@@ -462,9 +492,9 @@
                     <!-- 
                     <div class="queue-overlay-content-item">
                         <div class="queue-content-item-cover-column">
-                            <img class="queue-content-item-cover-image" src="./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="queue_item_cover">
-                            <div class="queue-content-item-cover-overlay-icon-wrapper">
-                                <i class="fa-solid fa-play queue-content-item-cover-image-overlay-icon"></i>
+                            <img class="queue-content-item-cover-image" src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="queue_item_cover">
+                            <div class="content-item-cover-overlay-icon-wrapper">
+                                <i class="fa-solid fa-play queue-content-item-cover-overlay-icon"></i>
                             </div>
                         </div>
                         <div class="queue-content-item-name-and-artists-column">
@@ -482,12 +512,18 @@
                      -->
                 </div>
             </div>
-            <div id="player-extended-cover" class="player-extended-overlay-part"></div>
+            <div id="player-extended-cover" class="player-extended-overlay-part">
+                <!-- <div id="player-extended-cover-image-wrapper"> -->
+                    <!-- <img id="player-extended-cover-image" src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="song_cover_image"> -->
+                    <!-- <img id="player-extended-cover-image" src="" alt="song_cover_image"> -->
+                <!-- </div> -->
+            </div>
             <div id="player-extended-lyrics" class="player-extended-overlay-part">
                 
                 <p class="queue-lyrics-overlay-label">Lyrics</p>
                 <hr>
                 <p id="player-extended-lyrics-content-wrapper" class="queue-lyrics-content-wrapper lyrics-content-wrapper">
+<!-- 
                     Hey, I was doing just fine before I met you<br>
                     I drink too much and that's an issue, but I'm okay<br>
                     Hey, you tell your friends it was nice to meet them<br>
@@ -537,59 +573,62 @@
                     We ain't ever getting older<br>
                     <br>
                     We ain't ever getting older
+                     -->
                 </p>
             </div>
         </div>
 
     </section>
 
-    <div id="player">
+    <div class="player inactive-player">
 
         <div id="player-left-part">
             <div id="player-song-cover">
-                <img id="player-song-cover-image" src="./media/old_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" height="60px" alt="cover_image">
+                <!-- <img id="player-song-cover-image" src="./media/sample_audio_and_covers/covers/the_chainsmokers-closer-cover.jpg" alt="song_cover_image"> -->
+                <img id="player-song-cover-image" src="" alt="song_cover_image">
             </div>
 
             <div id="player-song-info">
                 <!-- <p id="player-song-name">Closer</p><br>
                 <p id="player-song-artist">The Chainsmokers</p> -->
-                <p id="player-song-name">I Don't Wanna Live Forever</p><br>
-                <p id="player-song-artist">Taylor Swift and Zayn Malik</p>
+                <!-- <p id="player-song-name">I Don't Wanna Live Forever</p><br> -->
+                <!-- <p id="player-song-artist">Taylor Swift and Zayn Malik</p> -->
+                <p id="player-song-name"></p><br>
+                <p id="player-song-artist"></p>
             </div>
 
             <button id="player-left-part-like-button-container" class="player-control-button" title="Like">
                 <i class="fa-regular fa-heart"></i>
                 <!-- <i class="fa-regular fa-heart"></i> -->
             </button>
-
         </div>
 
         <div id="player-middle-part">
             <div id="player-middle-part-main">
                 <div id="player-middle-part-controls">
                     <button id="shuffle-button-container"
-                        class="player-control-button player-middle-part-control-container" title="Shuffle">
+                        class="player-control-button" title="Shuffle">
                         <i class="fa-solid fa-shuffle inactive-button"></i>
                     </button>
 
                     <button id="previous-song-button-container"
-                        class="player-control-button player-middle-part-control-container" title="Play Previous Song">
+                        class="player-control-button" title="Play Previous Song">
                         <i class="fa-solid fa-backward-step"></i>
                     </button>
                     <button id="play-pause-button-container"
-                        class="player-control-button player-middle-part-control-container" title="Play">
+                        class="player-control-button" title="Play">
                         <i class="fa-solid fa-circle-play"></i>
                         <!-- <i class="fa-solid fa-circle-pause"></i> -->
                     </button>
                     <button id="next-song-button-container"
-                        class="player-control-button player-middle-part-control-container" title="Play Next Song">
+                        class="player-control-button" title="Play Next Song">
                         <i class="fa-solid fa-forward-step"></i>
                     </button>
 
                     <button id="repeat-button-container"
-                        class="player-control-button player-middle-part-control-container" title="Repeat">
+                        class="player-control-button" title="Repeat">
+                        <i class="fa-solid fa-1 shrunk-element"></i>
                         <i class="fa-solid fa-repeat inactive-button"></i>
-                        <!-- use 1 as fixed text above repeat icon to show repeating 1 song -->
                     </button>
                 </div>
 
@@ -601,7 +640,7 @@
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
                 <div id="player-middle-part-timestamp">
-                    <span id="audio-current-duration"></span>/<span id="audio-total-duration"></span>
+                    <span id="audio-current-duration"></span>/<span id="audio-total-duration">04:03</span>
                 </div>
             </div>
 
@@ -633,8 +672,8 @@
         </div>
 
         <audio id="player-audio-controls">
-            <source src="./media/old_audio_and_covers/audio/renamed/Closer___The_Chainsmokers_ft__Halsey_320_PagalWorld_.mp3"
-                type="audio/mpeg">
+            <!-- <source src="./media/sample_audio_and_covers/audio/renamed/Closer___The_Chainsmokers_ft__Halsey_320_PagalWorld_.mp3" type="audio/mpeg"> -->
+            <source src="" type="audio/mpeg">
         </audio>
 
     </div>

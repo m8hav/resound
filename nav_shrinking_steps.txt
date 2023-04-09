@@ -1,0 +1,23 @@
+steps to shrink/unshrink nav:
+
+    var1 : get all elements with class nav-shrinking-item
+    var2 : get all elements with class nav-button-container
+    nav_original_width : get css root style --nav-width value
+    nav_original_min_width : get css root style --nav-min-width value
+    nav_original_max_width : get css root style --nav-max-width value
+
+    steps to shrink nav:
+        var1 : add class shrunk-element
+        var2 : add class nav-button-container-shrunk
+        change following root styles:
+            --nav-width : 4.5rem
+            --nav-min-width : unset
+            --nav-max-width : unset
+
+    steps to unshrink nav:
+        var1 : remove class shrunk-element
+        var2 : remove class nav-button-container-shrunk
+        change following root styles:
+            --nav-width : nav_original_width
+            --nav-min-width : nav_original_min_width
+            --nav-max-width : nav_original_max_width

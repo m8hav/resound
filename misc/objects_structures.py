@@ -2,21 +2,24 @@
 songs_obj = {
     "song_id": {
         "song_name": "song_name",
-        "song_artist_names": "song_artist_names",
+        "song_artist_names": ["artist 1", "artist 2", "artist 3"],
         "song_duration": "song_duration",
         "song_lyrics_markup": "song_lyrics_markup",
+        "song_playlist_ids": [1, 2, 3],
     },
     "song_id": {
         "song_name": "song_name",
-        "song_artist_names": "song_artist_names",
+        "song_artist_names": ["artist 1", "artist 2", "artist 3"],
         "song_duration": "song_duration",
         "song_lyrics_markup": "song_lyrics_markup",
+        "song_playlist_ids": [1, 2, 3],
     },
     "song_id": {
         "song_name": "song_name",
-        "song_artist_names": "song_artist_names",
+        "song_artist_names": ["artist 1", "artist 2", "artist 3"],
         "song_duration": "song_duration",
         "song_lyrics_markup": "song_lyrics_markup",
+        "song_playlist_ids": [1, 2, 3],
     },
 }
 
@@ -24,17 +27,17 @@ songs_obj = {
 playlists_obj = {
     "playlist_id": {
         "playlist_name": "playlist_name",
-        "playlist_song_artist_names": "playlist_song_artist_names",
+        "playlist_song_artist_names": ["artist 1", "artist 2", "artist 3"],
         "playlist_song_ids": [1, 2, 3],
     },
     "playlist_id": {
         "playlist_name": "playlist_name",
-        "playlist_song_artist_names": "playlist_song_artist_names",
+        "playlist_song_artist_names": ["artist 1", "artist 2", "artist 3"],
         "playlist_song_ids": [1, 2, 3],
     },
     "playlist_id": {
         "playlist_name": "playlist_name",
-        "playlist_song_artist_names": "playlist_song_artist_names",
+        "playlist_song_artist_names": ["artist 1", "artist 2", "artist 3"],
         "playlist_song_ids": [1, 2, 3],
     },
 }

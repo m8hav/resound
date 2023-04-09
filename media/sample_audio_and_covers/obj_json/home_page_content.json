@@ -1,0 +1,212 @@
+{
+    "categories": [
+        {
+            "tag": "recents",
+            "type": "song",
+            "name": "Recently Played",
+            "items": [
+                {
+                    "img_name": "the_chainsmokers-closer-cover.jpg",
+                    "main_label": "Closer",
+                    "sub_label": "The Chainsmokers"
+                },
+                {
+                    "img_name": "benny_blanco-i_cant_get_enough-cover.png",
+                    "main_label": "I Can't Get Enough",
+                    "sub_label": "Benny Blanco"
+                },
+                {
+                    "img_name": "clean_bandit-symphony-cover.jpg",
+                    "main_label": "Symphony",
+                    "sub_label": "Clean Bandit"
+                },
+                {
+                    "img_name": "dnce-cake_by_the_ocean.jpg",
+                    "main_label": "Cake By The Ocean",
+                    "sub_label": "DNCE"
+                },
+                {
+                    "img_name": "illenium-crawl_outta_love-cover.jpg",
+                    "main_label": "Crawl Outta Love",
+                    "sub_label": "ILLENIUM"
+                },
+                {
+                    "img_name": "justin_timberlake-mirrors-cover.jpg",
+                    "main_label": "Mirrors",
+                    "sub_label": "Justin Timberlake"
+                },
+                {
+                    "img_name": "martin_garrix-in_the_name_of_love-cover.jpeg",
+                    "main_label": "In The Name Of Love",
+                    "sub_label": "Martin Garrix"
+                },
+                {
+                    "img_name": "sabrina_carpenter-why-cover.png",
+                    "main_label": "Why",
+                    "sub_label": "Sabrina Carpenter"
+                },
+                {
+                    "img_name": "shawn_mendes-theres_nothing_holding_me_back-cover.jpeg",
+                    "main_label": "There's Nothing Holding Me Back",
+                    "sub_label": "Shawn Mendes"
+                },
+                {
+                    "img_name": "zara_larsson-wow-cover.png",
+                    "main_label": "Wow",
+                    "sub_label": "Zara Larsson"
+                }
+            ]
+        },
+        {
+            "tag": "recommended",
+            "type": "song",
+            "name": "Recommended For You",
+            "items": [
+                {
+                    "img_name": "imagine_dragons-birds-cover.jpeg",
+                    "main_label": "Birds",
+                    "sub_label": "Imagine Dragons"
+                },
+                {
+                    "img_name": "alan_walker-alone_pt_2-cover.png",
+                    "main_label": "Alone Pt. II",
+                    "sub_label": "Alan Walker"
+                },
+                {
+                    "img_name": "charlie_puth-attention-cover.png",
+                    "main_label": "Attention",
+                    "sub_label": "Charlie Puth"
+                },
+                {
+                    "img_name": "dj_snake-taki_taki-cover.png",
+                    "main_label": "Taki Taki",
+                    "sub_label": "DJ Snake"
+                },
+                {
+                    "img_name": "halsey-him_and_i-cover.jpg",
+                    "main_label": "Him & I",
+                    "sub_label": "Halsey"
+                },
+                {
+                    "img_name": "marshmello-happier-cover.png",
+                    "main_label": "Happier",
+                    "sub_label": "Marshmello"
+                },
+                {
+                    "img_name": "martin_garrix-scared_to_be_lonely-cover.jpg",
+                    "main_label": "Scared To Be Lonely",
+                    "sub_label": "Martin Garrix"
+                },
+                {
+                    "img_name": "sam_smith-how_do_you_sleep-cover.png",
+                    "main_label": "How Do You Sleep",
+                    "sub_label": "Sam Smith"
+                },
+                {
+                    "img_name": "taylor_swift-i_did_something_bad-cover.jpg",
+                    "main_label": "I Did Something Bad",
+                    "sub_label": "Taylor Swift"
+                },
+                {
+                    "img_name": "wiz_khalifa-see_you_again-cover.jpeg",
+                    "main_label": "See You Again",
+                    "sub_label": "Wiz Khalifa"
+                }
+            ]
+        },
+        {
+            "tag": "genres",
+            "type": "playlist",
+            "name": "Popular Genres",
+            "items": [
+                {
+                    "img_name": "pop-cover.jpg",
+                    "main_label": "Pop"
+                },
+                {
+                    "img_name": "hip_hop-cover.jpg",
+                    "main_label": "Hip-Hop"
+                },
+                {
+                    "img_name": "edm-cover.jpg",
+                    "main_label": "EDM"
+                },
+                {
+                    "img_name": "rap-cover.png",
+                    "main_label": "Rap"
+                },
+                {
+                    "img_name": "trap-cover.jpg",
+                    "main_label": "Trap"
+                },
+                {
+                    "img_name": "rnb-cover.jpg",
+                    "main_label": "R&B"
+                },
+                {
+                    "img_name": "dance-cover.jpeg",
+                    "main_label": "Dance"
+                },
+                {
+                    "img_name": "house-cover.jpeg",
+                    "main_label": "House"
+                },
+                {
+                    "img_name": "soul_blues-cover.png",
+                    "main_label": "Soul/Blues"
+                },
+                {
+                    "img_name": "rock-cover.jpg",
+                    "main_label": "Rock"
+                }
+            ]
+        },
+        {
+            "tag": "moods",
+            "type": "playlist",
+            "name": "Moods",
+            "items": [
+                {
+                    "img_name": "chill-cover.png",
+                    "main_label": "Chill"
+                },
+                {
+                    "img_name": "commute-cover.jpg",
+                    "main_label": "Commute"
+                },
+                {
+                    "img_name": "energy_booster-cover.jpg",
+                    "main_label": "Energy Booster"
+                },
+                {
+                    "img_name": "feel_good-cover.jpg",
+                    "main_label": "Feel Good"
+                },
+                {
+                    "img_name": "focus-cover.jpg",
+                    "main_label": "Focus"
+                },
+                {
+                    "img_name": "sad-cover.jpg",
+                    "main_label": "Sad"
+                },
+                {
+                    "img_name": "party-cover.jpg",
+                    "main_label": "Party"
+                },
+                {
+                    "img_name": "romance-cover.jpeg",
+                    "main_label": "Romance"
+                },
+                {
+                    "img_name": "sleep-cover.png",
+                    "main_label": "Sleep"
+                },
+                {
+                    "img_name": "workout-cover.jpeg",
+                    "main_label": "Workout"
+                }
+            ]
+        }
+    ]
+}

@@ -34,7 +34,7 @@ for og_file_path in og_files_paths_list:
 og_files_paths_list = glob.glob(f"{original_combined_files_dir}/**/*", recursive=True)
 
 songs_obj = {}
-song_names_and_ids_obj = {}
+song_file_root_and_ids_obj = {}
 
 playlists_obj = {}
 playlist_names_and_ids_obj = {}
@@ -54,9 +54,9 @@ for og_file_path in og_files_paths_list:
     file_name_ext = os.path.splitext(og_file_name)[1]
 
     # song and playlist info
-    song_artist_names = og_file_name_root.split("-")[0].replace("_", " ")
-    song_name = og_file_name_root.split("-")[-1].replace("_", " ")
-    playlist_name = og_file_dir.split("\\")[-1]
+    song_artist_names = og_file_name_root.split("-")[0].replace("_", " ").title().strip()
+    song_name = og_file_name_root.split("-")[-1].replace("_", " ").title().strip()
+    playlist_name = og_file_dir.split("\\")[-1].title().strip()
     
     # files old paths
     audio_file_old_path = os.path.join(og_file_dir, og_file_name_root + ".mp3")
@@ -65,8 +65,8 @@ for og_file_path in og_files_paths_list:
 
     if file_name_ext == ".mp3":
 
-        if cover_file_old_path in og_files_paths_list:
-            if lyric_file_old_path in og_files_paths_list:
+        if cover_file_old_path.lower() in map(str.lower, og_files_paths_list):
+            if lyric_file_old_path.lower() in map(str.lower, og_files_paths_list):
 
                 # files new paths
                 audio_file_new_path = os.path.join(audios_files_dir, str(song_index) + ".mp3")
@@ -80,51 +80,63 @@ for og_file_path in og_files_paths_list:
                 shutil.copyfile(audio_file_old_path, audio_file_new_path)
                 shutil.copyfile(cover_file_old_path, cover_file_new_path)
 
+                # writing lyrics markup to new lyric file
                 with open(lyric_file_old_path, "r", encoding="utf-8") as f:
-                    song_lyrics_markup = f.read().replace("\n", "<br>")
-
+                    song_lyrics_markup = f.read().strip().replace("\n", "<br>")
                 with open(lyric_file_new_path, "w", encoding="utf-8") as f:
                     f.write(song_lyrics_markup)
                 
-                # adding song to songs_obj
-                songs_obj[song_index] = {
-                    "song_name": song_name,
-                    "song_artist_names": song_artist_names,
-                    "song_duration": song_duration,
-                    "song_lyrics_markup": song_lyrics_markup,
-                }
-                song_names_and_ids_obj[song_name] = song_index
+                # adding song to song name-id relation object
+                if og_file_name_root not in song_file_root_and_ids_obj:
+                    song_file_root_and_ids_obj[og_file_name_root] = song_index
+                    song_index += 1
+                song_id = song_file_root_and_ids_obj[og_file_name_root]
                 
-                # adding song to playlists_obj
+                # adding playlist to playlist name-id relation object
                 if playlist_name not in playlist_names_and_ids_obj:
                     playlist_names_and_ids_obj[playlist_name] = playlist_index
-                    playlists_obj[playlist_index] = {
-                        "playlist_name": playlist_name,
-                        "playlist_song_artist_names": [song_artist_names],
-                        "playlist_song_ids": [song_index],
-                    }
                     playlist_index += 1
-                else:
-                    playlist_id = playlist_names_and_ids_obj[playlist_name]
-                    playlists_obj[playlist_id]["playlist_song_ids"].append(song_index)
-                    if song_artist_names not in playlists_obj[playlist_id]["playlist_song_artist_names"]:
-                        playlists_obj[playlist_id]["playlist_song_artist_names"].append(song_artist_names)
+                playlist_id = playlist_names_and_ids_obj[playlist_name]
                 
-                print(f"SONG {song_index} DONE")
+                # adding song to songs_obj
+                if song_id not in songs_obj:
+                    songs_obj[song_id] = {
+                        "song_name": song_name,
+                        "song_artist_names": [],
+                        "song_duration": song_duration,
+                        "song_lyrics_markup": song_lyrics_markup,
+                        "song_playlist_ids": []
+                    }
+                songs_obj[song_id]["song_artist_names"].append(song_artist_names)
+                songs_obj[song_id]["song_playlist_ids"].append(playlist_id)
+                
+                # adding song to playlists_obj
+                if playlist_id not in playlists_obj:
+                    playlists_obj[playlist_id] = {
+                        "playlist_name": playlist_name,
+                        "playlist_song_artist_names": [],
+                        "playlist_song_ids": []
+                    }
+                # else:
+                for song_artist_name in songs_obj[song_id]["song_artist_names"]:
+                    if song_artist_name not in playlists_obj[playlist_id]["playlist_song_artist_names"]:
+                        playlists_obj[playlist_id]["playlist_song_artist_names"].append(song_artist_name)
+                playlists_obj[playlist_id]["playlist_song_ids"].append(song_id)
+                
+                print(f"SONG {song_id} DONE")
 
             else:
-                missing_lyrics_obj[song_index] = {
+                missing_lyrics_obj[og_file_name_root] = {
                     "song_name": song_name,
                     "song_artist_names": song_artist_names,
                     "song_lyric_file_path": lyric_file_old_path,
                 }
         else:
-            missing_covers_obj[song_index] = {
+            missing_covers_obj[og_file_name_root] = {
                 "song_name": song_name,
                 "song_artist_names": song_artist_names,
                 "song_cover_file_path": cover_file_old_path,
             }
-        song_index += 1
 
 
 # dumping objects to json files
@@ -149,4 +161,4 @@ print("\n\nMISSING LYRICS:")
 [print(missing_lyric_id) for missing_lyric_id in missing_lyrics_obj]
 
 
-print("\n\n\nSUCCESSFULLY DONE!")
+print("\n\nSUCCESSFULLY DONE!")
