@@ -6,9 +6,11 @@ const root = document.documentElement;
 
 // Nav
 const nav = document.getElementsByTagName("nav")[0];
+const nav_buttons = Array.from(document.getElementsByClassName("nav-button-container"));
 const nav_home_button_container = document.getElementById("nav-home-button-container");
 const nav_explore_button_container = document.getElementById("nav-explore-button-container");
 const nav_library_button_container = document.getElementById("nav-library-button-container");
+const nav_library_content_items_wrapper = document.getElementsByClassName("nav-library-content-items-wrapper")[0];
 const nav_original_width = getComputedStyle(root).getPropertyValue("--nav-width");
 const nav_original_min_width = getComputedStyle(root).getPropertyValue("--nav-min-width");
 const nav_original_max_width = getComputedStyle(root).getPropertyValue("--nav-max-width");
@@ -95,9 +97,11 @@ player_audio_controls.volume = player_volume_seek_bar.value / 100;
 
 // Content Objects
 import songs_obj from "./media/obj_jsons/songs.json" assert {type: 'json'};
-import playlists_obj from "./media/obj_jsons/playlists.json" assert {type: 'json'}
-import tabs_obj from "./media/manual_obj_jsons/tabs.json" assert {type: 'json'}
-import categories_obj from "./media/manual_obj_jsons/categories.json" assert {type: 'json'}
+import playlists_obj from "./media/obj_jsons/playlists.json" assert {type: 'json'};
+import tabs_obj from "./media/manual_obj_jsons/tabs.json" assert {type: 'json'};
+import categories_obj from "./media/manual_obj_jsons/categories.json" assert {type: 'json'};
+localStorage.setItem("songs_obj", JSON.stringify(songs_obj));
+localStorage.setItem("playlists_obj", JSON.stringify(playlists_obj));
 
 var first_play = true;
 
@@ -110,6 +114,8 @@ var current_song_id;
 
 var liked_song_ids_list = localStorage.getItem("liked_song_ids_list") ? JSON.parse(localStorage.getItem("liked_song_ids_list")) : [];
 var saved_playlist_ids_list = localStorage.getItem("saved_playlist_ids_list") ? JSON.parse(localStorage.getItem("saved_playlist_ids_list")) : [];
+var recently_played_song_ids_list = localStorage.getItem("recently_played_song_ids_list") ? JSON.parse(localStorage.getItem("recently_played_song_ids_list")) : [];
+var recently_played_playlist_ids_list = localStorage.getItem("recently_played_playlist_ids_list") ? JSON.parse(localStorage.getItem("recently_played_playlist_ids_list")) : [];
 
 if (shuffle){
     player_shuffle_button_icon.classList.remove("inactive-button");
@@ -169,7 +175,7 @@ function shuffle_array(array) {
       [returnArray[currentIndex], returnArray[randomIndex]] = [returnArray[randomIndex], returnArray[currentIndex]];
     }
     return returnArray;
-  }
+}
 
 function return_duration_string(duration){
     return new Date(duration * 1000).toISOString().slice(14, 19);
@@ -181,6 +187,28 @@ function update_audio_seek_bar_and_time_stamp(){
     player_audio_seek_bar.max = player_audio_controls.duration;
     // updating current timestamp
     player_audio_current_duration_label.innerText = return_duration_string(player_audio_controls.currentTime);
+}
+
+function render_nav_library_content(){
+    // clearing nav library content
+    nav_library_content_items_wrapper.innerHTML =
+        `<p class="nav-library-content-item">History</p>
+        <p class="nav-library-content-item">Liked Songs</p>`;
+    
+    // creating nav library content
+    for (let playlist_index = 0; playlist_index < Object.keys(playlists_obj).length; playlist_index++){
+        let playlist_id = Number(Object.keys(playlists_obj)[playlist_index]);
+        let playlist_name = playlists_obj[playlist_id].playlist_name;
+
+        let nav_library_content_item = document.createElement("p");
+        nav_library_content_item.className = "nav-library-content-item";
+        nav_library_content_item.innerText = playlist_name;
+        nav_library_content_items_wrapper.appendChild(nav_library_content_item);
+        nav_library_content_item.onclick = (event) => {
+            event.stopPropagation();
+            render_playlist(playlist_id);
+        }
+    }
 }
 
 function render_tab(tab_tag){
@@ -357,6 +385,14 @@ function render_tab(tab_tag){
         }
     }
     content_window.scrollTo(0, 0);
+
+    for (let nav_button_index in nav_buttons){
+        let nav_button = nav_buttons[nav_button_index];
+        nav_button.classList.remove("active-item");
+        if (nav_button.id == `nav-${tab_tag}-button-container`){
+            nav_button.classList.add("active-item");
+        }
+    }
 }
 
 function render_explore_page(){
@@ -379,6 +415,7 @@ function render_library_page(){
 }
 
 function render_playlist(playlist_id){
+    playlist_id = Number(playlist_id);
     content_window.innerHTML = "";
     
     let playlist_obj = playlists_obj[playlist_id];
@@ -714,8 +751,8 @@ function render_playlist(playlist_id){
         // highlight_playing_item alone doesn't do it because category_item_overlay_icon_wrapper event calls play_song before the category_item_overlay event that renders playlist
         // so the play_song function is called before the playlist is rendered and the current song is not highlighted
         if (song_id == current_song_id){
-            playlist_content_item.classList.add("content-item-playing");
-            playlist_content_item.classList.add("content-item-playing");
+            playlist_content_item.classList.add("active-item");
+            playlist_content_item.classList.add("active-item");
             playlist_content_item_cover_image_overlay_icon.classList.remove("fa-play");
             playlist_content_item_cover_image_overlay_icon.classList.add("fa-volume-high");
             playlist_content_item_cover_image_overlay_icon_wrapper.classList.add("opacity-1");
@@ -733,36 +770,52 @@ function render_playlist(playlist_id){
     playlist_info_duration_number.innerText = Math.ceil(playlist_info_duration_sum / 60);
     
     content_window.scrollTo(0, 0);
+
+    nav.querySelector(".active-item").classList.remove("active-item");
 }
 
 function add_playlist_to_library(playlist_id){
+    playlist_id = Number(playlist_id);
     saved_playlist_ids_list.push(playlist_id);
     localStorage.setItem("saved_playlist_ids_list", JSON.stringify(saved_playlist_ids_list));
 }
 
 function render_queue(item_id, song = false, append_queue = false, shuffle_current_queue = false){
-
+    item_id = Number(item_id);
     // song == true means item_id is a song id
     // replacing queue with the new song's playlist
     if (song) {
         if ( ! queue_song_id_list.includes(item_id) ){
             let playlist_id = songs_obj[item_id].song_playlist_ids[0];
             queue_song_id_list = [...playlists_obj[playlist_id].playlist_song_ids].map(song_id => Number(song_id));
+            queue_song_id_list = queue_song_id_list.filter(song_id => song_id != current_song_id);
+            queue_song_id_list.unshift(current_song_id);
         }
     }
     // appending queue with new playlist's songs if append_queue == true
     // otherwise replacing queue with new playlist's songs if append_queue == false
     else {
         if (append_queue){
-            queue_song_id_list = queue_song_id_list.concat([...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id)));
+            let appending_song_ids = [...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id));
+            if (shuffle_current_queue){
+                appending_song_ids = shuffle_array(appending_song_ids);
+            }
+            // removing current song and songs already in queue from appending_song_ids
+            appending_song_ids = appending_song_ids.filter(song_id => song_id != current_song_id && ! queue_song_id_list.includes(song_id));
+            appending_song_ids.unshift(current_song_id);
+            queue_song_id_list = queue_song_id_list.concat(appending_song_ids);
         }else {
             if (shuffle_current_queue){
                 queue_song_id_list = shuffle_array([...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id)));
                 queue_song_id_list = queue_song_id_list.filter(song_id => song_id != current_song_id);
                 queue_song_id_list.unshift(current_song_id);
             }
-            else
+            else{
+                // if ( ! queue_song_id_list.includes(item_id) ){
+                //     queue_song_id_list = [...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id));
+                // }
                 queue_song_id_list = [...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id));
+            }
         }
     }
 
@@ -847,6 +900,7 @@ function render_queue(item_id, song = false, append_queue = false, shuffle_curre
 }
 
 function render_lyrics(song_id){
+    song_id = Number(song_id);
     floating_lyrics_overlay_content_wrapper.innerHTML = songs_obj[song_id].song_lyrics_markup;
     player_extended_lyrics_content_wrapper.innerHTML = songs_obj[song_id].song_lyrics_markup;
 }
@@ -857,10 +911,11 @@ function profile_dropdown_open_close(){
 }
 
 function like_unlike_song(song_id){
+    song_id = Number(song_id);
     let liked;
     if (liked_song_ids_list.includes(song_id)){
         liked = false;
-        liked_song_ids_list = liked_song_ids_list.filter( id => id != song_id);
+        liked_song_ids_list = liked_song_ids_list.filter(id => id != song_id);
     } else {
         liked = true
         liked_song_ids_list.push(song_id);
@@ -908,9 +963,9 @@ function play_previous_song(){
         return;
     }
     if (shuffle){
-        queue_current_song_index = queue_played_song_indexes_list.pop();
-        let previous_random_song_id = queue_song_id_list[queue_current_song_index];
-        play_song(previous_random_song_id);
+        queue_previous_song_index = queue_played_song_indexes_list.pop();
+        let previous_song_id = queue_song_id_list[queue_previous_song_index];
+        play_song(previous_song_id);
     } else {
         // if shuffle off, current time is less than 5 seconds, and queue not at beginning then play the previous song
         if (queue_current_song_index > 0){
@@ -945,10 +1000,20 @@ function play_pause(play = false){
 }
 
 function play_song(song_id, playlist_id = null, append_queue = false, shuffle_current_queue = false){
+    song_id = Number(song_id);
     if (first_play){
         nav.classList.remove("full-height");
         right_window.classList.remove("full-height");
         player.classList.remove("inactive-player");
+    }
+    recently_played_song_ids_list = recently_played_song_ids_list.filter(id => id != song_id);
+    recently_played_song_ids_list.unshift(song_id);
+    localStorage.setItem("recently_played_song_ids_list", JSON.stringify(recently_played_song_ids_list));
+    if (playlist_id){
+        playlist_id = Number(playlist_id);
+        recently_played_playlist_ids_list = recently_played_playlist_ids_list.filter(id => id != song_id);
+        recently_played_playlist_ids_list.unshift(song_id);
+        localStorage.setItem("recently_played_playlist_ids_list", JSON.stringify(recently_played_playlist_ids_list));
     }
 
     // if the song is already playing, do nothing
@@ -1039,7 +1104,9 @@ function play_next_song(){
             while (next_random_playlist_id == current_playlist_id){
                 next_random_playlist_id = Math.floor(Math.random() * Object.keys(playlists_obj).length);
             }
-            let next_song_id = playlists_obj[next_random_playlist_id].playlist_song_ids[0];
+            let next_random_playlist_song_ids = playlists_obj[next_random_playlist_id].playlist_song_ids;
+            let next_random_song_index = Math.floor(Math.random() * next_random_playlist_song_ids.length);
+            let next_song_id = next_random_playlist_song_ids[next_random_song_index];
             play_song(next_song_id, next_random_playlist_id, true);
             return;
         }
@@ -1051,7 +1118,7 @@ function play_next_song(){
         play_song(next_song_id);
         return;
     }
-    // if repeat == 0 i.e. no repeat, append next playlist in queue if last song is playing
+    // if repeat == 0 and no shuffle, append next playlist in queue if last song is playing
     if (queue_current_song_index == queue_song_id_list.length){
         let current_playlist_id = songs_obj[current_song_id].song_playlist_ids[0];
         let next_playlist_id = (current_playlist_id + 1) % Object.keys(playlists_obj).length;
@@ -1147,6 +1214,8 @@ function update_volume(){
 }
 
 function highlight_playing_item(last_song_id, current_song_id){
+    last_song_id = Number(last_song_id);
+    current_song_id = Number(current_song_id);
     let playlist_last_playing_item = "#playlist-content-item-song-" + last_song_id;
     let queue_overlay_last_playing_item = "#queue-overlay-content-item-song-" + last_song_id;
     let player_extended_queue_last_playing_item = "#player-extended-queue-content-item-song-" + last_song_id;
@@ -1158,7 +1227,7 @@ function highlight_playing_item(last_song_id, current_song_id){
     let last_playing_item_elements = [playlist_last_playing_item_element, queue_overlay_last_playing_item_element, player_extended_queue_last_playing_item_element];
     last_playing_item_elements.forEach((element) => {
         if (element){
-            element.classList.remove("content-item-playing");
+            element.classList.remove("active-item");
             let playing_item_overlay_icon_wrapper = element.querySelector(".content-item-cover-overlay-icon-wrapper");
             let playing_item_overlay_icon = element.getElementsByTagName("i")[0];
             playing_item_overlay_icon_wrapper.classList.remove("opacity-1");
@@ -1178,7 +1247,7 @@ function highlight_playing_item(last_song_id, current_song_id){
     let current_playing_item_elements = [playlist_current_playing_item_element, queue_overlay_current_playing_item_element, player_extended_queue_current_playing_item_element];
     current_playing_item_elements.forEach((element) => {
         if (element){
-            element.classList.add("content-item-playing");
+            element.classList.add("active-item");
             let playing_item_overlay_icon_wrapper = element.querySelector(".content-item-cover-overlay-icon-wrapper");
             let playing_item_overlay_icon = element.getElementsByTagName("i")[0];
             playing_item_overlay_icon_wrapper.classList.add("opacity-1");
@@ -1291,12 +1360,12 @@ document.onkeydown = (event) => {
     }
     if (event.key == "ArrowUp" && player_extended_overlay.classList.contains("shrunk-element")){
         event.preventDefault();
-        player_volume_seek_bar.value = parseInt(player_volume_seek_bar.value) + 5;
+        player_volume_seek_bar.value = Number(player_volume_seek_bar.value) + 5;
         update_volume();
     }
     if (event.key == "ArrowDown" && player_extended_overlay.classList.contains("shrunk-element")){
         event.preventDefault();
-        player_volume_seek_bar.value = parseInt(player_volume_seek_bar.value) - 5;
+        player_volume_seek_bar.value = Number(player_volume_seek_bar.value) - 5;
         update_volume();
     }
     if (event.key.toUpperCase() == "S" && player_extended_overlay.classList.contains("shrunk-element")){
@@ -1346,3 +1415,4 @@ player_extend_button_container.onclick = toggle_extended_player;
 
 // Function Calls
 render_tab("home");
+render_nav_library_content();

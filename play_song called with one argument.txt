@@ -1,0 +1,10 @@
+play_song is called with only song when:
+    clicking content_window_category_item                      - not in queue list so render song at top
+    clicking playlist_content_item_cover                       - not in queue list so render song at top
+    clicking playlist_content_item_name                        - not in queue list so render song at top
+    clicking queue_overlay_content_item                        - already in queue list so render as it is
+    clicking player_extended_queue_content_item                - already in queue list so render as it is
+    playing previous song                                      - already in queue list so render as it is
+    playing next song without shuffle in repeat all            - already in queue list so render as it is
+    playing next song with shuffle in repeat all               - already in queue list so render as it is
+    playing next song in queue without shuffle in no repeat    - already in queue list to render as it is
