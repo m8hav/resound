@@ -23,27 +23,59 @@ os.makedirs(obj_jsons_files_dir, exist_ok=True)
 og_files_paths_list = glob.glob(f"{original_combined_files_dir}/**/*", recursive=True)
 
 # renaming files ending with double extensions to single extension
-for og_file_path in og_files_paths_list:
-    ext = os.path.splitext(og_file_path)[1]
-    if ext in [".mp3", ".jpg", ".txt"]:
-        new_file_path = og_file_path.rstrip(ext) + ext
-        if og_file_path != new_file_path:
-            os.rename(og_file_path, new_file_path)
+# for og_file_path in og_files_paths_list:
+#     ext = os.path.splitext(og_file_path)[1]
+#     if ext in [".mp3", ".jpg", ".txt"]:
+#         new_file_path = og_file_path.rstrip(ext) + ext
+#         if og_file_path != new_file_path:
+#             os.rename(og_file_path, new_file_path)
 
 # getting updated file paths of all files and folders in og_combined_files_dir and its subdirectories recursively
 og_files_paths_list = glob.glob(f"{original_combined_files_dir}/**/*", recursive=True)
 
+# creating data objects
 songs_obj = {}
-song_file_root_and_ids_obj = {}
+songs_root_to_id_mapping_obj = {}
 
 playlists_obj = {}
-playlist_names_and_ids_obj = {}
+playlists_root_to_id_mapping_obj = {}
 
 missing_covers_obj = {}
 missing_lyrics_obj = {}
 
 song_index = 1
 playlist_index = 1
+
+# file paths of data object jsons
+songs_json_file_path = os.path.join(obj_jsons_files_dir, "songs.json")
+playlists_json_file_path = os.path.join(obj_jsons_files_dir, "playlists.json")
+songs_root_id_mapping_json_file_path = os.path.join(obj_jsons_files_dir, "songs_root_id_mapping.json")
+playlists_root_id_mapping_json_file_path = os.path.join(obj_jsons_files_dir, "playlists_root_id_mapping.json")
+missing_covers_json_file_path = os.path.join(obj_jsons_files_dir, "missing_covers.json")
+missing_lyrics_json_file_path = os.path.join(obj_jsons_files_dir, "missing_lyrics.json")
+
+# getting existing data objects from json files
+print("Existing data objects:")
+if os.path.exists(songs_json_file_path):
+    with open(songs_json_file_path, "r") as songs_json_file:
+        songs_obj = json.load(songs_json_file)
+        song_index = len(songs_obj) + 1
+        print(f"{len(songs_obj)} songs in (songs.json)")
+if os.path.exists(playlists_json_file_path):
+    with open(playlists_json_file_path, "r") as playlists_json_file:
+        playlists_obj = json.load(playlists_json_file)
+        playlist_index = len(playlists_obj) + 1
+        print(f"{len(playlists_obj)} playlists in (playlists.json)")
+if os.path.exists(songs_root_id_mapping_json_file_path):
+    with open(songs_root_id_mapping_json_file_path, "r") as songs_root_id_mapping_json_file:
+        songs_root_to_id_mapping_obj = json.load(songs_root_id_mapping_json_file)
+        print(f"{len(songs_root_to_id_mapping_obj)} songs in (songs_root_id_mapping.json)")
+if os.path.exists(playlists_root_id_mapping_json_file_path):
+    with open(playlists_root_id_mapping_json_file_path, "r") as playlists_root_id_mapping_json_file:
+        playlists_root_to_id_mapping_obj = json.load(playlists_root_id_mapping_json_file)
+        print(f"{len(playlists_root_to_id_mapping_obj)} playlists in (playlists_root_id_mapping.json)")
+print()
+
 
 for og_file_path in og_files_paths_list:
     
@@ -68,62 +100,69 @@ for og_file_path in og_files_paths_list:
         if cover_file_old_path.lower() in map(str.lower, og_files_paths_list):
             if lyric_file_old_path.lower() in map(str.lower, og_files_paths_list):
 
-                # files new paths
-                audio_file_new_path = os.path.join(audios_files_dir, str(song_index) + ".mp3")
-                cover_file_new_path = os.path.join(covers_files_dir, str(song_index) + ".jpg")
-                lyric_file_new_path = os.path.join(lyrics_files_dir, str(song_index) + ".txt")
+                # adding song to songs_obj only if it doesn't already exist under the same playlist
+                if og_file_name_root not in songs_root_to_id_mapping_obj or playlist_name not in playlists_root_to_id_mapping_obj or playlists_root_to_id_mapping_obj[playlist_name] not in songs_obj[str(songs_root_to_id_mapping_obj[og_file_name_root])]["song_playlist_ids"]:
 
-                audio_file = AudioSegment.from_mp3(audio_file_old_path)
-                song_duration = audio_file.duration_seconds
+                    # files new paths
+                    audio_file_new_path = os.path.join(audios_files_dir, str(og_file_name_root) + ".mp3")
+                    cover_file_new_path = os.path.join(covers_files_dir, str(og_file_name_root) + ".jpg")
+                    lyric_file_new_path = os.path.join(lyrics_files_dir, str(og_file_name_root) + ".txt")
 
-                # audio_file.export(audio_file_new_path, format="mp3", bitrate="128k")  # too slow
-                shutil.copyfile(audio_file_old_path, audio_file_new_path)
-                shutil.copyfile(cover_file_old_path, cover_file_new_path)
+                    audio_file = AudioSegment.from_mp3(audio_file_old_path)
+                    song_duration = audio_file.duration_seconds
 
-                # writing lyrics markup to new lyric file
-                with open(lyric_file_old_path, "r", encoding="utf-8") as f:
-                    song_lyrics_markup = f.read().strip().replace("\n", "<br>")
-                with open(lyric_file_new_path, "w", encoding="utf-8") as f:
-                    f.write(song_lyrics_markup)
-                
-                # adding song to song name-id relation object
-                if og_file_name_root not in song_file_root_and_ids_obj:
-                    song_file_root_and_ids_obj[og_file_name_root] = song_index
-                    song_index += 1
-                song_id = song_file_root_and_ids_obj[og_file_name_root]
-                
-                # adding playlist to playlist name-id relation object
-                if playlist_name not in playlist_names_and_ids_obj:
-                    playlist_names_and_ids_obj[playlist_name] = playlist_index
-                    playlist_index += 1
-                playlist_id = playlist_names_and_ids_obj[playlist_name]
-                
-                # adding song to songs_obj
-                if song_id not in songs_obj:
-                    songs_obj[song_id] = {
-                        "song_name": song_name,
-                        "song_artist_names": [],
-                        "song_duration": song_duration,
-                        "song_lyrics_markup": song_lyrics_markup,
-                        "song_playlist_ids": []
-                    }
-                songs_obj[song_id]["song_artist_names"].append(song_artist_names)
-                songs_obj[song_id]["song_playlist_ids"].append(playlist_id)
-                
-                # adding song to playlists_obj
-                if playlist_id not in playlists_obj:
-                    playlists_obj[playlist_id] = {
-                        "playlist_name": playlist_name,
-                        "playlist_song_artist_names": [],
-                        "playlist_song_ids": []
-                    }
-                # else:
-                for song_artist_name in songs_obj[song_id]["song_artist_names"]:
-                    if song_artist_name not in playlists_obj[playlist_id]["playlist_song_artist_names"]:
-                        playlists_obj[playlist_id]["playlist_song_artist_names"].append(song_artist_name)
-                playlists_obj[playlist_id]["playlist_song_ids"].append(song_id)
-                
-                print(f"SONG {song_id} DONE")
+                    # audio_file.export(audio_file_new_path, format="mp3", bitrate="128k")  # too slow
+                    shutil.copyfile(audio_file_old_path, audio_file_new_path)
+                    shutil.copyfile(cover_file_old_path, cover_file_new_path)
+
+                    # writing lyrics markup to new lyric file
+                    with open(lyric_file_old_path, "r", encoding="utf-8") as f:
+                        song_lyrics_markup = f.read().strip().replace("\n", "<br>")
+                    with open(lyric_file_new_path, "w", encoding="utf-8") as f:
+                        f.write(song_lyrics_markup)
+                    
+                    # adding song to song name-id relation object
+                    if og_file_name_root not in songs_root_to_id_mapping_obj:
+                        songs_root_to_id_mapping_obj[og_file_name_root] = song_index
+                        song_index += 1
+                    song_id = str(songs_root_to_id_mapping_obj[og_file_name_root])
+                    
+                    # adding playlist to playlist name-id relation object
+                    if playlist_name not in playlists_root_to_id_mapping_obj:
+                        playlists_root_to_id_mapping_obj[playlist_name] = playlist_index
+                        playlist_index += 1
+                    playlist_id = playlists_root_to_id_mapping_obj[playlist_name]
+                    
+                    # adding song to songs_obj
+                    if song_id not in songs_obj:
+                        songs_obj[song_id] = {
+                            "song_name": song_name,
+                            "song_artist_names": [],
+                            "song_duration": song_duration,
+                            "song_lyrics_markup": song_lyrics_markup,
+                            "song_file_name_root": og_file_name_root,
+                            "song_playlist_ids": []
+                        }
+                    if song_artist_names not in songs_obj[song_id]["song_artist_names"]:
+                        songs_obj[song_id]["song_artist_names"].append(song_artist_names)
+                    if playlist_id not in songs_obj[song_id]["song_playlist_ids"]:
+                        songs_obj[song_id]["song_playlist_ids"].append(playlist_id)
+                    
+                    # adding song to playlists_obj
+                    if playlist_id not in playlists_obj:
+                        playlists_obj[playlist_id] = {
+                            "playlist_name": playlist_name,
+                            "playlist_song_artist_names": [],
+                            "playlist_song_ids": []
+                        }
+                    for song_artist_name in songs_obj[song_id]["song_artist_names"]:
+                        if song_artist_name not in playlists_obj[playlist_id]["playlist_song_artist_names"]:
+                            playlists_obj[playlist_id]["playlist_song_artist_names"].append(song_artist_name)
+                    if song_id not in playlists_obj[playlist_id]["playlist_song_ids"]:
+                        playlists_obj[playlist_id]["playlist_song_ids"].append(song_id)
+                    
+                    print(f"SONG {song_id}: {og_file_name_root} DONE")
+                    if int(song_id) % 5 == 0: print()
 
             else:
                 missing_lyrics_obj[og_file_name_root] = {
@@ -139,16 +178,15 @@ for og_file_path in og_files_paths_list:
             }
 
 
-# dumping objects to json files
-songs_json_file_path = os.path.join(obj_jsons_files_dir, "songs.json")
-playlists_json_file_path = os.path.join(obj_jsons_files_dir, "playlists.json")
-missing_covers_json_file_path = os.path.join(obj_jsons_files_dir, "missing_covers.json")
-missing_lyrics_json_file_path = os.path.join(obj_jsons_files_dir, "missing_lyrics.json")
-
+# dumping data objects to json files
 with open(songs_json_file_path, "w", encoding="utf-8") as f:
     json.dump(songs_obj, f, indent=4)
 with open(playlists_json_file_path, "w", encoding="utf-8") as f:
     json.dump(playlists_obj, f, indent=4)
+with open(songs_root_id_mapping_json_file_path, "w", encoding="utf-8") as f:
+    json.dump(songs_root_to_id_mapping_obj, f, indent=4)
+with open(playlists_root_id_mapping_json_file_path, "w", encoding="utf-8") as f:
+    json.dump(playlists_root_to_id_mapping_obj, f, indent=4)
 with open(missing_covers_json_file_path, "w", encoding="utf-8") as f:
     json.dump(missing_covers_obj, f, indent=4)
 with open(missing_lyrics_json_file_path, "w", encoding="utf-8") as f:

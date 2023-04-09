@@ -1,6 +1,9 @@
 # Custom
-media/original_songs_data_combined
 media/audios
+media/covers
+media/lyrics
+media/original_songs_data_combined
+media/genre_covers
 
 
 ## Ignore Visual Studio temporary files, build results, and

@@ -134,29 +134,29 @@ if (repeat == 2){
 //     } 
 // }
 
-function scroll_to_item(item) {
-    let item_container = item.getBoundingClientRect();
-    // scroll top of item into view if it is above visible area of content wrapper
-    if (item_container.scrollTop > item.offsetTop) {
-        console.log("scrolling for top");
-        console.log("Parent ScrollTop: " + item_container.scrollTop);
-        console.log("Parent ClientHeight: " + item_container.clientHeight);
-        console.log("Item OffsetTop: " + item.offsetTop);
-        console.log("Item ScrollHeight: " + item.scrollHeight);
-        console.log(" ");
-        item.scrollIntoView();
-    }
-    // scroll bottom of item into view if it is under visible area of content wrapper
-    if (item_container.scrollTop + item_container.clientHeight < item.offsetTop + item.scrollHeight) {
-        console.log("scrolling for bottom");
-        console.log("Parent ScrollTop: " + item_container.scrollTop);
-        console.log("Parent ClientHeight: " + item_container.clientHeight);
-        console.log("Item OffsetTop: " + item.offsetTop);
-        console.log("Item ScrollHeight: " + item.scrollHeight);
-        console.log(" ");
-        item.scrollIntoView(false);
-    }
-}
+// function scroll_to_item(item) {
+//     let item_container = item.getBoundingClientRect();
+//     // scroll top of item into view if it is above visible area of content wrapper
+//     if (item_container.scrollTop > item.offsetTop) {
+//         console.log("scrolling for top");
+//         console.log("Parent ScrollTop: " + item_container.scrollTop);
+//         console.log("Parent ClientHeight: " + item_container.clientHeight);
+//         console.log("Item OffsetTop: " + item.offsetTop);
+//         console.log("Item ScrollHeight: " + item.scrollHeight);
+//         console.log(" ");
+//         item.scrollIntoView();
+//     }
+//     // scroll bottom of item into view if it is under visible area of content wrapper
+//     if (item_container.scrollTop + item_container.clientHeight < item.offsetTop + item.scrollHeight) {
+//         console.log("scrolling for bottom");
+//         console.log("Parent ScrollTop: " + item_container.scrollTop);
+//         console.log("Parent ClientHeight: " + item_container.clientHeight);
+//         console.log("Item OffsetTop: " + item.offsetTop);
+//         console.log("Item ScrollHeight: " + item.scrollHeight);
+//         console.log(" ");
+//         item.scrollIntoView(false);
+//     }
+// }
 
 function shuffle_array(array) {
     let returnArray = [...array], currentIndex = returnArray.length,  randomIndex;
@@ -285,7 +285,8 @@ function render_tab(tab_tag){
                 
                 // adding image to cover if category item is a song
                 content_window_category_item_cover = document.createElement("img");
-                content_window_category_item_cover.src = "./media/covers/" + category_item_id + ".jpg";
+                // content_window_category_item_cover.src = "./media/covers/" + category_item_id + ".jpg";
+                content_window_category_item_cover.src = "./media/covers/" + songs_obj[category_item_id].song_file_name_root + ".jpg";
                 content_window_category_item_cover.alt = category_tag + "_item_cover";
             }
             else{
@@ -298,7 +299,8 @@ function render_tab(tab_tag){
                     content_window_category_item_cover = document.createElement("div");
                     for (let i = 0; i < 4; i++){
                         let content_window_category_item_cover_collage_image = document.createElement("img");
-                        content_window_category_item_cover_collage_image.src = "./media/covers/" + category_item_obj.playlist_song_ids[i] + ".jpg";
+                        // content_window_category_item_cover_collage_image.src = "./media/covers/" + category_item_obj.playlist_song_ids[i] + ".jpg";
+                        content_window_category_item_cover_collage_image.src = "./media/covers/" + songs_obj[category_item_obj.playlist_song_ids[i]].song_file_name_root + ".jpg";
                         content_window_category_item_cover_collage_image.classList.add("content-window-category-item-cover-collage-image");
                         content_window_category_item_cover_collage_image.alt = category_tag + "_item_cover";
                         content_window_category_item_cover.appendChild(content_window_category_item_cover_collage_image);
@@ -307,7 +309,8 @@ function render_tab(tab_tag){
                 // otherwise adding single image to cover
                 else{
                     content_window_category_item_cover = document.createElement("img");
-                    content_window_category_item_cover.src = "./media/covers/" + category_item_obj.playlist_song_ids[0] + ".jpg";
+                    // content_window_category_item_cover.src = "./media/covers/" + category_item_obj.playlist_song_ids[0] + ".jpg";
+                    content_window_category_item_cover.src = "./media/covers/" + songs_obj[category_item_obj.playlist_song_ids[0]].song_file_name_root + ".jpg";
                     content_window_category_item_cover.alt = category_tag + "_item_cover";
                 }
             }
@@ -402,7 +405,8 @@ function render_playlist(playlist_id){
         playlist_description_cover = document.createElement("div");
         for (let i = 0; i < 4; i++){
             let playlist_description_cover_collage_image = document.createElement("img");
-            playlist_description_cover_collage_image.src = "./media/covers/" + playlist_song_ids[i] + ".jpg";
+            // playlist_description_cover_collage_image.src = "./media/covers/" + playlist_song_ids[i] + ".jpg";
+            playlist_description_cover_collage_image.src = "./media/covers/" + songs_obj[playlist_song_ids[i]].song_file_name_root + ".jpg";
             playlist_description_cover_collage_image.classList.add("playlist-description-cover-collage-image");
             playlist_description_cover_collage_image.alt = "playlist_cover";
             playlist_description_cover.appendChild(playlist_description_cover_collage_image);
@@ -411,7 +415,8 @@ function render_playlist(playlist_id){
     // otherwise adding single image to cover
     else{
         playlist_description_cover = document.createElement("img");
-        playlist_description_cover.src = "./media/covers/" + playlist_song_ids[0] + ".jpg";
+        // playlist_description_cover.src = "./media/covers/" + playlist_song_ids[0] + ".jpg";
+        playlist_description_cover.src = "./media/covers/" + songs_obj[playlist_song_ids[0]].song_file_name_root + ".jpg";
         playlist_description_cover.alt = "playlist_cover";
     }
 
@@ -623,7 +628,8 @@ function render_playlist(playlist_id){
 
         let playlist_content_item_cover_image = document.createElement("img");
         playlist_content_item_cover_image.classList.add("playlist-content-item-cover-image");
-        playlist_content_item_cover_image.src = "./media/covers/" + song_id + ".jpg";
+        // playlist_content_item_cover_image.src = "./media/covers/" + song_id + ".jpg";
+        playlist_content_item_cover_image.src = "./media/covers/" + songs_obj[song_id].song_file_name_root + ".jpg";
         playlist_content_item_cover_image.alt = "playlist_item_cover";
         playlist_content_item_cover.appendChild(playlist_content_item_cover_image);
 
@@ -741,22 +747,22 @@ function render_queue(item_id, song = false, append_queue = false, shuffle_curre
     if (song) {
         if ( ! queue_song_id_list.includes(item_id) ){
             let playlist_id = songs_obj[item_id].song_playlist_ids[0];
-            queue_song_id_list = [...playlists_obj[playlist_id].playlist_song_ids];
+            queue_song_id_list = [...playlists_obj[playlist_id].playlist_song_ids].map(song_id => Number(song_id));
         }
     }
     // appending queue with new playlist's songs if append_queue == true
     // otherwise replacing queue with new playlist's songs if append_queue == false
     else {
         if (append_queue){
-            queue_song_id_list = queue_song_id_list.concat([...playlists_obj[item_id].playlist_song_ids]);
+            queue_song_id_list = queue_song_id_list.concat([...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id)));
         }else {
             if (shuffle_current_queue){
-                queue_song_id_list = shuffle_array([...playlists_obj[item_id].playlist_song_ids]);
+                queue_song_id_list = shuffle_array([...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id)));
                 queue_song_id_list = queue_song_id_list.filter(song_id => song_id != current_song_id);
                 queue_song_id_list.unshift(current_song_id);
             }
             else
-                queue_song_id_list = [...playlists_obj[item_id].playlist_song_ids];
+                queue_song_id_list = [...playlists_obj[item_id].playlist_song_ids].map(song_id => Number(song_id));
         }
     }
 
@@ -788,7 +794,8 @@ function render_queue(item_id, song = false, append_queue = false, shuffle_curre
 
         let queue_overlay_content_item_cover_image = document.createElement("img");
         queue_overlay_content_item_cover_image.classList.add("queue-content-item-cover-image");
-        queue_overlay_content_item_cover_image.src = "./media/covers/" + song_id + ".jpg";
+        // queue_overlay_content_item_cover_image.src = "./media/covers/" + song_id + ".jpg";
+        queue_overlay_content_item_cover_image.src = "./media/covers/" + songs_obj[song_id].song_file_name_root + ".jpg";
         queue_overlay_content_item_cover_image.alt = "queue_item_cover";
         queue_overlay_content_item_cover.appendChild(queue_overlay_content_item_cover_image);
 
@@ -827,7 +834,9 @@ function render_queue(item_id, song = false, append_queue = false, shuffle_curre
         let player_extended_queue_content_item = queue_overlay_content_item.cloneNode(true);
         player_extended_queue_content_item.id = "player-extended-queue-content-item-song-" + song_id;
         player_extended_queue_content_wrapper.appendChild(player_extended_queue_content_item);
+
         if (song_id == current_song_id){
+            queue_overlay_content_item.scrollIntoView();
             player_extended_queue_content_item.scrollIntoView();
         }
 
@@ -856,7 +865,6 @@ function like_unlike_song(song_id){
         liked = true
         liked_song_ids_list.push(song_id);
     }
-    // and in playlist contents
     let playlist_current_playing_item_like_icon_id = "#playlist-content-item-like-button-icon-song-" + current_song_id;
     let playlist_current_playing_item_like_icon_element = content_window.querySelector(playlist_current_playing_item_like_icon_id);
     if (current_song_id == song_id){
@@ -955,7 +963,8 @@ function play_song(song_id, playlist_id = null, append_queue = false, shuffle_cu
     let song_obj = songs_obj[song_id];
 
     // update player song info
-    let img_src = "./media/covers/" + song_id + ".jpg";
+    // let img_src = "./media/covers/" + song_id + ".jpg";
+    let img_src = "./media/covers/" + songs_obj[song_id].song_file_name_root + ".jpg";
     player_song_cover_image.src = img_src;
     player_extended_cover_image.src = img_src;
     player_extended_cover_image.alt = "song_cover_image";
@@ -970,11 +979,12 @@ function play_song(song_id, playlist_id = null, append_queue = false, shuffle_cu
         player_like_button_icon.classList.remove("fa-regular");
     }
     else{
-        player_like_button_icon.classList.add("fa-regular");
         player_like_button_icon.classList.remove("fa-solid");
+        player_like_button_icon.classList.add("fa-regular");
     }
 
-    player_audio_controls.innerHTML = `<source src="./media/audios/${song_id}.mp3" type="audio/mpeg">`;
+    // player_audio_controls.innerHTML = `<source src="./media/audios/${song_id}.mp3" type="audio/mpeg">`;
+    player_audio_controls.innerHTML = `<source src="./media/audios/${song_obj.song_file_name_root}.mp3" type="audio/mpeg">`;
     player_audio_controls.load();
     play_pause(true);
 
