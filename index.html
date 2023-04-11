@@ -86,19 +86,52 @@
     <section class="right-window full-height">
         <header>
             <div id="header-left-empty-part"></div>
-            <div id="search-bar-wrapper">
-                <input type="text" name="search" id="search-bar" placeholder="Search">
-                <i id="search-bar-icon" class="fa-solid fa-magnifying-glass"></i>
-                </input>
+            <div id="header-middle-part">
+                <div id="search-bar-wrapper">
+                    <input type="text" name="search" id="search-bar" placeholder="Search">
+                    <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                </div>
+                <div id="search-suggestions-wrapper" class="shrunk-element">
+                    <!-- <span class="search-suggestion">
+                        <p class="search-suggestion-text">
+                            Search History 1
+                        </p>
+                        <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                    </span>
+                    <span class="search-suggestion">
+                        <p class="search-suggestion-text">
+                            Search History 2
+                        </p>
+                        <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                    </span>
+                    <span class="search-suggestion">
+                        <p class="search-suggestion-text">
+                            Search History 3
+                        </p>
+                        <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                    </span>
+                    <span class="search-suggestion">
+                        <p class="search-suggestion-text">
+                            Search History 4
+                        </p>
+                        <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                    </span>
+                    <span class="search-suggestion">
+                        <p class="search-suggestion-text">
+                            Search History 5
+                        </p>
+                        <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                    </span> -->
+                </div>
             </div>
             <div id="header-right-part">
-                <button id="upload-button-container" class="header-right-part-button" title="Upload">
+                <button id="upload-button-container" class="header-right-part-button standard-button" title="Upload">
                     <i class="fa-solid fa-upload"></i>
                 </button>
-                <button id="messages-button-container" class="header-right-part-button" title="Messages">
+                <button id="messages-button-container" class="header-right-part-button standard-button" title="Messages">
                     <i class="fa-solid fa-envelope"></i>
                 </button>
-                <button id="profile-button-container" class="header-right-part-button" title="Profile & Settings">
+                <button id="profile-button-container" class="header-right-part-button standard-button" title="Profile & Settings">
                     <i class="fa-solid fa-user"></i>
                     <div class="profile-dropdown-overlay shrunk-element invisible-element">
                         <ul>
@@ -338,13 +371,13 @@
 
                         <div class="playlist-content-options-column">
                             
-                            <button class="playlist-content-item-like-button playlist-content-item-option-button" title="Like">
-                                <i class="fa-regular fa-heart playlist-content-item-option-button-icon"></i>
+                            <button class="playlist-content-item-like-button standard-button" title="Like">
+                                <i class="fa-regular fa-heart"></i>
                                 <i class="fa-solid fa-heart"></i>
                             </button>
 
-                            <button class="playlist-content-item-options-button playlist-content-item-option-button" title="Options">
-                                <i class="fa-solid fa-ellipsis-vertical playlist-content-item-option-button-icon"></i>
+                            <button class="playlist-content-item-options-button standard-button" title="Options">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
                             </button>
 
                         </div>
@@ -373,13 +406,13 @@
 
                         <div class="playlist-content-options-column">
                             
-                            <button class="playlist-content-item-like-button playlist-content-item-option-button" title="Like">
-                                <i class="fa-regular fa-heart playlist-content-item-option-button-icon"></i>
+                            <button class="playlist-content-item-like-button standard-button" title="Like">
+                                <i class="fa-regular fa-heart"></i>
                                 <i class="fa-solid fa-heart"></i>
                             </button>
 
-                            <button class="playlist-content-item-options-button playlist-content-item-option-button" title="Options">
-                                <i class="fa-solid fa-ellipsis-vertical playlist-content-item-option-button-icon"></i>
+                            <button class="playlist-content-item-options-button standard-button" title="Options">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
                             </button>
 
                         </div>
@@ -427,59 +460,7 @@
             <div id="floating-lyrics-overlay" class="player-floating-part-item-overlay shrunk-element">
                 <p class="queue-lyrics-overlay-label">Lyrics</p>
                 <hr>
-                <p id="floating-lyrics-overlay-content-wrapper" class="queue-lyrics-content-wrapper lyrics-content-wrapper">
-<!--                     
-                    Hey, I was doing just fine before I met you<br>
-                    I drink too much and that's an issue, but I'm okay<br>
-                    Hey, you tell your friends it was nice to meet them<br>
-                    But I hope I never see them again<br>
-                    <br>
-                    I know it breaks your heart<br>
-                    Moved to the city in a broke-down car, and<br>
-                    Four years, no calls<br>
-                    Now you're looking pretty in a hotel bar<br>
-                    And I, I, I, I, I can't stop<br>
-                    No, I, I, I, I, I can't stop<br>
-                    <br>
-                    So, baby, pull me closer<br>
-                    In the back seat of your Rover<br>
-                    That I know you can't afford<br>
-                    Bite that tattoo on your shoulder<br>
-                    Pull the sheets right off the corner<br>
-                    Of that mattress that you stole<br>
-                    From your roommate back in Boulder<br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older<br>
-                    <br>
-                    You look as good as the day I met you<br>
-                    I forget just why I left you, I was insane<br>
-                    Stay and play that Blink-182 song<br>
-                    That we beat to death in Tucson, okay<br>
-                    <br>
-                    I know it breaks your heart<br>
-                    Moved to the city in a broke-down car, and<br>
-                    Four years, no call<br>
-                    Now I'm looking pretty in a hotel bar<br>
-                    And I, I, I, I, I can't stop<br>
-                    No, I, I, I, I, I can't stop<br>
-                    <br>
-                    So, baby, pull me closer<br>
-                    In the back seat of your Rover<br>
-                    That I know you can't afford<br>
-                    Bite that tattoo on your shoulder<br>
-                    Pull the sheets right off the corner<br>
-                    Of that mattress that you stole<br>
-                    From your roommate back in Boulder<br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older
-                     -->
-                </p>
+                <p id="floating-lyrics-overlay-content-wrapper" class="queue-lyrics-content-wrapper lyrics-content-wrapper"></p>
             </div>
 
         </div>
@@ -522,59 +503,7 @@
                 
                 <p class="queue-lyrics-overlay-label">Lyrics</p>
                 <hr>
-                <p id="player-extended-lyrics-content-wrapper" class="queue-lyrics-content-wrapper lyrics-content-wrapper">
-<!-- 
-                    Hey, I was doing just fine before I met you<br>
-                    I drink too much and that's an issue, but I'm okay<br>
-                    Hey, you tell your friends it was nice to meet them<br>
-                    But I hope I never see them again<br>
-                    <br>
-                    I know it breaks your heart<br>
-                    Moved to the city in a broke-down car, and<br>
-                    Four years, no calls<br>
-                    Now you're looking pretty in a hotel bar<br>
-                    And I, I, I, I, I can't stop<br>
-                    No, I, I, I, I, I can't stop<br>
-                    <br>
-                    So, baby, pull me closer<br>
-                    In the back seat of your Rover<br>
-                    That I know you can't afford<br>
-                    Bite that tattoo on your shoulder<br>
-                    Pull the sheets right off the corner<br>
-                    Of that mattress that you stole<br>
-                    From your roommate back in Boulder<br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older<br>
-                    <br>
-                    You look as good as the day I met you<br>
-                    I forget just why I left you, I was insane<br>
-                    Stay and play that Blink-182 song<br>
-                    That we beat to death in Tucson, okay<br>
-                    <br>
-                    I know it breaks your heart<br>
-                    Moved to the city in a broke-down car, and<br>
-                    Four years, no call<br>
-                    Now I'm looking pretty in a hotel bar<br>
-                    And I, I, I, I, I can't stop<br>
-                    No, I, I, I, I, I can't stop<br>
-                    <br>
-                    So, baby, pull me closer<br>
-                    In the back seat of your Rover<br>
-                    That I know you can't afford<br>
-                    Bite that tattoo on your shoulder<br>
-                    Pull the sheets right off the corner<br>
-                    Of that mattress that you stole<br>
-                    From your roommate back in Boulder<br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older<br>
-                    <br>
-                    We ain't ever getting older
-                     -->
-                </p>
+                <p id="player-extended-lyrics-content-wrapper" class="queue-lyrics-content-wrapper lyrics-content-wrapper"></p>
             </div>
         </div>
 
@@ -597,7 +526,7 @@
                 <p id="player-song-artist"></p>
             </div>
 
-            <button id="player-left-part-like-button-container" class="player-control-button" title="Like">
+            <button id="player-left-part-like-button-container" class="standard-button" title="Like">
                 <i class="fa-regular fa-heart"></i>
                 <!-- <i class="fa-regular fa-heart"></i> -->
             </button>
@@ -607,26 +536,26 @@
             <div id="player-middle-part-main">
                 <div id="player-middle-part-controls">
                     <button id="shuffle-button-container"
-                        class="player-control-button" title="Shuffle">
+                        class="standard-button" title="Shuffle">
                         <i class="fa-solid fa-shuffle inactive-button"></i>
                     </button>
 
                     <button id="previous-song-button-container"
-                        class="player-control-button" title="Play Previous Song">
+                        class="standard-button" title="Play Previous Song">
                         <i class="fa-solid fa-backward-step"></i>
                     </button>
                     <button id="play-pause-button-container"
-                        class="player-control-button" title="Play">
+                        class="standard-button" title="Play">
                         <i class="fa-solid fa-circle-play"></i>
                         <!-- <i class="fa-solid fa-circle-pause"></i> -->
                     </button>
                     <button id="next-song-button-container"
-                        class="player-control-button" title="Play Next Song">
+                        class="standard-button" title="Play Next Song">
                         <i class="fa-solid fa-forward-step"></i>
                     </button>
 
                     <button id="repeat-button-container"
-                        class="player-control-button" title="Repeat">
+                        class="standard-button" title="Repeat">
                         <i class="fa-solid fa-1 shrunk-element"></i>
                         <i class="fa-solid fa-repeat inactive-button"></i>
                     </button>
@@ -636,7 +565,7 @@
             </div>
 
             <div id="player-middle-part-right">
-                <button id="player-options-button-container" class="player-control-button" title="Options">
+                <button id="player-options-button-container" class="standard-button" title="Options">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
                 <div id="player-middle-part-timestamp">
@@ -648,24 +577,24 @@
 
         <div id="player-right-part">
             <div id="player-right-part-main-controls">
-                <button id="queue-button-container" class="player-control-button" title="Queue">
+                <button id="queue-button-container" class="standard-button" title="Queue">
                     <i class="fa-solid fa-list inactive-button"></i>
                 </button>
-                <button id="lyrics-button-container" class="player-control-button" title="Lyrics">
+                <button id="lyrics-button-container" class="standard-button" title="Lyrics">
                     <!-- <i class="fa-solid fa-closed-captioning"></i> -->
                     <i class="fa-regular fa-closed-captioning inactive-button"></i>
                 </button>
             </div>
 
             <div id="player-right-part-volume-controls">
-                <button id="volume-button-container" class="player-control-button" title="Mute">
+                <button id="volume-button-container" class="standard-button" title="Mute">
                     <i id="player-right-part-volume-button" class="fa-solid fa-volume-high"></i>
                 </button>
 
                 <input type="range" name="volume-seek-bar" id="volume-seek-bar" value="80" title="Volume">
             </div>
 
-            <button id="player-extend-button-container" class="player-control-button" title="Extend Player">
+            <button id="player-extend-button-container" class="standard-button" title="Extend Player">
                 <i class="fa-solid fa-caret-up"></i>
                 <!-- <i class="fa-solid fa-caret-down"></i> -->
             </button>

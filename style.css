@@ -14,15 +14,16 @@
     --panels-box-shadow-color: black;
     --panels-box-shadow: 0 0 5px 5px var(--panels-box-shadow-color);
     --overlay-box-shadow: 0 0 2px 2px var(--panels-box-shadow-color);
+    --buttons-box-shadow: 0 0 10px 7px var(--hover-bg-color-light) inset;
     --hover-box-shadow-color: rgba(0, 0, 0, 0.5);
-    --floating-panels-bg-color: rgba(0, 0, 0, 0.90);
-    /* --floating-panels-bg-color: rgb(15, 10, 10); */
+    /* --floating-panels-bg-color: rgba(0, 0, 0, 0.90); */
+    --floating-panels-bg-color: rgb(15, 10, 10, 0.9);
     --playlist-page-bg-color: var(--panels-bg-color);
     --playlist-content-item-cover-side: 2rem;
     --floating-queue-content-item-cover-side: 1.9rem;
     --player-extended-queue-content-item-cover-side: 2.3rem;
-    --transition-properties: all 0.2s;
-    /* --transition-properties: none; */
+    /* --transition-properties: all 0.2s; */
+    --transition-properties: none;
 }
 
 /* SCROLLBAR CUSTOMIZATION */
@@ -74,7 +75,7 @@ input[type='range']{
     border-radius: 0.5rem;
 }
 input:focus-visible{
-    outline: 3px solid white;
+    outline: 1px solid white;
 }
 input[type='range']:focus-visible{
     outline-offset: 0.25rem;
@@ -87,10 +88,23 @@ button{
     font-size: inherit;
 }
 button:focus-visible{
-    outline: 2px solid white;
+    outline: 1px solid white;
 }
 hr{
     width: 100%;
+}
+.standard-button{
+    position: relative;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+}
+.standard-button:hover{
+    box-shadow: var(--buttons-box-shadow);
 }
 
 
@@ -164,14 +178,14 @@ nav{
     border-radius: 0.5rem;
     text-align: left;
     cursor: pointer;
-    margin: 0.75rem;
+    margin: 0.75rem 0.75rem 0;
     padding: 0.75rem 1rem;
 }
 .nav-button-container:hover{
     background-color: var(--hover-bg-color-light);
 }
 .nav-button-container-shrunk{
-    margin: 0.75rem 0;
+    margin: 0.75rem 0 0;
     padding: 0.75rem 0.5rem;
     display: flex;
     align-items: center;
@@ -186,13 +200,13 @@ nav{
     font-weight: 500;
     margin-left: 0.5rem;
 }
-#nav-library-button-container:hover{
-    background-color: rgba(255, 255, 255, 0.2);
-}
 .nav-library-content-items-wrapper{
     margin: 1rem 0 0.25rem 0.25rem;
     max-height: 17.3rem;
     overflow-y: hidden;
+}
+#nav-library-button-container:hover{
+    padding-right: 0.75rem;
 }
 #nav-library-button-container:hover .nav-library-content-items-wrapper{
     overflow-y: auto;
@@ -235,7 +249,7 @@ header{
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 10;
+    z-index: 20;
     background-color: var(--panels-bg-color);
     box-shadow: var(--panels-box-shadow);
     display: flex;
@@ -249,49 +263,67 @@ header{
     height: 100%;
     width: 10%;
 }
-#search-bar-wrapper{
+#header-middle-part{
     width: 55%;
     min-width: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    font-weight: 300;
+}
+#search-bar-wrapper{
+    width: 80%;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 #search-bar{
-    width: 80%;
+    width: 100%;
     color: white;
-    font-size: 0.8rem;
-    padding: 6px calc(10% + 1.5rem) 5px 0.75rem;
-    border-radius: 0.8rem;
+    font-size: 1rem;
+    padding: 0.4rem 2.5rem 0.4rem 0.75rem;
+    border-radius: 0.25rem;
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid white;
+    position: relative;
+    font-family: inherit;
 }
-#search-bar-icon{
+#search-suggestions-wrapper{
+    width: calc(80% - 1.5rem);
+    font-size: 0.9rem;
     position: absolute;
-    font-size: 0.8rem;
-    right: calc(10% + 1rem);
+    top: 2.1rem;
+    background-color: var(--floating-panels-bg-color);
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+.search-suggestion{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    cursor: pointer;
+    position: relative;
+}
+.search-suggestion-text{
+    width: 100%;
+}
+.search-suggestion:hover{
+    background-color: var(--hover-bg-color-light);
+}
+.search-bar-icon{
+    position: absolute;
+    font-size: 0.8em;
+    right: 1rem;
     color: white;
 }
 #header-right-part{
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     width: 25%;
     margin: 0 0 0 10%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-}
-.header-right-part-button{
-    height: 2rem;
-    width: 2rem;
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    font-size: 0.9rem;
-}
-.header-right-part-button:hover{
-    box-shadow: 0 0 10px 10px var(--hover-bg-color-light) inset;
 }
 .profile-dropdown-overlay{
     position: absolute;
@@ -405,15 +437,9 @@ header{
     position: absolute;
     right: 0;
     bottom: 0;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 1rem;
-    margin: 15px;
-    padding-left: 2px;
+    margin: 0.75rem;
+    padding-left: 0.1rem;
     box-shadow: 0 0 10px 10px var(--hover-box-shadow-color) inset, 0 0 10px 5px rgba(255, 255, 255, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .content-window-category-item-cover-overlay-icon-wrapper:hover{
     box-shadow: 0 0 10px 10px black inset, 0 0 10px 10px rgba(255, 255, 255, 0.3);
@@ -544,7 +570,7 @@ header{
     font-size: 0.8rem;
 }
 .playlist-description-button:hover{
-    box-shadow: 0 0 10px 7px var(--hover-bg-color-light) inset;
+    box-shadow: var(--buttons-box-shadow);
 }
 .playlist-description-button-icon{
     margin-right: 0.5rem;
@@ -597,6 +623,7 @@ header{
 }
 .playlist-content-name-column{
     width: 30%;
+    padding: 0 0.5rem;
 }
 #playlist-content .playlist-content-name-column{
     cursor: pointer;
@@ -606,6 +633,7 @@ header{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 0 0.5rem;
 }
 .playlist-content-duration-column{
     width: 15%;
@@ -614,18 +642,8 @@ header{
     width: 15%;
     display: inline-flex;
 }
-.playlist-content-item-option-button{
-    padding: 0 10px;
-    position: relative;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.playlist-content-item-option-button:hover{
-    box-shadow: 0 0 10px 7px var(--hover-bg-color-light) inset;
+.playlist-content-options-column button{
+    font-size: 0.8rem;
 }
 
 /* playlist item cover image */
@@ -734,7 +752,6 @@ header{
 #player-middle-part-controls{
     margin: 0.25rem auto 0;
     width: 70%;
-    font-size: 0.9rem;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -794,22 +811,6 @@ header{
     max-width: 150px;
 }
 
-/* player general styles */
-.player-control-button{
-    padding: 0 10px;
-    position: relative;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 1rem;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.player-control-button:hover{
-    box-shadow: 0 0 10px 7px var(--hover-bg-color-light) inset;
-}
-
 /* player floating part */
 #player-floating-part{
     position: absolute;
@@ -821,8 +822,6 @@ header{
     align-items: end;
     z-index: 5;
     color: white;
-    /* width: max-content; */
-    /* max-width: max-content; */
     margin: 0;
     padding: 0;
 }
@@ -832,7 +831,6 @@ header{
     min-width: 300px;
     max-width: 350px;
     margin-left: 5px;
-    display: inline-block;
     border-radius: 0.25rem;
     box-shadow: var(--overlay-box-shadow);
     background-color: var(--floating-panels-bg-color);
@@ -871,7 +869,7 @@ header{
 }
 .queue-content-item-name-and-artists-column{
     width: 65%;
-    padding-right: 0.5rem;
+    padding: 0 0.5rem;
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
@@ -955,7 +953,6 @@ header{
     border-radius: 0.25rem;
     margin-right: 0.5rem;
     box-shadow: var(--overlay-box-shadow);
-    /* background-color: var(--floating-panels-bg-color); */
     font-size: 0.8rem;
     overflow: hidden;
     padding: 0 0.5rem;
@@ -973,7 +970,6 @@ header{
 /* extended player queue */
 #player-extended-queue{
     width: 30%;
-    /* font-size: 1.1em; */
 }
 #player-extended-queue-content-wrapper .queue-overlay-content-item{
     padding: 0.45rem;

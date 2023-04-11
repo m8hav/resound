@@ -33,6 +33,13 @@ songs = {
     },
 }
 
+# playlists root to id mapping object
+playlists_root_id_mapping = {
+    "playlist_name": "playlist_id",
+    "playlist_name": "playlist_id",
+    "playlist_name": "playlist_id",
+}
+
 # playlist object
 playlists = {
     "playlist_id": {
@@ -50,13 +57,6 @@ playlists = {
         "playlist_song_artist_names": ["artist 1", "artist 2", "artist 3"],
         "playlist_song_ids": [1, 2, 3],
     },
-}
-
-# playlists root to id mapping object
-playlists_root_id_mapping = {
-    "playlist_name": "playlist_id",
-    "playlist_name": "playlist_id",
-    "playlist_name": "playlist_id",
 }
 
 # category object structure
