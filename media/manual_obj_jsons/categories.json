@@ -32,6 +32,26 @@
         ]
     },
     "3": {
+        "category_tag": "popular_playlists",
+        "category_name": "Popular Playlists",
+        "category_items_type": "playlist",
+        "category_item_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+        ]
+    },
+    "4": {
         "category_tag": "genres",
         "category_name": "Genres",
         "category_items_type": "playlist",
@@ -51,10 +71,84 @@
             13
         ]
     },
-    "4": {
-        "category_tag": "moods",
-        "category_name": "Moods",
+    "5": {
+        "category_tag": "taylor_swift",
+        "category_name": "Taylor Swift",
+        "category_items_type": "song",
+        "category_item_ids": [
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "209"
+        ]
+    },
+    "6": {
+        "category_tag": "selena_gomez",
+        "category_name": "Selena Gomez",
+        "category_items_type": "song",
+        "category_item_ids": [
+            "190",
+            "191",
+            "192",
+            "193",
+            "194",
+            "195",
+            "196",
+            "197",
+            "198",
+            "199"
+        ]
+    },
+    "7": {
+        "category_tag": "saved_playlists",
+        "category_name": "Saved Playlists",
         "category_items_type": "playlist",
+        "category_item_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+        ]
+    },
+    "8": {
+        "category_tag": "history",
+        "category_name": "History",
+        "category_items_type": "song",
+        "category_item_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+        ]
+    },
+    "9": {
+        "category_tag": "liked",
+        "category_name": "Liked Songs",
+        "category_items_type": "song",
         "category_item_ids": [
             1,
             2,

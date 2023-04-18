@@ -4,6 +4,7 @@ media/audios
 # media/lyrics
 media/original_songs_data_combined
 media/genre_covers
+media/sample_audio_and_covers/audio
 
 
 ## Ignore Visual Studio temporary files, build results, and

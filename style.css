@@ -22,8 +22,8 @@
     --playlist-content-item-cover-side: 2rem;
     --floating-queue-content-item-cover-side: 1.9rem;
     --player-extended-queue-content-item-cover-side: 2.3rem;
-    /* --transition-properties: all 0.2s; */
-    --transition-properties: none;
+    --transition-properties: all 0.2s;
+    /* --transition-properties: none; */
 }
 
 /* SCROLLBAR CUSTOMIZATION */
@@ -70,6 +70,9 @@ p{
 a{
     color: white;
 }
+input{
+    font-family: inherit;
+}
 input[type='range']{
     cursor: pointer;
     border-radius: 0.5rem;
@@ -83,12 +86,14 @@ input[type='range']:focus-visible{
 button{
     background-color: transparent;
     border: none;
+    outline: none;
     color: inherit;
     cursor: pointer;
     font-size: inherit;
 }
 button:focus-visible{
-    outline: 1px solid white;
+    /* outline: 1px solid white; */
+    box-shadow: var(--buttons-box-shadow);
 }
 hr{
     width: 100%;
@@ -99,6 +104,7 @@ hr{
     width: 2rem;
     border-radius: 1rem;
     display: inline-flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 0.9rem;
@@ -207,6 +213,7 @@ nav{
 }
 #nav-library-button-container:hover{
     padding-right: 0.75rem;
+    transition: none 0s;
 }
 #nav-library-button-container:hover .nav-library-content-items-wrapper{
     overflow-y: auto;
@@ -225,7 +232,7 @@ nav{
 }
 .nav-library-content-item:hover{
     color: white;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.35);
 }
 
 .right-window{
@@ -287,7 +294,6 @@ header{
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid white;
     position: relative;
-    font-family: inherit;
 }
 #search-suggestions-wrapper{
     width: calc(80% - 1.5rem);
@@ -318,7 +324,6 @@ header{
     color: white;
 }
 #header-right-part{
-    /* font-size: 1.2rem; */
     width: 25%;
     margin: 0 0 0 10%;
     display: flex;
@@ -327,8 +332,8 @@ header{
 }
 .profile-dropdown-overlay{
     position: absolute;
-    top: var(--header-height);
-    right: 50%;
+    top: calc(var(--header-height) + 0.5rem);
+    right: 7.5%;
     width: 6rem;
     background-color: var(--floating-panels-bg-color);
     box-shadow: var(--overlay-box-shadow);
@@ -340,6 +345,7 @@ header{
 .profile-dropdown-overlay ul li{
     width: 100%;
     padding: 0.5rem;
+    border-top: 1px solid var(--item-border-bottom-color);
     border-bottom: 1px solid var(--item-border-bottom-color);
     list-style: none;
     overflow: hidden;
@@ -347,6 +353,82 @@ header{
     text-overflow: ellipsis;
 }
 .profile-dropdown-overlay ul li:hover{
+    background-color: var(--hover-bg-color-light);
+}
+.login-popup-fade-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+.login-popup-box{
+    width: 350px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--floating-panels-bg-color);
+    box-shadow: var(--overlay-box-shadow);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    z-index: 21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.2rem;
+    color: white;
+}
+.login-popup-tab-buttons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.login-popup-tab-button{
+    flex-grow: 1;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    margin: 0 0.25rem 0 0;
+    border: 2px solid var(--hover-bg-color-light);
+}
+.login-popup-tab-button:hover{
+    background-color: var(--hover-bg-color-light);
+}
+.login-popup-box hr{
+    width: 100%;
+    border: 1px solid var(--item-border-bottom-color);
+    margin: 1rem 0 0.75rem;
+}
+.login-popup-box input{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--item-border-bottom-color);
+    background-color: var(--panels-bg-color);
+    color: white;
+    font-size: 1rem;
+    margin: 0.5rem 0 1rem;
+}
+.login-popup-submit-button{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--item-border-bottom-color);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0.25rem 0 0;
+}
+.login-popup-submit-button:hover{
     background-color: var(--hover-bg-color-light);
 }
 
