@@ -9,6 +9,8 @@
     },
     "explore": {
         "tab_category_ids": [
+            10,
+            11,
             5,
             6
         ]

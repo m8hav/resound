@@ -131,25 +131,16 @@
                 <button id="messages-button-container" class="header-right-part-button standard-button" title="Messages">
                     <i class="fa-solid fa-envelope"></i>
                 </button>
-                <button id="profile-button-container" class="header-right-part-button standard-button" title="Profile & Settings">
+                <button id="profile-button-container" class="header-right-part-button standard-button" title="User Profile">
                     <i class="fa-solid fa-user"></i>
                 </button>
                 <div class="profile-dropdown-overlay shrunk-element invisible-element">
                     <ul>
-                        <!-- <li>
-                            <p>
-                                User Profile
-                            </p>
+                        <li id="profile-dropdown-overlay-login-status">
+                            Not logged in
                         </li>
-                        <li>
-                            <p>
-                                Settings
-                            </p>
-                        </li> -->
-                        <li id="profile-dropdown-overlay-login-button">
-                            <p>
-                                Login
-                            </p>
+                        <li id="profile-dropdown-overlay-login-logout-button">
+                            Login / Sign Up
                         </li>
                     </ul>
                 </div>
@@ -611,11 +602,12 @@
         <img class="body-wallpaper-image" src="./media/wallpapers/3046432.jpg" alt="background_wallpaper">
         <div class="body-wallpaper-overlay"></div>
     </div>
+
     <div class="login-popup invisible-element">
         <div class="login-popup-fade-bg"></div>
         <div class="login-popup-box">
             <div class="login-popup-tab-buttons">
-                <div id="login-popup-login-tab-button" class="login-popup-tab-button active-item">
+                <div id="login-popup-login-tab-button" class="login-popup-tab-button login-popup-tab-active-button">
                         Login
                 </div>
                 <div id="login-popup-signup-tab-button" class="login-popup-tab-button">
@@ -626,10 +618,15 @@
             <hr>
             <div class="login-popup-login-tab invisible-element shrunk-element">
                 <form class="login-popup-tab-form">
-                    <p>Username</p>
-                    <input type="text" name="username" class="login-popup-tab-username-input" placeholder="Username">
-                    <p>Password</p>
-                    <input type="password" name="password" class="login-popup-tab-password-input" placeholder="Password">
+
+                    <p class="login-popup-input-label">Username</p>
+                    <input type="text" name="username" class="login-popup-username-input" placeholder="Username">
+                    <p class="login-popup-username-caution-text login-popup-caution-text display-none"></p>
+
+                    <p class="login-popup-input-label">Password</p>
+                    <input type="password" name="password" class="login-popup-password-input" placeholder="Password">
+                    <p class="login-popup-password-caution-text login-popup-caution-text display-none"></p>
+
                 </form>
                 <button id="login-popup-submit-login-button" class="login-popup-submit-button">
                     Login
@@ -637,12 +634,23 @@
             </div>
             <div class="login-popup-signup-tab invisible-element shrunk-element">
                 <form class="login-popup-tab-form">
-                    <p>Username</p>
-                    <input type="text" name="username" class="login-popup-tab-username-input" placeholder="Username">
-                    <p>Email</p>
-                    <input type="email" name="email" class="login-popup-tab-email-input" placeholder="Email">
-                    <p>Password</p>
-                    <input type="password" name="password" class="login-popup-tab-password-input" placeholder="Password">
+
+                    <p class="login-popup-input-label">Username</p>
+                    <input type="text" name="username" class="login-popup-username-input" placeholder="Username">
+                    <p class="login-popup-username-caution-text login-popup-caution-text display-none"></p>
+
+                    <p class="login-popup-input-label">Email</p>
+                    <input type="email" name="email" class="login-popup-email-input" placeholder="Email">
+                    <p class="login-popup-email-caution-text login-popup-caution-text display-none"></p>
+
+                    <p class="login-popup-input-label">Password</p>
+                    <input type="password" name="password" class="login-popup-password-input" placeholder="Password">
+                    <p class="login-popup-password-caution-text login-popup-caution-text display-none"></p>
+
+                    <p class="login-popup-input-label">Confirm Password</p>
+                    <input type="password" name="confirm-password" class="login-popup-confirm-password-input" placeholder="Password">
+                    <p class="login-popup-confirm-password-caution-text login-popup-caution-text display-none"></p>
+
                 </form>
                 <button id="login-popup-submit-signup-button" class="login-popup-submit-button">
                     Sign Up
@@ -650,6 +658,13 @@
             </div>
         </div>
     </div>
+
+    <!-- <div class="floating-notification">
+        <i class="fa-solid fa-square-check floating-notification-icon"></i>
+        <p class="floating-notification-text">
+            Added playlist to library
+        </p>
+    </div> -->
 
     <!-- IMPORTING SCRIPTS -->
     <script type="module" src="./script.js"></script>

@@ -22,8 +22,8 @@
     --playlist-content-item-cover-side: 2rem;
     --floating-queue-content-item-cover-side: 1.9rem;
     --player-extended-queue-content-item-cover-side: 2.3rem;
-    --transition-properties: all 0.2s;
-    /* --transition-properties: none; */
+    /* --transition-properties: all 0.2s; */
+    --transition-properties: none;
 }
 
 /* SCROLLBAR CUSTOMIZATION */
@@ -334,18 +334,18 @@ header{
     position: absolute;
     top: calc(var(--header-height) + 0.5rem);
     right: 7.5%;
-    width: 6rem;
+    width: 10rem;
     background-color: var(--floating-panels-bg-color);
     box-shadow: var(--overlay-box-shadow);
     padding: 0.35rem;
     border-radius: 0.25rem 0 0.25rem 0.25rem;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.75rem;
 }
 .profile-dropdown-overlay ul li{
     width: 100%;
     padding: 0.5rem;
-    border-top: 1px solid var(--item-border-bottom-color);
+    /* border-top: 1px solid var(--item-border-bottom-color); */
     border-bottom: 1px solid var(--item-border-bottom-color);
     list-style: none;
     overflow: hidden;
@@ -371,6 +371,7 @@ header{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--floating-panels-bg-color);
+    background-color: black;
     box-shadow: var(--overlay-box-shadow);
     padding: 1rem;
     border-radius: 0.25rem;
@@ -387,7 +388,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 .login-popup-tab-button{
@@ -399,37 +400,59 @@ header{
     margin: 0 0.25rem 0 0;
     border: 2px solid var(--hover-bg-color-light);
 }
-.login-popup-tab-button:hover{
+.login-popup-tab-active-button{
     background-color: var(--hover-bg-color-light);
+}
+:not(.login-popup-tab-active-button).login-popup-tab-button:hover{
+    background-color: var(--hover-bg-color-light);
+}
+#login-popup-close-button{
+    height: 2.64rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .login-popup-box hr{
     width: 100%;
     border: 1px solid var(--item-border-bottom-color);
-    margin: 1rem 0 0.75rem;
+    margin: 1rem 0 0;
+}
+.login-popup-input-label{
+    font-weight: 400;
+    margin-top: 0.75rem;
+    font-size: 1rem;
 }
 .login-popup-box input{
     width: 100%;
     padding: 0.5rem;
     border-radius: 0.25rem;
     border: 1px solid var(--item-border-bottom-color);
-    background-color: var(--panels-bg-color);
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
-    font-size: 1rem;
-    margin: 0.5rem 0 1rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0.5rem 0 0;
+}
+.login-popup-caution-text{
+    font-size: 0.8rem;
+    padding-top: 0.25rem;
+    color: rgba(255, 32, 32, 0.75);
+    width: 100%;
 }
 .login-popup-submit-button{
     width: 100%;
     padding: 0.5rem;
     border-radius: 0.25rem;
     border: 1px solid var(--item-border-bottom-color);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.25);
     color: white;
+    font-family: inherit;
     font-size: 1rem;
-    font-weight: 300;
-    margin: 0.25rem 0 0;
+    font-weight: 400;
+    margin: 1.25rem 0 0;
 }
 .login-popup-submit-button:hover{
-    background-color: var(--hover-bg-color-light);
+    background-color: rgba(255, 255, 255, 0.35);
 }
 
 /* RIGHT CONTENT WINDOW */
@@ -772,6 +795,7 @@ header{
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     z-index: 10;
 }
 .inactive-player{
@@ -1121,6 +1145,35 @@ header{
 }
 
 
+
+/* FLOATING NOTIFICATION */
+.floating-notification{
+    position: fixed;
+    bottom: calc(var(--player-height) + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 25;
+    width: 15rem;
+    height: 2.5rem;
+    background-color: black;
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.2);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 0.8rem;
+    color: white;
+}
+.floating-notification-icon{
+    height: 1rem;
+    width: 1rem;
+    font-size: 1rem;
+    margin: 0.5rem 1rem 0.5rem 0.5rem;
+}
+
+
+
 /* GENERAL STYLE CLASSES */
 .rotate-180{
     transform: rotate(180deg);
@@ -1147,9 +1200,9 @@ header{
     opacity: 0.5;
 }
 
-.black-background{
+/* .black-background{
     background-color: black;
-}
+} */
 
 .small-button{
     margin-top: 0.25rem;
@@ -1171,4 +1224,8 @@ header{
 .active-item{
     background-color: rgba(255, 255, 255, 0.15);
     color: rgba(255, 255, 255, 0.9);
+}
+
+.display-none{
+    display: none;
 }
