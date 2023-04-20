@@ -314,7 +314,6 @@ function render_content_window(tab_tag){
         tab_category_ids = Object.keys(categories_obj).slice(12, 18);
     }
     tab_category_ids.concat(Object.keys(categories_obj).slice(12, 18-tab_category_ids.length));
-    console.log(tab_category_ids);
 
     for (let category_index in tab_category_ids){
 
@@ -674,7 +673,6 @@ function render_playlist(playlist_id){
     playlist_description_add_to_library_button.appendChild(playlist_description_add_to_library_button_label);
 
     if (saved_playlist_ids_list.includes(playlist_id)) {
-        console.log("playlist is in library");
         playlist_description_add_to_library_button.title = "Remove from Library";
         playlist_description_add_to_library_button_icon.classList.remove("fa-plus");
         playlist_description_add_to_library_button_icon.classList.add("fa-square-minus");
@@ -690,7 +688,6 @@ function render_playlist(playlist_id){
     
     let playlist_description_add_to_queue_button_icon = document.createElement("i");
     playlist_description_add_to_queue_button_icon.classList.add("fa-solid");
-    // playlist_description_add_to_queue_button_icon.classList.add("fa-ellipsis-vertical");
     playlist_description_add_to_queue_button_icon.classList.add("fa-list-check");
     playlist_description_add_to_queue_button_icon.classList.add("playlist-description-button-icon");
     playlist_description_add_to_queue_button.appendChild(playlist_description_add_to_queue_button_icon);
@@ -884,6 +881,10 @@ function render_playlist(playlist_id){
 }
 
 function add_remove_playlist_to_library(playlist_id){
+    if (!current_user_id){
+        make_floating_notification("not_logged_in", false);
+        return;
+    }
     playlist_id = Number(playlist_id);
     if (saved_playlist_ids_list.includes(playlist_id)){
         saved_playlist_ids_list = saved_playlist_ids_list.filter(id => id != playlist_id);
@@ -1051,6 +1052,9 @@ function switch_login_popup_tab(tab = "login"){
         login_popup_login_tab.classList.remove("shrunk-element");
         login_popup_signup_tab.classList.add("invisible-element");
         login_popup_signup_tab.classList.add("shrunk-element");
+        setTimeout(() => {
+            login_popup_login_tab.querySelector(".login-popup-username-input").focus();
+        }, 100);
     } else {
         login_popup_login_tab_button.classList.remove("login-popup-tab-active-button");
         login_popup_signup_tab_button.classList.add("login-popup-tab-active-button");
@@ -1058,10 +1062,15 @@ function switch_login_popup_tab(tab = "login"){
         login_popup_signup_tab.classList.remove("shrunk-element");
         login_popup_login_tab.classList.add("invisible-element");
         login_popup_login_tab.classList.add("shrunk-element");
+        setTimeout(() => {
+            login_popup_signup_tab.querySelector(".login-popup-username-input").focus();
+        }, 100);
     }
     login_popup_login_tab.querySelector(".login-popup-username-caution-text").classList.add("display-none");
-    login_popup_signup_tab.querySelector(".login-popup-email-caution-text").classList.add("display-none");
     login_popup_login_tab.querySelector(".login-popup-password-caution-text").classList.add("display-none");
+    login_popup_signup_tab.querySelector(".login-popup-username-caution-text").classList.add("display-none");
+    login_popup_signup_tab.querySelector(".login-popup-password-caution-text").classList.add("display-none");
+    login_popup_signup_tab.querySelector(".login-popup-email-caution-text").classList.add("display-none");
     login_popup_signup_tab.querySelector(".login-popup-confirm-password-caution-text").classList.add("display-none");
 }
 
@@ -1204,7 +1213,6 @@ function update_user_obj(){
 
 function update_user_content(){
     if (current_user_id) {
-        console.log("currently logged in");
         
         profile_dropdown_overlay_login_status.innerHTML = "Logged into @" + users_obj[current_user_id].username;
         profile_dropdown_overlay_login_logout_button.innerHTML = "Logout";
@@ -1221,7 +1229,6 @@ function update_user_content(){
         sessionStorage.setItem("current_user_id", JSON.stringify(current_user_id));
         update_user_obj();
     } else {
-        console.log("currently logged out");
         profile_dropdown_overlay_login_status.innerHTML = "Not logged in";
         profile_dropdown_overlay_login_logout_button.innerHTML = "Login / Sign Up";
         liked_song_ids_list = [];
@@ -1230,11 +1237,14 @@ function update_user_content(){
         recently_played_playlist_ids_list = [];
         sessionStorage.setItem("current_user_id", JSON.stringify(current_user_id));
     }
-    render_content_window(current_tab_tag);
-    
+    // render_content_window(current_tab_tag);
 }
 
 function like_unlike_song(song_id){
+    if (!current_user_id){
+        make_floating_notification("not_logged_in", false);
+        return;
+    }
     song_id = Number(song_id);
     let liked;
     if (liked_song_ids_list.includes(song_id)){
@@ -1632,13 +1642,15 @@ function shrink_unshrink_nav_bar(shrink = true){
     }
 }
 
-function make_floating_notification(type){
-
-    console.log("make_floating_notification() called with type: " + type);
+function make_floating_notification(type, show_icon = true){
 
     let message = "";
     if (type == "welcome"){
         message = "Welcome to Re𝄞Ound!";
+    }
+
+    else if (type == "not_logged_in"){
+        message = "You must be logged in to do that!";
     }
     
     else if (type == "login"){
@@ -1683,11 +1695,13 @@ function make_floating_notification(type){
     floating_notification.classList.add("floating-notification");
     body.appendChild(floating_notification);
 
-    let floating_notification_icon = document.createElement("i");
-    floating_notification_icon.classList.add("fa-solid");
-    floating_notification_icon.classList.add("fa-square-check");
-    floating_notification_icon.classList.add("floating-notification-icon");
-    floating_notification.appendChild(floating_notification_icon);
+    if (show_icon){
+        let floating_notification_icon = document.createElement("i");
+        floating_notification_icon.classList.add("fa-solid");
+        floating_notification_icon.classList.add("fa-square-check");
+        floating_notification_icon.classList.add("floating-notification-icon");
+        floating_notification.appendChild(floating_notification_icon);
+    }
 
     let floating_notification_text = document.createElement("p");
     floating_notification_text.classList.add("floating-notification-text");

@@ -22,8 +22,8 @@
     --playlist-content-item-cover-side: 2rem;
     --floating-queue-content-item-cover-side: 1.9rem;
     --player-extended-queue-content-item-cover-side: 2.3rem;
-    /* --transition-properties: all 0.2s; */
-    --transition-properties: none;
+    --transition-properties: all 0.2s;
+    /* --transition-properties: none; */
 }
 
 /* SCROLLBAR CUSTOMIZATION */
@@ -382,6 +382,8 @@ header{
     justify-content: space-evenly;
     font-size: 1.2rem;
     color: white;
+    overflow-y: auto;
+    max-height: calc(100% - var(--header-height) - var(--player-height) - 2rem);
 }
 .login-popup-tab-buttons{
     width: 100%;
@@ -934,6 +936,7 @@ header{
 .player-floating-part-item-overlay{
     height: 100%;
     width: 24%;
+    flex-grow: 1;
     min-width: 300px;
     max-width: 350px;
     margin-left: 5px;
@@ -1158,7 +1161,7 @@ header{
     background-color: black;
     box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.2);
     border-radius: 0.25rem;
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: left;
@@ -1169,7 +1172,7 @@ header{
     height: 1rem;
     width: 1rem;
     font-size: 1rem;
-    margin: 0.5rem 1rem 0.5rem 0.5rem;
+    margin: 0.5rem 1rem 0.5rem 0;
 }
 
 
