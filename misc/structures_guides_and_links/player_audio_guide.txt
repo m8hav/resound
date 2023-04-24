@@ -1,0 +1,11 @@
+https://www.w3schools.com/tags/tag_audio.asp
+
+https://www.w3docs.com/learn-html/html-audio-tag.html
+
+https://www.w3schools.com/jsref/event_onloadedmetadata.asp
+
+https://www.w3schools.com/tags/ref_av_dom.asp
+
+https://www.w3schools.com/jsref/dom_obj_audio.asp
+
+https://www.youtube.com/watch?v=JtrFzoL1joI&ab_channel=EasyTutorials

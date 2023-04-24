@@ -1825,6 +1825,10 @@ document.onkeydown = (event) => {
         event.preventDefault();
         repeat_toggle();
     }
+    if (event.key.toUpperCase() == "M"){
+        event.preventDefault();
+        mute_unmute();
+    }
     if (event.key.toUpperCase() == "Q" && player_extended_overlay.classList.contains("shrunk-element")){
         event.preventDefault();
         queue_overlay_open_close();

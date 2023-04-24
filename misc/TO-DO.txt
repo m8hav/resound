@@ -1,0 +1,4 @@
+change range slider colors
+add background gradient (changes shades from orange to blue with time with javascript later)
+or
+change background picture from blue to orange with time

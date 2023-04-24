@@ -1,0 +1,5 @@
+Realtime Chat App with React, Node.js, Socket.io and MongoDB
+
+(bacially MERN Stack)
+
+https://www.youtube.com/watch?v=otaQKODEUFs&ab_channel=KishanSheth

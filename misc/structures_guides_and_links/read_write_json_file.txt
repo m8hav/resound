@@ -1,0 +1,23 @@
+READING JSON FILE:
+
+https://bobbyhadz.com/blog/javascript-import-json-file#import-a-json-file-in-the-browser
+
+// import data from "./misc/testing/student.json" assert {type: 'json'};
+// console.log(data);
+
+
+
+
+
+WRITING PENDING:
+
+https://www.youtube.com/watch?v=psZ_nDAoCFc&ab_channel=AllThingsJavaScript%2CLLC
+
+https://stackabuse.com/reading-and-writing-json-files-with-node-js/
+
+PROBLEM - REQUIRE IS NOT DEFINED
+POSSIBLE ANSWER - PROJECT IS NOT BEING RUN AS NODE PROJECT. IT CAN'T USE REQUIRE UNLESS RUN AS NODE.
+
+https://codedamn.com/news/javascript/fix-require-is-not-defined
+
+https://requirejs.org/
