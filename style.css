@@ -1171,6 +1171,7 @@ header{
     justify-content: left;
     font-size: 0.8rem;
     color: white;
+    transition: all 0.3s ease-in-out;
 }
 .floating-notification-icon{
     height: 1rem;
@@ -1206,10 +1207,6 @@ header{
 .inactive-button{
     opacity: 0.5;
 }
-
-/* .black-background{
-    background-color: black;
-} */
 
 .small-button{
     margin-top: 0.25rem;
