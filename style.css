@@ -352,7 +352,10 @@ header{
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.profile-dropdown-overlay ul li:hover{
+#profile-dropdown-overlay-login-status{
+    cursor: default
+}
+.profile-dropdown-overlay ul li:not(#profile-dropdown-overlay-login-status):hover{
     background-color: var(--hover-bg-color-light);
 }
 .login-popup-fade-bg{
@@ -546,6 +549,7 @@ header{
     bottom: 0;
     margin: 0.75rem;
     padding-left: 0.1rem;
+    padding-top: 0.05rem;
     box-shadow: 0 0 10px 10px var(--hover-box-shadow-color) inset, 0 0 10px 5px rgba(255, 255, 255, 0.3);
 }
 .content-window-category-item-cover-overlay-icon-wrapper:hover{
