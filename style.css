@@ -328,7 +328,11 @@ header{
     margin: 0 0 0 10%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+
+    /* temporarily disabling upload and messaging buttons and changing justify-content to right */
+    justify-content: right;
+    padding-right: 1rem;
 }
 .profile-dropdown-overlay{
     position: absolute;
