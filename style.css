@@ -650,6 +650,11 @@ header{
     width: calc(var(--playlist-description-cover-side) / 2);
     object-fit: cover;
 }
+.playlist-description-cover-default-image{
+    padding: 2.25rem;
+    filter: invert(1);
+    opacity: 0.7;
+}
 #playlist-description-info-and-buttons{
     width: 100%;
     width: calc(100% - var(--playlist-description-cover-side) - 2rem);
@@ -691,6 +696,9 @@ header{
     margin-bottom: 0.25rem;
     padding: 0.4rem 0.75rem 0.4rem 0.9rem;
     font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .playlist-description-button:hover{
     box-shadow: var(--buttons-box-shadow);
@@ -710,6 +718,13 @@ header{
     flex-direction: column;
     align-items: center;
     font-size: 0.8rem;
+}
+#playlist-content-empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    color: var(--sub-label-color);
 }
 #playlist-content hr{
     font-size: 5px;
@@ -747,16 +762,19 @@ header{
 .playlist-content-name-column{
     width: 30%;
     padding: 0 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #playlist-content .playlist-content-name-column{
     cursor: pointer;
 }
 .playlist-content-artists-column{
     width: 30%;
+    padding: 0 0.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 0.5rem;
 }
 .playlist-content-duration-column{
     width: 15%;

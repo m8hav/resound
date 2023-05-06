@@ -22,24 +22,6 @@
     },
     "4": {
         "category_is_playlist": false,
-        "category_tag": "popular_playlists",
-        "category_name": "Popular Playlists",
-        "category_items_type": "playlist",
-        "category_item_ids": [
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20
-        ]
-    },
-    "7": {
-        "category_is_playlist": false,
         "category_tag": "recommended",
         "category_name": "Recommended For You",
         "category_items_type": "song",
@@ -54,6 +36,24 @@
             "128",
             "129",
             "130"
+        ]
+    },
+    "7": {
+        "category_is_playlist": false,
+        "category_tag": "popular_playlists",
+        "category_name": "Popular Playlists",
+        "category_items_type": "playlist",
+        "category_item_ids": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
         ]
     },
     "9": {
