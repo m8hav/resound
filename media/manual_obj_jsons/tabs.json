@@ -2,24 +2,24 @@
     "home": {
         "tab_category_ids": [
             1,
-            2,
-            3,
-            4
+            4,
+            7,
+            9
         ]
     },
     "explore": {
         "tab_category_ids": [
             10,
             11,
-            5,
-            6
+            21,
+            22
         ]
     },
     "library": {
         "tab_category_ids": [
             1,
-            9,
-            7
+            2,
+            3
         ]
     }
 }

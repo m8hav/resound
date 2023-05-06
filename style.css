@@ -304,17 +304,25 @@ header{
     border-radius: 0 0 0.25rem 0.25rem;
 }
 .search-suggestion{
+    font-size: 0.95em;
     display: flex;
     align-items: center;
     width: 100%;
     padding: 0.75rem 2.5rem 0.75rem 1rem;
-    cursor: pointer;
     position: relative;
+    cursor: pointer;
+}
+.search-suggestion-header{
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .search-suggestion-text{
     width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.search-suggestion:hover{
+.search-suggestion:not(.search-suggestion-header):hover{
     background-color: var(--hover-bg-color-light);
 }
 .search-bar-icon{

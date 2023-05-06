@@ -1,54 +1,27 @@
 {
     "1": {
+        "category_is_playlist": false,
         "category_tag": "recents",
         "category_name": "Recently Played",
         "category_items_type": "song",
-        "category_item_ids": [
-            119,
-            120,
-            121,
-            122,
-            123,
-            125,
-            126,
-            127,
-            128
-        ]
+        "category_item_ids": []
     },
     "2": {
-        "category_tag": "recommended",
-        "category_name": "Recommended For You",
-        "category_items_type": "song",
-        "category_item_ids": [
-            99,
-            100,
-            101,
-            103,
-            104,
-            105,
-            106,
-            107,
-            108
-        ]
+        "category_is_playlist": false,
+        "category_tag": "saved_playlists",
+        "category_name": "Saved Playlists",
+        "category_items_type": "playlist",
+        "category_item_ids": []
     },
     "3": {
-        "category_tag": "genres",
-        "category_name": "Genres",
-        "category_items_type": "playlist",
-        "category_item_ids": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10
-        ]
+        "category_is_playlist": false,
+        "category_tag": "liked",
+        "category_name": "Liked Songs",
+        "category_items_type": "song",
+        "category_item_ids": []
     },
     "4": {
+        "category_is_playlist": false,
         "category_tag": "popular_playlists",
         "category_name": "Popular Playlists",
         "category_items_type": "playlist",
@@ -65,43 +38,28 @@
             20
         ]
     },
-    "5": {
-        "category_tag": "taylor_swift",
-        "category_name": "Taylor Swift",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "200",
-            "201",
-            "202",
-            "203",
-            "204",
-            "205",
-            "206",
-            "207",
-            "208",
-            "209"
-        ]
-    },
-    "6": {
-        "category_tag": "selena_gomez",
-        "category_name": "Selena Gomez",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "190",
-            "191",
-            "192",
-            "193",
-            "194",
-            "195",
-            "196",
-            "197",
-            "198",
-            "199"
-        ]
-    },
     "7": {
-        "category_tag": "saved_playlists",
-        "category_name": "Saved Playlists",
+        "category_is_playlist": false,
+        "category_tag": "recommended",
+        "category_name": "Recommended For You",
+        "category_items_type": "song",
+        "category_item_ids": [
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "126",
+            "127",
+            "128",
+            "129",
+            "130"
+        ]
+    },
+    "9": {
+        "category_is_playlist": false,
+        "category_tag": "genres",
+        "category_name": "Genres",
         "category_items_type": "playlist",
         "category_item_ids": [
             1,
@@ -113,53 +71,11 @@
             7,
             8,
             9,
-            10,
-            11,
-            12,
-            13
-        ]
-    },
-    "8": {
-        "category_tag": "history",
-        "category_name": "History",
-        "category_items_type": "song",
-        "category_item_ids": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13
-        ]
-    },
-    "9": {
-        "category_tag": "liked",
-        "category_name": "Liked Songs",
-        "category_items_type": "song",
-        "category_item_ids": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13
+            10
         ]
     },
     "10":{
+        "category_is_playlist": false,
         "category_tag": "top_songs_global",
         "category_name": "Top Songs Global",
         "category_items_type": "song",
@@ -177,6 +93,7 @@
         ]
     },
     "11": {
+        "category_is_playlist": false,
         "category_tag": "currently_trending",
         "category_name": "Currently Trending",
         "category_items_type": "song",
@@ -193,190 +110,47 @@
         ]
     },
     "12": {
-        "category_tag": "old_hindi",
-        "category_name": "Old Hindi",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "111",
-            "112",
-            "113",
-            "114",
-            "115",
-            "116",
-            "117",
-            "118",
-            "119",
-            "120"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "12"
     },
     "13": {
-        "category_tag": "pop_mix",
-        "category_name": "Pop Mix",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "121",
-            "122",
-            "123",
-            "124",
-            "125",
-            "126",
-            "127",
-            "128",
-            "129",
-            "130"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "13"
     },
     "14": {
-        "category_tag": "punjabi_party_hits",
-        "category_name": "Punjabi Party Hits",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "131",
-            "132",
-            "133",
-            "134",
-            "135",
-            "136",
-            "137",
-            "138",
-            "139",
-            "140"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "14"
     },
     "15": {
-        "category_tag": "retro_pop",
-        "category_name": "Retro Pop",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "141",
-            "142",
-            "143",
-            "144",
-            "145",
-            "146",
-            "147",
-            "148",
-            "149",
-            "150"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "15"
     },
     "16": {
-        "category_tag": "old_hindi",
-        "category_name": "Rnb Mix",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "151",
-            "152",
-            "153",
-            "154",
-            "155",
-            "156",
-            "157",
-            "158",
-            "159",
-            "160"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "16"
     },
     "17": {
-        "category_tag": "rock_mix",
-        "category_name": "Rock Mix",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "161",
-            "162",
-            "163",
-            "164",
-            "165",
-            "166",
-            "167",
-            "168",
-            "169",
-            "170"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "17"
     },
     "18": {
-        "category_tag": "romantic",
-        "category_name": "Romantic",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "171",
-            "172",
-            "173",
-            "174",
-            "175",
-            "176",
-            "177",
-            "178",
-            "179",
-            "180"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "18"
     },
     "19": {
-        "category_tag": "sad_hindi",
-        "category_name": "Sad Hindi Melodies",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "51",
-            "52",
-            "53",
-            "54",
-            "55",
-            "56",
-            "57",
-            "58",
-            "59",
-            "60"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "19"
     },
     "20": {
-        "category_tag": "sad_songs",
-        "category_name": "Sad Songs",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "181",
-            "182",
-            "81",
-            "183",
-            "184",
-            "185",
-            "186",
-            "187",
-            "188",
-            "189"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "20"
     },
     "21": {
-        "category_tag": "selena_gomez",
-        "category_name": "Selena Gomez",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "190",
-            "191",
-            "192",
-            "193",
-            "194",
-            "195",
-            "196",
-            "197",
-            "198",
-            "199"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "21"
     },
     "22": {
-        "category_tag": "taylor_swift",
-        "category_name": "Taylor Swift",
-        "category_items_type": "song",
-        "category_item_ids": [
-            "200",
-            "201",
-            "202",
-            "203",
-            "204",
-            "205",
-            "206",
-            "207",
-            "208",
-            "209"
-        ]
+        "category_is_playlist": true,
+        "category_playlist_id": "22"
     }
 }

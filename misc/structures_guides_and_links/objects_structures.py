@@ -63,18 +63,24 @@ playlists = {
 categories = {
     "category_id": {
         "category_tag": "category_tag",
+        "category_is_playlist": "true/false",
+        "category_playlist_id": "",
         "category_name": "category_name",
         "category_items_type": "category_items_type",           # song/playlist
         "category_item_ids": [1, 2, 3],
     },
     "category_id": {
         "category_tag": "category_tag",
+        "category_is_playlist": "true/false",
+        "category_playlist_id": "",
         "category_name": "category_name",
         "category_items_type": "category_items_type",           # song/playlist
         "category_item_ids": [1, 2, 3],
     },
     "category_id": {
         "category_tag": "category_tag",
+        "category_is_playlist": "true/false",
+        "category_playlist_id": "",
         "category_name": "category_name",
         "category_items_type": "category_items_type",           # song/playlist
         "category_item_ids": [1, 2, 3],
