@@ -112,6 +112,13 @@ import playlists_root_id_mapping_obj from "./media/obj_jsons/playlists_root_id_m
 import tabs_obj from "./media/manual_obj_jsons/tabs.json" assert {type: 'json'};
 import categories_obj from "./media/manual_obj_jsons/categories.json" assert {type: 'json'};
 
+// setting source for audio files to new repo
+var audios_src_dir = "https://m8hav.github.io/resound-audio/media/audios";
+// setting source to local directory if on localhost
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
+    audios_src_dir = "./media/audios";
+}
+
 var first_play = true;
 var current_content_window_content_type = "tab";
 var current_content_window_content_tag = "home";
@@ -1519,7 +1526,7 @@ function play_song(song_id, playlist_id = null, append_queue = false, shuffle_cu
         player_like_button_icon.classList.add("fa-regular");
     }
 
-    player_audio_controls.innerHTML = `<source src="./media/audios/${song_obj.song_file_name_root}.mp3" type="audio/mpeg">`;
+    player_audio_controls.innerHTML = `<source src="${audios_src_dir}/${song_obj.song_file_name_root}.mp3" type="audio/mpeg">`;
     player_audio_controls.load();
     play_pause(true);
 
@@ -1965,31 +1972,31 @@ document.onkeydown = (event) => {
         player_volume_seek_bar.value = Number(player_volume_seek_bar.value) - 5;
         update_volume();
     }
-    if (event.key.toUpperCase() == "S"){
+    if (event.key.toUpperCase() == "S" && ! event.ctrlKey){
         event.preventDefault();
         shuffle_on_off();
     }
-    if (event.key.toUpperCase() == "R"){
+    if (event.key.toUpperCase() == "R" && ! event.ctrlKey){
         event.preventDefault();
         repeat_toggle();
     }
-    if (event.key.toUpperCase() == "M"){
+    if (event.key.toUpperCase() == "M" && ! event.ctrlKey){
         event.preventDefault();
         mute_unmute();
     }
-    if (event.key.toUpperCase() == "Q" && player_extended_overlay.classList.contains("shrunk-element")){
+    if (event.key.toUpperCase() == "Q" && player_extended_overlay.classList.contains("shrunk-element") && ! event.ctrlKey){
         event.preventDefault();
         queue_overlay_open_close();
     }
-    if (event.key.toUpperCase() == "L" && player_extended_overlay.classList.contains("shrunk-element")){
+    if (event.key.toUpperCase() == "L" && player_extended_overlay.classList.contains("shrunk-element") && ! event.ctrlKey){
         event.preventDefault();
         lyrics_overlay_open_close();
     }
-    if (event.shiftKey && event.key.toUpperCase() == "P"){
+    if (event.shiftKey && event.key.toUpperCase() == "P" && ! event.ctrlKey){
         event.preventDefault();
         play_previous_song();
     }
-    if (event.shiftKey && event.key.toUpperCase() == "N"){
+    if (event.shiftKey && event.key.toUpperCase() == "N" && ! event.ctrlKey){
         event.preventDefault();
         play_next_song();
     }
