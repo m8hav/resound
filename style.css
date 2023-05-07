@@ -22,8 +22,8 @@
     --playlist-content-item-cover-side: 2rem;
     --floating-queue-content-item-cover-side: 1.9rem;
     --player-extended-queue-content-item-cover-side: 2.3rem;
-    --transition-properties: all 0.2s;
-    /* --transition-properties: none; */
+    /* --transition-properties: all 0.2s; */
+    --transition-properties: none;
 }
 
 /* SCROLLBAR CUSTOMIZATION */
@@ -333,16 +333,16 @@ header{
 }
 #header-right-part{
     width: 25%;
-    margin: 0 0 0 10%;
+    /* margin: 0 0 0 10%; */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
 }
 
 
-/* Camera Toggle Switch */
-#camera-toggle-switch {
+/* webcam Toggle Switch */
+#webcam-toggle-switch {
     position: relative;
     display: inline-block;
     width: 1.7rem;
@@ -384,6 +384,48 @@ input:checked + .toggle-slider:before {
     transform: translateX(0.63rem);
 }
 
+/* Webcam Popup */
+.webcam-popup-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--floating-panels-bg-color);
+    box-shadow: var(--overlay-box-shadow);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    z-index: 100;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+#webcam-video-container{
+    position: relative;
+    width: 24rem;
+    height: 13.5rem;
+    border-radius: 0.25rem;
+    margin-top: 0.75rem;
+}
+#webcam-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    background-color: black;
+}
+#webcam-canvas{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
 .profile-dropdown-overlay{
     position: absolute;
     top: calc(var(--header-height) + 0.5rem);
@@ -411,15 +453,8 @@ input:checked + .toggle-slider:before {
 .profile-dropdown-overlay ul li:not(#profile-dropdown-overlay-login-status):hover{
     background-color: var(--hover-bg-color-light);
 }
-.login-popup-fade-bg{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 20;
-}
+
+/* Login Popup */
 .login-popup-box{
     width: 350px;
     position: fixed;
@@ -1303,4 +1338,14 @@ input:checked + .toggle-slider:before {
 
 .display-none{
     display: none;
+}
+
+.popup-fade-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
 }

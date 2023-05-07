@@ -23,14 +23,19 @@ const nav_button_containers = Array.from(document.getElementsByClassName("nav-bu
 // Header
 const search_bar = document.getElementById("search-bar");
 const search_suggestions_wrapper = document.getElementById("search-suggestions-wrapper");
+const webcam_toggle_switch_checkbox = document.getElementById("webcam-toggle-switch-checkbox");
 const profile_button_container = document.getElementById("profile-button-container");
 const profile_dropdown_overlay = document.getElementsByClassName("profile-dropdown-overlay")[0];
 const profile_dropdown_overlay_login_status = document.getElementById("profile-dropdown-overlay-login-status");
 const profile_dropdown_overlay_login_logout_button = document.getElementById("profile-dropdown-overlay-login-logout-button");
 
+// Webcam Popup
+const webcam_popup = document.getElementsByClassName("webcam-popup")[0];
+const webcam_video = document.getElementById('webcam-video');
+const webcam_canvas = document.getElementById('webcam-canvas');
+
 // Login Popup
 const login_popup = document.getElementsByClassName("login-popup")[0];
-const login_popup_fade_bg = document.getElementsByClassName("login-popup-fade-bg")[0];
 const login_popup_login_tab_button = document.getElementById("login-popup-login-tab-button");
 const login_popup_signup_tab_button = document.getElementById("login-popup-signup-tab-button");
 const login_popup_login_tab = document.getElementsByClassName("login-popup-login-tab")[0];
@@ -139,6 +144,15 @@ var saved_playlist_ids_list = [];
 var recently_played_song_ids_list = [];
 var recently_played_playlist_ids_list = [];
 var recent_searches_list = [];
+
+Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri('./face-api/face-api-models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('./face-api/face-api-models'),
+    faceapi.nets.faceRecognitionNet.loadFromUri('./face-api/face-api-models'),
+    faceapi.nets.faceExpressionNet.loadFromUri('./face-api/face-api-models')
+]).then(start_webcam);
+const webcam_video_display_size = { width: parseInt(getComputedStyle(webcam_video).getPropertyValue("width")), height: parseInt(getComputedStyle(webcam_video).getPropertyValue("height")) };
+var webcam_face_detection_interval = null;
 
 
 if (shuffle){
@@ -1857,6 +1871,40 @@ function make_floating_notification(type, show_icon = true){
     }, 3000);
 }
 
+function start_webcam() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => webcam_video.srcObject = stream)
+        .catch(error => console.error('Camera access not allowed!', error));
+}
+
+function stop_webcam() {
+    webcam_video.srcObject.getTracks()[0].stop();
+}
+
+function start_mood_detection_interval() {
+    faceapi.matchDimensions(webcam_canvas, webcam_video_display_size);
+
+    webcam_face_detection_interval = setInterval(async () => {
+        const detections = await faceapi.detectAllFaces(
+            webcam_video,
+            new faceapi.TinyFaceDetectorOptions())
+            .withFaceLandmarks()
+            .withFaceExpressions();
+        const resized_detections = faceapi.resizeResults(detections, webcam_video_display_size);
+        
+        webcam_canvas.getContext('2d').clearRect(0, 0, webcam_canvas.width, webcam_canvas.height);
+        faceapi.draw.drawDetections(webcam_canvas, resized_detections);
+        // faceapi.draw.drawFaceLandmarks(canvasElement, resizedDetections);
+        faceapi.draw.drawFaceExpressions(webcam_canvas, resized_detections);
+        
+        // Check if the expression is "sad"
+        if(resized_detections.length && resized_detections[0].expressions.sad > 0.3) {
+            // Do something when the expression is sad
+            console.log('Person is sad!');
+        }
+    }, 100);
+}
+
 
 // Event Listeners
 nav.onmouseenter = () => shrink_unshrink_nav_bar(false);
@@ -1881,6 +1929,8 @@ search_bar.onkeydown = (event) => {
         render_content_window("search");
     }
 }
+
+webcam_video.onplay = start_mood_detection_interval;
 
 profile_button_container.onclick = (event) => {
     event.stopPropagation();
