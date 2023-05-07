@@ -1,0 +1,3 @@
+https://www.youtube.com/watch?v=CVClHLwv-4I&ab_channel=WebDevSimplified
+
+https://github.com/WebDevSimplified/Face-Detection-JavaScript

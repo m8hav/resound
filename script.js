@@ -1952,7 +1952,7 @@ document.onkeydown = (event) => {
     }
     if (event.key == " "){
         event.preventDefault();
-        play_pause();
+        if (! first_play) play_pause();
     }
     if (event.key == "ArrowLeft"){
         event.preventDefault();

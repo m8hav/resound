@@ -336,12 +336,54 @@ header{
     margin: 0 0 0 10%;
     display: flex;
     align-items: center;
-    /* justify-content: space-evenly; */
-
-    /* temporarily disabling upload and messaging buttons and changing justify-content to right */
-    justify-content: right;
+    justify-content: space-evenly;
     padding-right: 1rem;
 }
+
+
+/* Camera Toggle Switch */
+#camera-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 1.7rem;
+    height: 1rem;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--hover-bg-color-light);
+    border-radius: 0.9rem;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    z-index: 5;
+    content: "";
+    height: 0.7rem;
+    width: 0.7rem;
+    left: 0.2rem;
+    bottom: 0.125rem;
+    background-color: black;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+  
+input:checked + .toggle-slider {
+    background-color: var(--sub-label-color);
+}
+
+input:checked + .toggle-slider:before {
+    -webkit-transform: translateX(0.63rem);
+    -ms-transform: translateX(0.63rem);
+    transform: translateX(0.63rem);
+}
+
 .profile-dropdown-overlay{
     position: absolute;
     top: calc(var(--header-height) + 0.5rem);
@@ -357,7 +399,6 @@ header{
 .profile-dropdown-overlay ul li{
     width: 100%;
     padding: 0.5rem;
-    /* border-top: 1px solid var(--item-border-bottom-color); */
     border-bottom: 1px solid var(--item-border-bottom-color);
     list-style: none;
     overflow: hidden;
