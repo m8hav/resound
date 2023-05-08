@@ -1,0 +1,30 @@
+happy:
+    1 - Bollywood Dance Music,
+    4 - dance party,
+    14 - Punjabi Party Hits
+
+sad:
+    9 - Life Sucks,
+    6 - hindi sad,
+    19 - sad hindi melodies,
+    20 - sad songs
+
+neutral:
+    2 - chill hits,
+    3 - chill with Bollywood,
+    7 - hip hop mix,
+    11 - music shuttle,
+    13 - pop mix,
+    16 - rnb mix
+
+angry:
+    10 - metal,
+    17 - Rock Mix
+
+surprised:
+    8 - kpop,
+    12 - old hindi,
+    15 - Retro Pop,
+    18 - romantic,
+    21 - selena gomez,
+    22 - taylor swift

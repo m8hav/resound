@@ -127,10 +127,18 @@
             </div>
             <div id="header-right-part">
 
-                <label id="webcam-toggle-switch" title="Webcam Mood Detection Toggle">
-                    <input type="checkbox" id="webcam-toggle-switch-checkbox" class="shrunk-element display-none" checked>
-                    <span class="toggle-slider" tabindex="0"></span>
-                </label>
+                <div id="emotion-detection-buttons-wrapper">
+                    <span id="emotion-detection-buttons-header-label" title="Emotion Detection">ED</span>
+                    
+                    <label id="emotion-detection-toggle-switch" title="Emotion Detection Toggle">
+                        <input type="checkbox" id="emotion-detection-toggle-switch-checkbox" class="shrunk-element display-none">
+                        <span class="toggle-slider" tabindex="0"></span>
+                    </label>
+    
+                    <button id="detect-emotion-button-container" class="header-right-part-button standard-button" title="Detect Emotion Now">
+                        <i class="fa-solid fa-face-grin-wide"></i>
+                    </button>
+                </div>
 
                 <!-- <button id="upload-button-container" class="header-right-part-button standard-button" title="Upload">
                     <i class="fa-solid fa-upload"></i>
@@ -667,13 +675,17 @@
         </div>
     </div>
 
-    <div class="webcam-popup">
+    <div class="webcam-popup invisible-element">
         <div class="popup-fade-bg"></div>
         <div class="webcam-popup-box">
-            <p>Playing songs based on your mood...</p>
+            <p>Playing songs based on your emotions...</p>
             <div id="webcam-video-container">
                 <video id="webcam-video" autoplay muted></video>
                 <canvas id="webcam-canvas"></canvas>
+            </div>
+            <div class="webcam-popup-timer-seconds-wrapper">
+                <span>Capturing in</span>
+                <span id="webcam-popup-timer-seconds"></span><span>...</span>
             </div>
         </div>
     </div>

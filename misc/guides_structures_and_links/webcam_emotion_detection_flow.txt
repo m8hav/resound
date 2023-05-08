@@ -1,0 +1,26 @@
+webcam emotion detection flow:
+
+    detect_emotion_and_play_playlist function called when:
+    
+        player starts
+        queue ends with no repeat
+        user clicks play based on emotion button
+
+    flow after calling detect_emotion_and_play_playlist function:
+    
+        open webcam popup
+        start emotion detection interval
+        set timeout to stop emotion detection interval
+        
+    in emotion detection interval:
+        save detections from interval to global variable
+        
+    on stop emotion detection timeout finish:
+        stop emotion detection interval
+        close webcam popup
+        
+        get final emotion from detection global variable
+        get average emotions from all detections
+        select emotion with highest average
+        
+        play playlist based on emotion

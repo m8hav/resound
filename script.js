@@ -23,7 +23,9 @@ const nav_button_containers = Array.from(document.getElementsByClassName("nav-bu
 // Header
 const search_bar = document.getElementById("search-bar");
 const search_suggestions_wrapper = document.getElementById("search-suggestions-wrapper");
-const webcam_toggle_switch_checkbox = document.getElementById("webcam-toggle-switch-checkbox");
+const emotion_detection_buttons_wrapper = document.getElementById("emotion-detection-buttons-wrapper");
+const emotion_detection_toggle_switch_checkbox = document.getElementById("emotion-detection-toggle-switch-checkbox");
+const detect_emotion_button_container = document.getElementById("detect-emotion-button-container");
 const profile_button_container = document.getElementById("profile-button-container");
 const profile_dropdown_overlay = document.getElementsByClassName("profile-dropdown-overlay")[0];
 const profile_dropdown_overlay_login_status = document.getElementById("profile-dropdown-overlay-login-status");
@@ -31,8 +33,12 @@ const profile_dropdown_overlay_login_logout_button = document.getElementById("pr
 
 // Webcam Popup
 const webcam_popup = document.getElementsByClassName("webcam-popup")[0];
-const webcam_video = document.getElementById('webcam-video');
-const webcam_canvas = document.getElementById('webcam-canvas');
+const webcam_video = document.getElementById("webcam-video");
+const webcam_canvas = document.getElementById("webcam-canvas");
+const webcam_popup_timeout_time_in_seconds = 5;
+const webcam_popup_timer_seconds_text = document.getElementById("webcam-popup-timer-seconds");
+
+var webcam_popup_timer_interval;
 
 // Login Popup
 const login_popup = document.getElementsByClassName("login-popup")[0];
@@ -71,7 +77,7 @@ const player_next_song_button_container = document.getElementById("next-song-but
 const player_repeat_button_container = document.getElementById("repeat-button-container");
 const player_repeat_button_icon_one = player_repeat_button_container.firstElementChild;
 const player_repeat_button_icon = player_repeat_button_container.lastElementChild;
-const player_options_button_container = document.getElementById("player-options-button-container");
+// const player_options_button_container = document.getElementById("player-options-button-container");
 
 const player_audio_controls = document.getElementById("player-audio-controls");
 const player_audio_seek_bar = document.getElementById("player-seek-bar");
@@ -116,6 +122,7 @@ import playlists_obj from "./media/obj_jsons/playlists.json" assert {type: 'json
 import playlists_root_id_mapping_obj from "./media/obj_jsons/playlists_root_id_mapping.json" assert {type: 'json'};
 import tabs_obj from "./media/manual_obj_jsons/tabs.json" assert {type: 'json'};
 import categories_obj from "./media/manual_obj_jsons/categories.json" assert {type: 'json'};
+import emotions_playlists_obj from "./media/manual_obj_jsons/emotions_playlists.json" assert {type: 'json'};
 
 // setting source for audio files to new repo
 var audios_src_dir = "https://m8hav.github.io/resound-audio/media/audios";
@@ -136,7 +143,7 @@ var repeat = sessionStorage.getItem("repeat") ? JSON.parse(sessionStorage.getIte
 var current_song_id;
 
 var users_obj = localStorage.getItem("users_obj") ? JSON.parse(localStorage.getItem("users_obj")) : {};
-var current_user_id = sessionStorage.getItem("current_user_id") ? JSON.parse(sessionStorage.getItem("current_user_id")) : null;
+var current_user_id = localStorage.getItem("current_user_id") ? JSON.parse(localStorage.getItem("current_user_id")) : null;
 var custom_playlists_obj = localStorage.getItem("custom_playlists_obj") ? JSON.parse(localStorage.getItem("custom_playlists_obj")) : {};
 var custom_playlist_ids_list = localStorage.getItem("custom_playlist_ids_list") ? JSON.parse(localStorage.getItem("custom_playlist_ids_list")) : [];
 var liked_song_ids_list = [];
@@ -145,14 +152,18 @@ var recently_played_song_ids_list = [];
 var recently_played_playlist_ids_list = [];
 var recent_searches_list = [];
 
+// Loading Face API Models
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./face-api/face-api-models'),
     faceapi.nets.faceLandmark68Net.loadFromUri('./face-api/face-api-models'),
     faceapi.nets.faceRecognitionNet.loadFromUri('./face-api/face-api-models'),
     faceapi.nets.faceExpressionNet.loadFromUri('./face-api/face-api-models')
-]).then(start_webcam);
+]);
+// setting webcam variables
 const webcam_video_display_size = { width: parseInt(getComputedStyle(webcam_video).getPropertyValue("width")), height: parseInt(getComputedStyle(webcam_video).getPropertyValue("height")) };
-var webcam_face_detection_interval = null;
+faceapi.matchDimensions(webcam_canvas, webcam_video_display_size);
+var webcam_emotion_detection_interval;
+var webcam_emotion_detections;
 
 
 if (shuffle){
@@ -1314,11 +1325,12 @@ function signup(){
         confirm_password_caution_text.classList.add("display-none");
     }
 
-    let new_user = {
+    let new_user_obj = {
         "username": username,
         "email": email,
         "password": password,
         "created_at": new Date(),
+        "use_emotion_detection": emotion_detection_toggle_switch_checkbox.checked,
         "liked_song_ids_list": [],
         "saved_playlist_ids_list": [],
         "recently_played_song_ids_list": [],
@@ -1331,8 +1343,11 @@ function signup(){
     confirm_password_input.value = "";
     
     current_user_id = Object.keys(users_obj).length + 1;
-    sessionStorage.setItem("current_user_id", current_user_id);
-    users_obj[current_user_id] = new_user;
+    localStorage.setItem("current_user_id", current_user_id);
+    users_obj[current_user_id] = new_user_obj;
+    // manually setting new user's object in local storage because update_user_content() only accesses the existing users_obj in local storage,
+    // so the new user's object needs to be set in local storage before calling update_user_content()
+    // DO NOT REMOVE THIS LINE
     localStorage.setItem("users_obj", JSON.stringify(users_obj));
     
     update_user_content(true);
@@ -1343,13 +1358,14 @@ function signup(){
 function logout(){
     current_user_id = null;
 
-    update_user_content();
+    update_user_content(false, true);
     make_floating_notification("logout");
 }
 
 function update_user_obj(){
     let user_obj = users_obj[current_user_id];
     
+    user_obj.use_emotion_detection = emotion_detection_toggle_switch_checkbox.checked;
     user_obj.liked_song_ids_list = liked_song_ids_list;
     user_obj.saved_playlist_ids_list = saved_playlist_ids_list;
     user_obj.recently_played_song_ids_list = recently_played_song_ids_list;
@@ -1360,7 +1376,7 @@ function update_user_obj(){
     localStorage.setItem("users_obj", JSON.stringify(users_obj));
 }
 
-function update_user_content(just_logged_in = false){
+function update_user_content(just_logged_in = false, just_logged_out = false){
 
     users_obj = localStorage.getItem("users_obj") ? JSON.parse(localStorage.getItem("users_obj")) : {};
     
@@ -1372,8 +1388,9 @@ function update_user_content(just_logged_in = false){
             profile_dropdown_overlay_login_status.innerText = "Logged into @" + users_obj[current_user_id].username;
             profile_dropdown_overlay_login_logout_button.innerText = "Logout";
 
-            sessionStorage.setItem("current_user_id", JSON.stringify(current_user_id));
+            localStorage.setItem("current_user_id", JSON.stringify(current_user_id));
 
+            emotion_detection_toggle_switch_checkbox.checked = user_obj.use_emotion_detection,
             liked_song_ids_list = user_obj.liked_song_ids_list;
             saved_playlist_ids_list = user_obj.saved_playlist_ids_list;
             recently_played_song_ids_list = user_obj.recently_played_song_ids_list;
@@ -1382,16 +1399,17 @@ function update_user_content(just_logged_in = false){
     
         update_user_obj();
 
-    } else {
+    } else if (just_logged_out) {
         
         profile_dropdown_overlay_login_status.innerText = "Not logged in";
         profile_dropdown_overlay_login_logout_button.innerText = "Login / Sign Up";
         
+        emotion_detection_toggle_switch_checkbox.checked = false;
         liked_song_ids_list = [];
         saved_playlist_ids_list = [];
         recently_played_song_ids_list = [];
         recently_played_playlist_ids_list = [];
-        sessionStorage.setItem("current_user_id", JSON.stringify(current_user_id));
+        localStorage.setItem("current_user_id", JSON.stringify(current_user_id));
     }
     
     if (current_content_window_content_type == "tab"){
@@ -1445,8 +1463,10 @@ function shuffle_on_off(){
     sessionStorage.setItem("shuffle", shuffle);
     if (shuffle){
         player_shuffle_button_icon.classList.remove("inactive-button");
+        make_floating_notification("shuffle_on");
     } else {
         player_shuffle_button_icon.classList.add("inactive-button");
+        make_floating_notification("shuffle_off");
     }
 }
 
@@ -1592,6 +1612,11 @@ function play_next_song(){
     if (shuffle){
         // repeat == 0 and shuffle on so appending next random playlist to queue if last song is playing
         if (queue_played_song_indexes_list.length == queue_song_id_list.length){
+            // if emotion detection on and shuffle on, shuffle emotion based playlist and play first song
+            if (emotion_detection_toggle_switch_checkbox.checked){
+                open_webcam_popup_and_detect_emotion(true);
+                return;
+            }
             let current_playlist_id = songs_obj[current_song_id].song_playlist_ids[0];
             let next_random_playlist_id = Math.floor(Math.random() * Object.keys(playlists_obj).length);
             while (next_random_playlist_id == current_playlist_id){
@@ -1613,6 +1638,11 @@ function play_next_song(){
     }
     // if repeat == 0 and no shuffle, append next playlist in queue if last song is playing
     if (queue_current_song_index == queue_song_id_list.length){
+        // if emotion detection on and shuffle off, play first song from emotion based playlist
+        if (emotion_detection_toggle_switch_checkbox.checked){
+            open_webcam_popup_and_detect_emotion(true);
+            return;
+        }
         let current_playlist_id = songs_obj[current_song_id].song_playlist_ids[0];
         let next_playlist_id = (current_playlist_id + 1) % Object.keys(playlists_obj).length;
         let next_song_id = playlists_obj[next_playlist_id].playlist_song_ids[0];
@@ -1630,14 +1660,17 @@ function repeat_toggle(){
         player_repeat_button_icon.classList.add("inactive-button");
         player_repeat_button_icon.classList.remove("small-button");
         player_repeat_button_icon_one.classList.add("shrunk-element");
+        make_floating_notification("repeat_none");
     }
     else if (repeat == 1){
         player_repeat_button_icon.classList.remove("inactive-button");
+        make_floating_notification("repeat_all");
     }
     else{
         player_repeat_button_icon.classList.remove("inactive-button");
         player_repeat_button_icon.classList.add("small-button");
         player_repeat_button_icon_one.classList.remove("shrunk-element");
+        make_floating_notification("repeat_one");
     }
 }
 
@@ -1797,7 +1830,7 @@ function shrink_unshrink_nav_bar(shrink = true){
     }
 }
 
-function make_floating_notification(type, show_icon = true){
+function make_floating_notification(type, show_icon = true, notification_content_tag = null){
 
     let message = "";
     if (type == "welcome"){
@@ -1845,7 +1878,19 @@ function make_floating_notification(type, show_icon = true){
     else if (type == "add_song_to_queue"){
         message = "Added Song to Queue";
     }
-        
+
+    else if (type == "add_song_to_playlist"){
+        message = "Added Song to Playlist";
+    }
+
+    else if (type == "emotion_detection_on"){
+        message = "Emotion Detection On";
+    } else if (type == "emotion_detection_off"){
+        message = "Emotion Detection Off";
+    } else if (type == "emotion_play"){
+        message = `Playing ${notification_content_tag} songs`;
+    }
+
     let floating_notification = document.createElement("div");
     floating_notification.classList.add("floating-notification");
     body.appendChild(floating_notification);
@@ -1871,38 +1916,88 @@ function make_floating_notification(type, show_icon = true){
     }, 3000);
 }
 
-function start_webcam() {
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => webcam_video.srcObject = stream)
-        .catch(error => console.error('Camera access not allowed!', error));
-}
-
-function stop_webcam() {
-    webcam_video.srcObject.getTracks()[0].stop();
-}
-
-function start_mood_detection_interval() {
-    faceapi.matchDimensions(webcam_canvas, webcam_video_display_size);
-
-    webcam_face_detection_interval = setInterval(async () => {
-        const detections = await faceapi.detectAllFaces(
+function start_emotion_detection_interval() {
+    webcam_emotion_detection_interval = setInterval(async () => {
+        webcam_emotion_detections = await faceapi.detectAllFaces(
             webcam_video,
             new faceapi.TinyFaceDetectorOptions())
             .withFaceLandmarks()
             .withFaceExpressions();
-        const resized_detections = faceapi.resizeResults(detections, webcam_video_display_size);
+        const resized_detections = faceapi.resizeResults(webcam_emotion_detections, webcam_video_display_size);
         
         webcam_canvas.getContext('2d').clearRect(0, 0, webcam_canvas.width, webcam_canvas.height);
         faceapi.draw.drawDetections(webcam_canvas, resized_detections);
-        // faceapi.draw.drawFaceLandmarks(canvasElement, resizedDetections);
         faceapi.draw.drawFaceExpressions(webcam_canvas, resized_detections);
-        
-        // Check if the expression is "sad"
-        if(resized_detections.length && resized_detections[0].expressions.sad > 0.3) {
-            // Do something when the expression is sad
-            console.log('Person is sad!');
-        }
     }, 100);
+}
+
+function open_webcam_popup_and_detect_emotion(append_queue = false) {
+
+    // opening webcam popup
+    webcam_popup.classList.remove("invisible-element");
+    webcam_popup.classList.remove("shrunk-element");
+
+    // starting webcam
+    navigator.mediaDevices.getUserMedia({ video: true })
+        // if webcam access is allowed
+        .then(stream => {
+
+            // setting webcam stream as webcam video element source
+            webcam_video.srcObject = stream;
+            
+            // starting emotion detection interval
+            start_emotion_detection_interval();
+            
+            // creating webcam popup timer interval and closing webcam popup after timer reaches 0
+            let remaining_close_time = webcam_popup_timeout_time_in_seconds;
+            webcam_popup_timer_seconds_text.innerHTML = remaining_close_time--;
+            webcam_popup_timer_interval = setInterval(() => {
+                webcam_popup_timer_seconds_text.innerHTML = remaining_close_time--;
+                if (remaining_close_time < 0) {
+                    close_webcam_popup_and_stop_camera();
+                    get_emotion_and_play_playlist(append_queue);
+                }
+            }, 1000);
+            
+        })
+        // if webcam access is not allowed
+        .catch(error => console.error('Camera access not allowed!', error));
+}
+
+
+function close_webcam_popup_and_stop_camera() {
+    clearInterval(webcam_emotion_detection_interval);
+    clearInterval(webcam_popup_timer_interval);
+    webcam_video.srcObject.getTracks()[0].stop();
+    webcam_popup.classList.add("invisible-element");
+    webcam_popup.classList.add("shrunk-element");
+}
+
+function get_emotion_and_play_playlist(append_queue = false) {
+    let expression_composite_output_obj = {
+        happy : 0,
+        sad : 0,
+        angry : 0,
+        surprised : 0,
+        neutral : 0,
+    }
+    webcam_emotion_detections.forEach(emotion_detection => {
+        expression_composite_output_obj.angry += emotion_detection.expressions.angry/webcam_emotion_detections.length;
+        expression_composite_output_obj.happy += emotion_detection.expressions.happy/webcam_emotion_detections.length;
+        expression_composite_output_obj.neutral += emotion_detection.expressions.neutral/webcam_emotion_detections.length;
+        expression_composite_output_obj.sad += emotion_detection.expressions.sad/webcam_emotion_detections.length;
+        expression_composite_output_obj.surprised += emotion_detection.expressions.surprised/webcam_emotion_detections.length;
+    })
+    let main_detected_emotion = Object.keys(expression_composite_output_obj).reduce((a, b) => expression_composite_output_obj[a] > expression_composite_output_obj[b] ? a : b);
+    let emotion_playlist_ids = emotions_playlists_obj[main_detected_emotion].emotion_playlist_ids;
+    let emotion_random_playlist_id = emotion_playlist_ids[Math.floor(Math.random() * emotion_playlist_ids.length)];
+    let emotion_random_playlist_song_ids = playlists_obj[emotion_random_playlist_id].playlist_song_ids;
+    let next_song_id = emotion_random_playlist_song_ids[0];
+    if (shuffle) {
+        next_song_id = emotion_random_playlist_song_ids[Math.floor(Math.random() * emotion_random_playlist_song_ids.length)];
+    }
+    play_song(next_song_id, emotion_random_playlist_id, append_queue);
+    make_floating_notification("emotion_play", true, emotions_playlists_obj[main_detected_emotion].emotion_tag);
 }
 
 
@@ -1914,9 +2009,7 @@ nav.onmouseleave = () => {
 }
 
 nav_home_button_container.onclick = () => render_content_window("home");
-
 nav_explore_button_container.onclick = () => render_content_window("explore");
-
 nav_library_button_container.onclick = () => render_content_window("library");
 
 search_bar.onfocus = show_hide_search_suggestions;
@@ -1930,7 +2023,23 @@ search_bar.onkeydown = (event) => {
     }
 }
 
-webcam_video.onplay = start_mood_detection_interval;
+window.onload = () => {
+    if (emotion_detection_toggle_switch_checkbox.checked)
+        open_webcam_popup_and_detect_emotion();
+}
+
+emotion_detection_buttons_wrapper.onclick = () => {
+    emotion_detection_toggle_switch_checkbox.checked = ! emotion_detection_toggle_switch_checkbox.checked;
+    update_user_content();
+    if (emotion_detection_toggle_switch_checkbox.checked)
+        make_floating_notification("emotion_detection_on");
+    else
+        make_floating_notification("emotion_detection_off");
+}
+detect_emotion_button_container.onclick = (event) => {
+    event.stopPropagation();
+    open_webcam_popup_and_detect_emotion();
+}
 
 profile_button_container.onclick = (event) => {
     event.stopPropagation();
@@ -1961,11 +2070,9 @@ player_repeat_button_container.onclick = repeat_toggle;
 // player_options_button_container.onclick = options_dialog_open_close;
 
 player_queue_button_container.onclick = queue_overlay_open_close;
-
 player_lyrics_button_container.onclick = lyrics_overlay_open_close;
 
 player_volume_button_container.onclick = mute_unmute;
-
 player_volume_seek_bar.oninput = () => update_volume();
 
 player_extend_button_container.onclick = toggle_extended_player;

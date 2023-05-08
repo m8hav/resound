@@ -1,0 +1,48 @@
+{
+    "happy": {
+        "emotion_tag": "happy",
+        "emotion_playlist_ids": [
+            1,
+            4,
+            14
+        ]
+    },
+    "sad": {
+        "emotion_tag": "sad",
+        "emotion_playlist_ids": [
+            9,
+            6,
+            19,
+            20
+        ]
+    },
+    "neutral": {
+        "emotion_tag": "regular",
+        "emotion_playlist_ids": [
+            2,
+            3,
+            7,
+            11,
+            13,
+            16
+        ]
+    },
+    "angry": {
+        "emotion_tag": "aggressive",
+        "emotion_playlist_ids": [
+            10,
+            17
+        ]
+    },
+    "surprised": {
+        "emotion_tag": "unexpected",
+        "emotion_playlist_ids": [
+            8,
+            12,
+            15,
+            18,
+            21,
+            22
+        ]
+    }
+}
