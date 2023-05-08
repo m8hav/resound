@@ -114,6 +114,9 @@ const player_extended_lyrics_content_wrapper = document.getElementById("player-e
 
 player_audio_controls.volume = player_volume_seek_bar.value / 100;
 
+// Floating Notifications
+const floating_notifications_wrapper = document.getElementById("floating-notifications-wrapper");
+
 
 // Content Objects
 import songs_obj from "./media/obj_jsons/songs.json" assert {type: 'json'};
@@ -818,6 +821,7 @@ function render_playlist(playlist_id, only_update_content = false){
             playlist_description_add_to_library_button.onclick = () => add_remove_playlist_to_library(playlist_id);
         playlist_description_add_to_queue_button.onclick = () => {
             queue_song_id_list = queue_song_id_list.concat(playlist_song_ids);
+            make_floating_notification("add_playlist_to_queue");
             render_queue();
         };
     }
@@ -1637,7 +1641,7 @@ function play_next_song(){
         return;
     }
     // if repeat == 0 and no shuffle, append next playlist in queue if last song is playing
-    if (queue_current_song_index == queue_song_id_list.length){
+    if (queue_current_song_index >= queue_song_id_list.length){
         // if emotion detection on and shuffle off, play first song from emotion based playlist
         if (emotion_detection_toggle_switch_checkbox.checked){
             open_webcam_popup_and_detect_emotion(true);
@@ -1831,7 +1835,7 @@ function shrink_unshrink_nav_bar(shrink = true){
 }
 
 function make_floating_notification(type, show_icon = true, notification_content_tag = null){
-
+    console.trace();
     let message = "";
     if (type == "welcome"){
         message = "Welcome to Re𝄞Ound!";
@@ -1891,9 +1895,13 @@ function make_floating_notification(type, show_icon = true, notification_content
         message = `Playing ${notification_content_tag} songs`;
     }
 
+    else if (type == "camera_access_denied"){
+        message = "Camera Access Denied!";
+    }
+
     let floating_notification = document.createElement("div");
     floating_notification.classList.add("floating-notification");
-    body.appendChild(floating_notification);
+    floating_notifications_wrapper.appendChild(floating_notification);
 
     if (show_icon){
         let floating_notification_icon = document.createElement("i");
@@ -1958,17 +1966,24 @@ function open_webcam_popup_and_detect_emotion(append_queue = false) {
                     get_emotion_and_play_playlist(append_queue);
                 }
             }, 1000);
-            
         })
         // if webcam access is not allowed
-        .catch(error => console.error('Camera access not allowed!', error));
+        .catch(error => {
+            console.error('Camera access not allowed!', error);
+            emotion_detection_toggle_switch_checkbox.checked = false;
+            make_floating_notification("emotion_detection_off");
+            close_webcam_popup_and_stop_camera(true);
+            make_floating_notification("camera_access_denied", true);
+            if (append_queue) {
+                play_next_song();
+            }
+        });
 }
 
-
-function close_webcam_popup_and_stop_camera() {
+function close_webcam_popup_and_stop_camera(camera_access_denied = false) {
     clearInterval(webcam_emotion_detection_interval);
     clearInterval(webcam_popup_timer_interval);
-    webcam_video.srcObject.getTracks()[0].stop();
+    if ( ! camera_access_denied) webcam_video.srcObject.getTracks()[0].stop();
     webcam_popup.classList.add("invisible-element");
     webcam_popup.classList.add("shrunk-element");
 }
@@ -2157,6 +2172,10 @@ document.onkeydown = (event) => {
         event.preventDefault();
         play_next_song();
     }
+    if (event.ctrlKey && event.key.toUpperCase() == "E"){
+        event.preventDefault();
+        emotion_detection_buttons_wrapper.click();
+    }
     if (event.ctrlKey && event.key.toUpperCase() == "F"){
         event.preventDefault();
         search_bar.focus();
@@ -2175,10 +2194,8 @@ player_audio_controls.onplay = () => toggle_play_pause_icon(true);
 player_audio_controls.onpause = () => toggle_play_pause_icon(false);
 
 player_audio_controls.onloadedmetadata = () => player_audio_controls.currentTime = 0;
-
-player_audio_controls.onended = play_next_song;
-
 player_audio_controls.ontimeupdate = update_audio_seek_bar_and_time_stamp;
+player_audio_controls.onended = play_next_song;
 
 player_audio_seek_bar.oninput = () => player_audio_controls.currentTime = player_audio_seek_bar.value;
 
