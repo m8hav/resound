@@ -1,3 +1,40 @@
+# users object
+users = {
+    "user_id": {
+        "username": "username",
+        "email": "email",
+        "password": "password",
+        "created_at": "created_at",
+        "use_emotion_detection": "true/false",
+        "liked_song_ids_list": [1, 2, 3],
+        "saved_playlist_ids_list": [1, 2, 3],
+        "recently_played_song_ids_list": [1, 2, 3],
+        "recently_played_playlist_ids_list": [1, 2, 3],
+    },
+    "user_id": {
+        "username": "username",
+        "email": "email",
+        "password": "password",
+        "created_at": "created_at",
+        "use_emotion_detection": "true/false",
+        "liked_song_ids_list": [1, 2, 3],
+        "saved_playlist_ids_list": [1, 2, 3],
+        "recently_played_song_ids_list": [1, 2, 3],
+        "recently_played_playlist_ids_list": [1, 2, 3],
+    },
+    "user_id": {
+        "username": "username",
+        "email": "email",
+        "password": "password",
+        "created_at": "created_at",
+        "use_emotion_detection": "true/false",
+        "liked_song_ids_list": [1, 2, 3],
+        "saved_playlist_ids_list": [1, 2, 3],
+        "recently_played_song_ids_list": [1, 2, 3],
+        "recently_played_playlist_ids_list": [1, 2, 3],
+    },
+}
+
 # songs root to id mapping object
 songs_root_id_mapping = {
     "song_file_name_root": "song_id",
@@ -97,5 +134,21 @@ tabs = {
     },
     "tab_tag": {
         "tab_category_ids": [1, 2, 3],
+    },
+}
+
+# emotions_playlists object structure
+emotions = {
+    "emotion_name": {
+        "emotion_tag": "emotion_tag",
+        "emotion_playlist_ids": [1, 2, 3],
+    },
+    "emotion_name": {
+        "emotion_tag": "emotion_tag",
+        "emotion_playlist_ids": [1, 2, 3],
+    },
+    "emotion_name": {
+        "emotion_tag": "emotion_tag",
+        "emotion_playlist_ids": [1, 2, 3],
     },
 }
