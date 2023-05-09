@@ -1,7 +1,7 @@
 "use strict";
 
 // Global Variables
-const body = document.getElementsByTagName("body")[0];
+const body = document.body;
 const body_wallpaper_overlay = document.getElementsByClassName("body-wallpaper-overlay")[0];
 const root = document.documentElement;
 
@@ -114,6 +114,7 @@ const player_extended_lyrics_content_wrapper = document.getElementById("player-e
 
 player_audio_controls.volume = player_volume_seek_bar.value / 100;
 
+
 // Floating Notifications
 const floating_notifications_wrapper = document.getElementById("floating-notifications-wrapper");
 
@@ -155,6 +156,7 @@ var recently_played_song_ids_list = [];
 var recently_played_playlist_ids_list = [];
 var recent_searches_list = [];
 
+
 // Loading Face API Models
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('./face-api/face-api-models'),
@@ -162,7 +164,7 @@ Promise.all([
     faceapi.nets.faceRecognitionNet.loadFromUri('./face-api/face-api-models'),
     faceapi.nets.faceExpressionNet.loadFromUri('./face-api/face-api-models')
 ]);
-// setting webcam variables
+// Setting webcam variables
 const webcam_video_display_size = { width: parseInt(getComputedStyle(webcam_video).getPropertyValue("width")), height: parseInt(getComputedStyle(webcam_video).getPropertyValue("height")) };
 faceapi.matchDimensions(webcam_canvas, webcam_video_display_size);
 var webcam_emotion_detection_interval;
@@ -1836,7 +1838,6 @@ function shrink_unshrink_nav_bar(shrink = true){
 }
 
 function make_floating_notification(type, show_icon = true, notification_content_tag = null){
-    console.trace();
     let message = "";
     if (type == "welcome"){
         message = "Welcome to Re𝄞Ound!";
@@ -1979,9 +1980,8 @@ function open_webcam_popup_and_detect_emotion(append_queue = false) {
         })
         // if webcam access is not allowed
         .catch(error => {
-            console.error('Camera access not allowed!', error);
             emotion_detection_toggle_switch_checkbox.checked = false;
-            // make_floating_notification("emotion_detection_off");
+            make_floating_notification("emotion_detection_off");
             close_webcam_popup_and_stop_camera(true);
             make_floating_notification("camera_access_denied", true);
             if (append_queue) {
