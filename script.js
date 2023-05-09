@@ -579,10 +579,10 @@ function render_content_window(tab_tag, only_update_content = false){
 
             // add event listener to play that song or render and play that playlist
             if (category_items_type == "song"){
-                content_window_category_item.onclick = () => play_song(category_item_id);
+                content_window_category_item_cover_overlay.onclick = () => play_song(category_item_id);
             }
             else{
-                content_window_category_item.onclick = () => render_playlist(category_item_id);
+                content_window_category_item_cover_overlay.onclick = () => render_playlist(category_item_id);
                 content_window_category_item_cover_overlay_icon_wrapper.onclick = () => {
                     play_song(category_item_obj.playlist_song_ids[0], category_item_id);
                 }
@@ -1928,10 +1928,10 @@ function make_floating_notification(type, show_icon = true, notification_content
 function toggle_emotion_detection_switch() {
     emotion_detection_toggle_switch_checkbox.checked = ! emotion_detection_toggle_switch_checkbox.checked;
     update_user_content();
-    // if (emotion_detection_toggle_switch_checkbox.checked)
-    //     make_floating_notification("emotion_detection_on");
-    // else
-    //     make_floating_notification("emotion_detection_off");
+    if (emotion_detection_toggle_switch_checkbox.checked)
+        make_floating_notification("emotion_detection_on");
+    else
+        make_floating_notification("emotion_detection_off");
 }
 
 function start_emotion_detection_interval() {
@@ -2054,7 +2054,13 @@ window.onload = () => {
 }
 
 emotion_detection_buttons_wrapper.onclick = toggle_emotion_detection_switch;
-
+// defining separate onlick event listener for this toggle switch because it somehow
+// automatically triggers the make notification function on change even though it has no such event listener
+// so preventing that by stopping event propagation and manually toggling the switch/checkbox value
+emotion_detection_toggle_switch_checkbox.onclick = (event) => {
+    event.stopPropagation();
+    emotion_detection_toggle_switch_checkbox.checked = ! emotion_detection_toggle_switch_checkbox.checked;
+}
 detect_emotion_button_container.onclick = (event) => {
     event.stopPropagation();
     open_webcam_popup_and_detect_emotion();

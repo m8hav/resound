@@ -658,6 +658,7 @@ input:checked + .toggle-slider:before {
     height: max-content;
     overflow: hidden;
     font-weight: 500;
+    cursor: default;
 }
 .content-window-category-item-mainlabel{
     font-size: 0.85rem;
@@ -1271,13 +1272,13 @@ input:checked + .toggle-slider:before {
 /* FLOATING NOTIFICATION */
 #floating-notifications-wrapper{
     position: fixed;
-    bottom: var(--player-height);
-    padding: 0 1rem 1rem;
+    bottom: calc(var(--player-height) + 0.5rem);
     left: 50%;
     transform: translateX(-50%);
     z-index: 20;
     width: 17rem;
-    height: 10.5rem;
+    max-height: 9rem;
+    height: auto;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -1288,12 +1289,14 @@ input:checked + .toggle-slider:before {
 .floating-notification{
     position: relative;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 2rem);
     height: 2.5rem;
+    flex-shrink: 0;
     background-color: black;
     box-shadow: 0 0 0.5rem 0.5rem rgba(255, 255, 255, 0.2);
     border-radius: 0.25rem;
     padding: 0.5rem 0.75rem 0.55rem 1rem;
+    margin: 0 1rem 0;
     display: flex;
     align-items: center;
     justify-content: left;
