@@ -269,6 +269,7 @@ function render_nav_library_content(){
         nav_library_content_item.className = "nav-library-content-item";
         nav_library_content_item.innerText = playlist_name;
         nav_library_content_items_wrapper.appendChild(nav_library_content_item);
+        
         nav_library_content_item.onclick = (event) => {
             event.stopPropagation();
             render_playlist(playlist_id);
@@ -300,16 +301,16 @@ function update_search_suggestions(){
         let query_in_song_name = song_obj.song_name.toLowerCase().includes(search_query);
         let query_in_artist_names = song_obj.song_artist_names.filter(
             artist_name => artist_name.toLowerCase().includes(search_query)
-                || artist_name.split(" ").filter(
-                word => word.toLowerCase().startsWith(search_query)
-                ).length
+                // || artist_name.split(" ").filter(
+                // word => word.toLowerCase().startsWith(search_query)
+                // ).length
             ).length;
         
         if (query_in_song_name || query_in_artist_names){
 
             let search_suggestion = document.createElement("span");
-            search_suggestions_wrapper.appendChild(search_suggestion);
             search_suggestion.className = "search-suggestion";
+            search_suggestions_wrapper.appendChild(search_suggestion);
 
             let search_suggestion_text = document.createElement("p");
             search_suggestion_text.className = "search-suggestion-text";
@@ -321,7 +322,7 @@ function update_search_suggestions(){
             search_suggestion.append(search_icon);
             
             search_suggestion.onclick = (event) => {
-                recent_searches_list.push(song_id);
+                recent_searches_list.unshift(song_id);
                 event.stopPropagation();
                 play_song(song_id);
                 show_hide_search_suggestions(false);
@@ -350,7 +351,7 @@ function update_search_suggestions(){
     
             let search_suggestion_text = document.createElement("p");
             search_suggestion_text.className = "search-suggestion-text";
-            search_suggestion_text.innerHTML = song_obj.song_artist_names + " - " + song_obj.song_name;
+            search_suggestion_text.innerHTML = song_obj.song_artist_names.join(", ") + " - " + song_obj.song_name;
             search_suggestion.appendChild(search_suggestion_text);
     
             let search_icon = document.createElement("i");
@@ -1924,6 +1925,15 @@ function make_floating_notification(type, show_icon = true, notification_content
     }, 3000);
 }
 
+function toggle_emotion_detection_switch() {
+    emotion_detection_toggle_switch_checkbox.checked = ! emotion_detection_toggle_switch_checkbox.checked;
+    update_user_content();
+    // if (emotion_detection_toggle_switch_checkbox.checked)
+    //     make_floating_notification("emotion_detection_on");
+    // else
+    //     make_floating_notification("emotion_detection_off");
+}
+
 function start_emotion_detection_interval() {
     webcam_emotion_detection_interval = setInterval(async () => {
         webcam_emotion_detections = await faceapi.detectAllFaces(
@@ -1971,7 +1981,7 @@ function open_webcam_popup_and_detect_emotion(append_queue = false) {
         .catch(error => {
             console.error('Camera access not allowed!', error);
             emotion_detection_toggle_switch_checkbox.checked = false;
-            make_floating_notification("emotion_detection_off");
+            // make_floating_notification("emotion_detection_off");
             close_webcam_popup_and_stop_camera(true);
             make_floating_notification("camera_access_denied", true);
             if (append_queue) {
@@ -2007,11 +2017,11 @@ function get_emotion_and_play_playlist(append_queue = false) {
     let emotion_playlist_ids = emotions_playlists_obj[main_detected_emotion].emotion_playlist_ids;
     let emotion_random_playlist_id = emotion_playlist_ids[Math.floor(Math.random() * emotion_playlist_ids.length)];
     let emotion_random_playlist_song_ids = playlists_obj[emotion_random_playlist_id].playlist_song_ids;
-    let next_song_id = emotion_random_playlist_song_ids[0];
-    if (shuffle) {
-        next_song_id = emotion_random_playlist_song_ids[Math.floor(Math.random() * emotion_random_playlist_song_ids.length)];
-    }
-    play_song(next_song_id, emotion_random_playlist_id, append_queue);
+    // let next_song_id = emotion_random_playlist_song_ids[0];
+    // if (shuffle) {
+        let next_song_id = emotion_random_playlist_song_ids[Math.floor(Math.random() * emotion_random_playlist_song_ids.length)];
+    // }
+    play_song(next_song_id, emotion_random_playlist_id, append_queue, true);
     make_floating_notification("emotion_play", true, emotions_playlists_obj[main_detected_emotion].emotion_tag);
 }
 
@@ -2043,14 +2053,8 @@ window.onload = () => {
         open_webcam_popup_and_detect_emotion();
 }
 
-emotion_detection_buttons_wrapper.onclick = () => {
-    emotion_detection_toggle_switch_checkbox.checked = ! emotion_detection_toggle_switch_checkbox.checked;
-    update_user_content();
-    if (emotion_detection_toggle_switch_checkbox.checked)
-        make_floating_notification("emotion_detection_on");
-    else
-        make_floating_notification("emotion_detection_off");
-}
+emotion_detection_buttons_wrapper.onclick = toggle_emotion_detection_switch;
+
 detect_emotion_button_container.onclick = (event) => {
     event.stopPropagation();
     open_webcam_popup_and_detect_emotion();

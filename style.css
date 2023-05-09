@@ -235,6 +235,7 @@ nav{
     background-color: rgba(0, 0, 0, 0.35);
 }
 
+
 .right-window{
     height: calc(100% - var(--player-height));
     width: calc(100% - var(--nav-width));
@@ -453,9 +454,10 @@ input:checked + .toggle-slider:before {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: pointer;
 }
 #profile-dropdown-overlay-login-status{
-    cursor: default
+    cursor: default;
 }
 .profile-dropdown-overlay ul li:not(#profile-dropdown-overlay-login-status):hover{
     background-color: var(--hover-bg-color-light);
@@ -849,7 +851,7 @@ input:checked + .toggle-slider:before {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#playlist-content .playlist-content-name-column{
+#playlist-content-items .playlist-content-name-column{
     cursor: pointer;
 }
 .playlist-content-artists-column{
@@ -1269,12 +1271,13 @@ input:checked + .toggle-slider:before {
 /* FLOATING NOTIFICATION */
 #floating-notifications-wrapper{
     position: fixed;
-    bottom: calc(var(--player-height) + 0.5rem);
+    bottom: var(--player-height);
+    padding: 0 1rem 1rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 25;
-    width: 15rem;
-    height: 8.5rem;
+    z-index: 20;
+    width: 17rem;
+    height: 10.5rem;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -1288,7 +1291,7 @@ input:checked + .toggle-slider:before {
     width: 100%;
     height: 2.5rem;
     background-color: black;
-    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0.5rem 0.5rem rgba(255, 255, 255, 0.2);
     border-radius: 0.25rem;
     padding: 0.5rem 0.75rem 0.55rem 1rem;
     display: flex;
