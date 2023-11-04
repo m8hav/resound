@@ -1514,10 +1514,14 @@ function play_pause(play = false){
     if (player_play_pause_button_icon.classList.contains("fa-circle-play") || play){
         player_audio_controls.play();
         player_play_pause_button_container.title = "Pause";
+        player_extended_cover_image.classList.add("constant-rotation");
+        player_extended_cover_image.style.animationPlayState = 'running';
     }
     else{
         player_audio_controls.pause();
         player_play_pause_button_container.title = "Play";
+        // player_extended_cover_image.classList.remove("constant-rotation");
+        player_extended_cover_image.style.animationPlayState = 'paused';
     }
 }
 
